@@ -39,7 +39,8 @@ public class AppEAC4 {
         initializePoints(5);
         initializePlayers(5);
         showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
-        showError("Error molt greu en l’aplicació");
+        showError("Error molt greu en l'aplicació");
+        askForString("Introdueixi el seu nom", "No s'ha introduït cap informació");
     }
 
     // Auxiliar methods:
@@ -89,7 +90,7 @@ public class AppEAC4 {
         }
 
         String stringResult = MENU_LINE+"\n"+MENU_TITLE+"\n"+MENU_LINE+"\n"+menuText;
-        System.out.println(stringResult);
+        System.out.println(stringResult); // printed in a new line
     }
 
     public void showError(String textError) {
@@ -99,11 +100,27 @@ public class AppEAC4 {
         }
 
         String stringResult = MENU_LINE+"\n"+ERROR_TITLE+"\n"+MENU_LINE+"\n"+textError;
-        System.out.println(stringResult);
+        System.out.println(stringResult); // printed in a new line
     }
 
     public String askForString(String message, String errorMessage){
-        return null;
+        
+        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        Boolean end = false;
+        String inputString = "";
+
+        do{
+            System.out.println(message); // user message with a request
+            inputString = reader.nextLine(); // get the next string line introduces by user (everything he wrote before enter -> (\n) )
+
+            if (!inputString.isEmpty()){
+                end = true;
+            } else{
+                showError(errorMessage);
+            }
+        } while ( end == false );
+
+        return inputString;
     }
     
     public int askForInteger(String message, String errorMessage) {
