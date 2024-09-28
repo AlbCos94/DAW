@@ -15,6 +15,7 @@ public class AppEAC4 {
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     private static final String MENU_LINE = "--------------------------"; // line displayed in the menu
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
+    private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
 
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
@@ -38,6 +39,7 @@ public class AppEAC4 {
         initializePoints(5);
         initializePlayers(5);
         showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
+        showError("Error molt greu en l’aplicació");
     }
 
     // Auxiliar methods:
@@ -86,12 +88,18 @@ public class AppEAC4 {
             return;
         }
 
-        System.out.println(MENU_LINE+"\n"+MENU_TITLE+"\n"+MENU_LINE);
-        System.out.println(menuText);
+        String stringResult = MENU_LINE+"\n"+MENU_TITLE+"\n"+MENU_LINE+"\n"+menuText;
+        System.out.println(stringResult);
     }
 
     public void showError(String textError) {
-        
+
+        if ( (textError == null) || (textError.isEmpty()) ){
+            return;
+        }
+
+        String stringResult = MENU_LINE+"\n"+ERROR_TITLE+"\n"+MENU_LINE+"\n"+textError;
+        System.out.println(stringResult);
     }
 
     public String askForString(String message, String errorMessage){
