@@ -40,7 +40,8 @@ public class AppEAC4 {
         initializePlayers(5);
         showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
         showError("Error molt greu en l'aplicació");
-        askForString("Introdueixi el seu nom", "No s'ha introduït cap informació");
+        String cc = askForString("Introdueixi el seu nom", "No s'ha introduït cap informació");
+        int b = askForInteger("Introdueixi la seva edat", "El valor introduit no és un nombre sencer");
     }
 
     // Auxiliar methods:
@@ -106,7 +107,7 @@ public class AppEAC4 {
     public String askForString(String message, String errorMessage){
         
         Scanner reader = new Scanner(System.in); //the scanner is initialized
-        Boolean end = false;
+        boolean end = false;
         String inputString = "";
 
         do{
@@ -120,11 +121,35 @@ public class AppEAC4 {
             }
         } while ( end == false );
 
+        //reader.nextLine();
+        //reader.close();
         return inputString;
     }
     
     public int askForInteger(String message, String errorMessage) {
-        return 1;   
+        
+        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        boolean corectData = false;
+        int inputInt = 0;
+
+        do{
+            System.out.println(message); // user message with a request
+
+            corectData = reader.hasNextInt();
+
+            if(reader.hasNextInt()){
+                corectData = true;
+                inputInt = reader.nextInt();
+            }else{
+                
+                showError(errorMessage);
+                reader.next();
+            }
+        } while( !corectData );
+
+        //reader.nextLine();
+        //reader.close();
+        return inputInt;
     }
 
     public void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {
