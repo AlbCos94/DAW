@@ -18,22 +18,45 @@ public class AppEAC4 {
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
     private int[][] pointsMatrix = null; // matrix that will contain points of the players
 
+    // Main methods
     public static void main(String[] args) {
         AppEAC4 bowlingApp = new AppEAC4();
         bowlingApp.start();
-
-        // show menu
-        // execute order
     }
 
     public void start() {
         String a = "\n hola Caracola";
         System.out.println(a); // auxiliar method needed when we create new methods inside main. 
+
+        // SKELETON OF THE PROGRAMM
+        // show menu
+        // execute order
+
+        // Testing area
+        initializePoints(5);
+
+
     }
 
+    // Auxiliar methods
     public int[][] initializePoints(int playersNumber) {
+
+        if (playersNumber<=0) {
+            System.out.println("Number of players should be greater than 0");
+            return null;
+            
+        }
+
         pointsMatrix = new int[playersNumber][ROUNDS_NUMBER];
-        return null;
+
+        // pointsMatrix it is filled with -1's
+        for (int i= 0; i<playersNumber; i++){ 
+            for (int j= 0; j<ROUNDS_NUMBER; j++){
+                pointsMatrix[i][j]=-1;
+            }              
+        }
+
+        return pointsMatrix;
     }
 
     public String[][] initializePlayers(int playersNumber) {
