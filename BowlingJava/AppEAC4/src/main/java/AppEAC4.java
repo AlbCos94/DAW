@@ -13,6 +13,8 @@ public class AppEAC4 {
     // Constant declarations
     private static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player ( name, surname and age)
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
+    private static final String MENU_LINE = "--------------------------"; // line displayed in the menu
+    private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
 
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
@@ -28,23 +30,23 @@ public class AppEAC4 {
         String a = "\n hola Caracola";
         System.out.println(a); // auxiliar method needed when we create new methods inside main. 
 
-        // SKELETON OF THE PROGRAMM
+        // SKELETON OF THE PROGRAMM - traffic light control
         // show menu
         // execute order
 
         // Testing area
         initializePoints(5);
-
-
+        initializePlayers(5);
+        showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
     }
 
-    // Auxiliar methods
+    // Auxiliar methods:
+
     public int[][] initializePoints(int playersNumber) {
 
         if (playersNumber<=0) {
             System.out.println("Number of players should be greater than 0");
-            return null;
-            
+            return null; 
         }
 
         pointsMatrix = new int[playersNumber][ROUNDS_NUMBER];
@@ -52,7 +54,7 @@ public class AppEAC4 {
         // pointsMatrix it is filled with -1's
         for (int i= 0; i<playersNumber; i++){ 
             for (int j= 0; j<ROUNDS_NUMBER; j++){
-                pointsMatrix[i][j]=-1;
+                pointsMatrix[i][j] = -1;
             }              
         }
 
@@ -60,13 +62,32 @@ public class AppEAC4 {
     }
 
     public String[][] initializePlayers(int playersNumber) {
+
+        if (playersNumber<=0) {
+            System.out.println("Number of players should be greater than 0");
+            return null; 
+        }
+
         playersData = new String[playersNumber][PLAYER_DATA_ELEMENTS]; 
+
+        // playersData it is filled with empty strings
+        for (int i= 0; i<playersNumber; i++){ 
+            for (int j= 0; j<PLAYER_DATA_ELEMENTS; j++){
+                playersData[i][j] = "";
+            }              
+        }
+
         return playersData;
     }
 
     public void showMenu(String menuText) {
-        // traffic light control
-    
+        
+        if ( (menuText == null) || (menuText.isEmpty()) ){
+            return;
+        }
+
+        System.out.println(MENU_LINE+"\n"+MENU_TITLE+"\n"+MENU_LINE);
+        System.out.println(menuText);
     }
 
     public void showError(String textError) {
