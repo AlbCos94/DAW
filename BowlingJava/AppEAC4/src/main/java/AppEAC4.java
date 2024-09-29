@@ -12,6 +12,9 @@ public class AppEAC4 {
     
     // Constant declarations
     private static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player ( name, surname and age)
+    private static final int POS_NAME = 0;
+    private static final int POS_LASTNAME = 1;
+    private static final int POS_AGE = 2;
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     private static final String MENU_LINE = "--------------------------"; // line displayed in the menu
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
@@ -42,6 +45,12 @@ public class AppEAC4 {
         showError("Error molt greu en l'aplicació");
         String cc = askForString("Introdueixi el seu nom", "No s'ha introduït cap informació");
         int b = askForInteger("Introdueixi la seva edat", "El valor introduit no és un nombre sencer");
+        
+        String[][] matrixTest = {{"", "", ""}, {"", "", ""}};
+
+        insertPlayerNames(matrixTest, 0, "Pol", "Laac", 2);
+       
+        int e = 1;
     }
 
     // Auxiliar methods:
@@ -153,7 +162,27 @@ public class AppEAC4 {
     }
 
     public void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {
-         
+        
+        if (playersData == null) {
+            return;
+        }
+
+        if ( (rowNumber<0) || (rowNumber>=playersData.length) ) {
+            return;
+        }
+
+        if ( (name == null) || (name.isEmpty()) ){
+            return;
+        }
+
+        if (age < 0){
+            return;
+        }        
+
+        playersData[rowNumber][POS_NAME] = name;
+        playersData[rowNumber][POS_LASTNAME] = lastName;
+        playersData[rowNumber][POS_AGE] = String.valueOf(age);
+
     }
 
     public void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
