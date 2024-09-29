@@ -16,6 +16,7 @@ public class AppEAC4 {
     private static final int POS_LASTNAME = 1;
     private static final int POS_AGE = 2;
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
+    private static final int MAX_POINTS = 10; // max number of points a player can get by round
     private static final String MENU_LINE = "--------------------------"; // line displayed in the menu
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
@@ -167,7 +168,7 @@ public class AppEAC4 {
             return;
         }
 
-        if ( (rowNumber<0) || (rowNumber>=playersData.length) ) {
+        if ( (rowNumber < 0) || (rowNumber >= playersData.length) ) {
             return;
         }
 
@@ -187,6 +188,24 @@ public class AppEAC4 {
 
     public void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
         
+        if (pointsMatrix == null) {
+            return;
+        }
+        
+        if ( (rowIndex < 0) || (rowIndex >= playersData.length) ) {
+            return;
+        }
+
+        if ( (round < 0) || (round >= ROUNDS_NUMBER)){
+            return;
+        }   
+
+        if ( (points < 0) || (points > MAX_POINTS)){
+            return;
+        }   
+
+        pointsMatrix[rowIndex][round] = points;
+
     }
 
     public void showRounds(String[][] playersData, int[][] pointsMatrix) {
