@@ -40,6 +40,8 @@ public class AppEAC4 {
         // execute order
 
         // Testing area
+
+        /* 
         initializePoints(5);
         initializePlayers(5);
         showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
@@ -51,7 +53,21 @@ public class AppEAC4 {
 
         insertPlayerNames(matrixTest, 0, "Pol", "Laac", 2);
        
-        int e = 1;
+        int e = 1;*/
+
+        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+
+        String[][] matrixTest ={{"Pol", "Llach", "43"}, {"Nil", "Puig", "23"}};
+        int[][] pointsTest = {{8, 7, -1, -1, -1, -1, -1, -1, -1, -1}, {5, 4, -1, -1, -1, -1, -1, -1, -1, -1}};
+
+        showRounds( matrixTest , pointsTest);
+        //
+        /* 
+        String[] oneGuyData = {"Pol", "Llach", "43"};
+        int[] oneGuyPoints = {8, 7, -1, -1, -1, -1, -1, -1, -1, -1};
+        print1PlayersPoints(oneGuyData, oneGuyPoints);
+        */
     }
 
     // Auxiliar methods:
@@ -150,7 +166,7 @@ public class AppEAC4 {
             if(reader.hasNextInt()){
                 corectData = true;
                 inputInt = reader.nextInt();
-            }else{
+            } else{
                 
                 showError(errorMessage);
                 reader.next();
@@ -209,7 +225,66 @@ public class AppEAC4 {
     }
 
     public void showRounds(String[][] playersData, int[][] pointsMatrix) {
-        
+
+        if ( (playersData == null) || (pointsMatrix == null) ) {
+            return;
+        }
+
+        // number of rows of each matrix do not match 
+        if ( playersData.length != pointsMatrix.length ) {
+            return;
+        }
+
+        if ( playersData.length == 0 ) {
+            return;
+        }
+
+        System.out.printf("%5s %15s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+        System.out.print("\n");
+
+        for (int i= 0; i<playersData.length; i++){ 
+            print1PlayersPoints(playersData[i], pointsMatrix[i]);
+            System.out.print("\n"); // line break is added at the end
+        }
+
+    }
+
+
+    public void print1PlayersPoints(String[] onePlayersData, int[] pointsRow) {
+
+        if ( (onePlayersData == null) || (pointsRow == null) ) {
+            return;
+        }
+
+        if ( onePlayersData.length == 0 ) {
+            return;
+        }
+
+        if ( pointsRow.length == 0 ) {
+            return;
+        }
+
+        // print full name plus age
+        String fullName = onePlayersData[POS_NAME] + " " + onePlayersData[POS_LASTNAME];
+        System.out.printf("%5s %15s", fullName, onePlayersData[POS_AGE]);
+
+        //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
+
+        for (int i= 0; i<pointsRow.length; i++){ 
+            if (pointsRow[i] == -1) {
+                //pPointsPrint[i]="-";
+                System.out.printf("%5s", "-");
+            } else{
+                //pPointsPrint[i]=String.valueOf(pointsRow[i]);
+                System.out.printf("%5s", String.valueOf(pointsRow[i]));
+            }
+        }
+        // line break is added at the end
+        System.out.print("\n");
+
+        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
+
+
     }
  
 }
