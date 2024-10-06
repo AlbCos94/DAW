@@ -35,7 +35,14 @@ public class AppEAC4 {
         String a = "\n hola Caracola";
         System.out.println(a); // auxiliar method needed when we create new methods inside main. 
 
+
+
         // SKELETON OF THE PROGRAMM - traffic light control
+        // get players data
+        askingForPlayersAndDataInitialization();
+        
+
+
         // show menu
         // execute order
 
@@ -58,10 +65,11 @@ public class AppEAC4 {
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
 
-        String[][] matrixTest ={{"Pl", "Lh", "43"}, {"Nil", "Puig", "23"}};
-        int[][] pointsTest = {{8, 7, -1, -1, -1, -1, 10, -1, -1, -1}, {5, 4, -1, 10, 7, 6, -1, 5, -1, -1}};
+        
+        //String[][] matrixTest ={{"Pl", "Lh", "43"}, {"Nil", "Puig", "23"}};
+        //int[][] pointsTest = {{8, 7, -1, -1, -1, -1, 10, -1, -1, -1}, {5, 4, -1, 10, 7, 6, -1, 5, -1, -1}};
 
-        showRounds( matrixTest , pointsTest);
+        //showRounds( matrixTest , pointsTest);
         //
         /* 
         String[] oneGuyData = {"Pol", "Llach", "43"};
@@ -295,18 +303,45 @@ public class AppEAC4 {
             return;
         }
 
-        // print full name plus age
+        // print "full name" plus "age"
         System.out.printf("%-15s %10s", "FULL NAME", "AGE");
        
         //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
         for (int i= 0; i<roundsNumber; i++){
             System.out.printf("%5s", "R"+String.valueOf(i+1));
         }
-        // line break is added at the end
-        //System.out.print("\n");
+ 
 
-        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
+    }
 
+    public void askingForPlayersAndDataInitialization() {
+
+        String namePlayer = "";
+        String surnamePlayer = "";
+        int agePlayer = 0;
+
+        int numPlayers = 0;
+        numPlayers = askForInteger("Quants jugadors hi haurà?", "No s'ha introdït un nombre correcte de jugadors");
+        
+        // matrixs are initialized
+        initializePlayers(numPlayers);
+        initializePoints(numPlayers);
+        
+
+        if (numPlayers <= 0) {
+            // salit totalmente del programa
+        }
+
+        for (int i= 0; i<numPlayers; i++){
+            String playerNumber = String.valueOf(i+1)+"/"+String.valueOf(numPlayers);
+            String questionName  = playerNumber+"-"+"Introdueixi el nom del jugador";
+            String questionSurname  = playerNumber+"-"+"Introdueixi el cognom del jugador";
+            String questionAge  = playerNumber+"-"+"Introdueixi l'edat del jugador";
+            namePlayer = askForString(questionName, "El nom introduït es incorrecte");
+            surnamePlayer = askForString(questionSurname, "El cognom introduït es incorrecte");
+            agePlayer = askForInteger(questionAge, "L'edat introduïda es incorrecte");
+            insertPlayerNames(playersData, i, namePlayer, surnamePlayer, agePlayer);
+        }
 
     }
 
