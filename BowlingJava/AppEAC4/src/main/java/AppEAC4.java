@@ -58,8 +58,8 @@ public class AppEAC4 {
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
 
-        String[][] matrixTest ={{"Pol", "Llach", "43"}, {"Nil", "Puig", "23"}};
-        int[][] pointsTest = {{8, 7, -1, -1, -1, -1, -1, -1, -1, -1}, {5, 4, -1, -1, -1, -1, -1, -1, -1, -1}};
+        String[][] matrixTest ={{"Pl", "Lh", "43"}, {"Nil", "Puig", "23"}};
+        int[][] pointsTest = {{8, 7, -1, -1, -1, -1, 10, -1, -1, -1}, {5, 4, -1, 10, 7, 6, -1, 5, -1, -1}};
 
         showRounds( matrixTest , pointsTest);
         //
@@ -239,7 +239,8 @@ public class AppEAC4 {
             return;
         }
 
-        System.out.printf("%5s %15s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+        //System.out.printf("%5s %15s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+        printHeaderTablePoints(ROUNDS_NUMBER);
         System.out.print("\n");
 
         for (int i= 0; i<playersData.length; i++){ 
@@ -266,7 +267,7 @@ public class AppEAC4 {
 
         // print full name plus age
         String fullName = onePlayersData[POS_NAME] + " " + onePlayersData[POS_LASTNAME];
-        System.out.printf("%5s %15s", fullName, onePlayersData[POS_AGE]);
+        System.out.printf("%-15s %10s", fullName, onePlayersData[POS_AGE]);
 
         //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
 
@@ -280,11 +281,34 @@ public class AppEAC4 {
             }
         }
         // line break is added at the end
-        System.out.print("\n");
+        //System.out.print("\n");
 
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
 
 
     }
  
+
+    public void printHeaderTablePoints(int roundsNumber) {
+
+        if ( roundsNumber == 0)  {
+            return;
+        }
+
+        // print full name plus age
+        System.out.printf("%-15s %10s", "FULL NAME", "AGE");
+       
+        //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
+        for (int i= 0; i<roundsNumber; i++){
+            System.out.printf("%5s", "R"+String.valueOf(i+1));
+        }
+        // line break is added at the end
+        //System.out.print("\n");
+
+        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
+
+
+    }
+
+
 }
