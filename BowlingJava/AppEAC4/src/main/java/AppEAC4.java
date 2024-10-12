@@ -43,78 +43,26 @@ public class AppEAC4 {
     private static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
     private static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
 
-    
-    
-    
-
-
-
-
-
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
     private int[][] pointsMatrix = null; // matrix that will contain points of the players
 
-    // Main methods
+    // MAIN METHODS
     public static void main(String[] args) {
         AppEAC4 bowlingApp = new AppEAC4();
         bowlingApp.start();
     }
 
     public void start() {
-        
-
-        // SKELETON OF THE PROGRAMM - traffic light control
-        // get players data
-        
-        //ENABLE LATER
-        /* */
+        // Global data initizalization
         askingForPlayersAndDataInitialization();
-        
         if (playersData == null){
             return; // end of the program
         }
-        
-
-        optionManager();
-        //showMenu(MENU_TEXT);
-
-        // show menu
-        // execute order
-
-        // Testing area
-
-        /* 
-        initializePoints(5);
-        initializePlayers(5);
-        showMenu("1 - Primera opció\n2 - Segona opció\n3 - Tercera opció");
-        showError("Error molt greu en l'aplicació");
-        String cc = askForString("Introdueixi el seu nom", "No s'ha introduït cap informació");
-        int b = askForInteger("Introdueixi la seva edat", "El valor introduit no és un nombre sencer");
-        
-        String[][] matrixTest = {{"", "", ""}, {"", "", ""}};
-
-        insertPlayerNames(matrixTest, 0, "Pol", "Laac", 2);
-       
-        int e = 1;*/
-
-        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
-        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
-
-        
-        //String[][] matrixTest ={{"Pl", "Lh", "43"}, {"Nil", "Puig", "23"}};
-        //int[][] pointsTest = {{8, 7, -1, -1, -1, -1, 10, -1, -1, -1}, {5, 4, -1, 10, 7, 6, -1, 5, -1, -1}};
-
-        //showRounds( matrixTest , pointsTest);
-        //
-        /* 
-        String[] oneGuyData = {"Pol", "Llach", "43"};
-        int[] oneGuyPoints = {8, 7, -1, -1, -1, -1, -1, -1, -1, -1};
-        print1PlayersPoints(oneGuyData, oneGuyPoints);
-        */
+        optionManager(); //traffic light control
     }
 
-    // Auxiliar methods:
+    // AUXILIAR METHODS
 
     public int[][] initializePoints(int playersNumber) {
 
@@ -143,14 +91,12 @@ public class AppEAC4 {
         }
 
         playersData = new String[playersNumber][PLAYER_DATA_ELEMENTS]; 
-
         // playersData it is filled with empty strings
         for (int i= 0; i<playersNumber; i++){ 
             for (int j= 0; j<PLAYER_DATA_ELEMENTS; j++){
                 playersData[i][j] = "";
             }              
         }
-
         return playersData;
     }
 
@@ -159,7 +105,6 @@ public class AppEAC4 {
         if ( (menuText == null) || (menuText.isEmpty()) ){
             return;
         }
-
         String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+MENU_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+menuText;
         System.out.println(stringResult); // printed in a new line
     }
@@ -169,7 +114,6 @@ public class AppEAC4 {
         if ( (textError == null) || (textError.isEmpty()) ){
             return;
         }
-
         String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+ERROR_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+textError;
         System.out.println(stringResult); // printed in a new line
     }
@@ -215,8 +159,6 @@ public class AppEAC4 {
             }
         } while( !corectData );
 
-        //reader.nextLine();
-        //reader.close();
         return inputInt;
     }
 
@@ -234,7 +176,6 @@ public class AppEAC4 {
             return;
         }
 
-
         if ( (lastName == null) || (lastName.isEmpty()) ){
             return;
         }
@@ -246,7 +187,6 @@ public class AppEAC4 {
         playersData[rowNumber][POS_NAME] = name;
         playersData[rowNumber][POS_LASTNAME] = lastName;
         playersData[rowNumber][POS_AGE] = String.valueOf(age);
-
     }
 
     public void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
@@ -255,7 +195,6 @@ public class AppEAC4 {
             return;
         }
         
-
         // playersData
         if ( (rowIndex < 0) || (rowIndex >= pointsMatrix.length) ) {
             return;
@@ -270,7 +209,6 @@ public class AppEAC4 {
         }   
 
         pointsMatrix[rowIndex][round-1] = points;
-
     }
 
     public void showRounds(String[][] playersData, int[][] pointsMatrix) {
@@ -296,7 +234,6 @@ public class AppEAC4 {
             print1PlayersPoints(playersData[i], pointsMatrix[i]);
             System.out.print("\n"); // line break is added at the end
         }
-
     }
 
 
@@ -318,25 +255,15 @@ public class AppEAC4 {
         String fullName = onePlayersData[POS_NAME] + " " + onePlayersData[POS_LASTNAME];
         System.out.printf("%-15s %10s", fullName, onePlayersData[POS_AGE]);
 
-        //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
-
         for (int i= 0; i<pointsRow.length; i++){ 
             if (pointsRow[i] == -1) {
-                //pPointsPrint[i]="-";
                 System.out.printf("%5s", "-");
             } else{
-                //pPointsPrint[i]=String.valueOf(pointsRow[i]);
                 System.out.printf("%5s", String.valueOf(pointsRow[i]));
             }
-        }
-        // line break is added at the end
-        //System.out.print("\n");
-
-        //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
-
+        }  
     }
  
-
     public void printHeaderTablePoints(int roundsNumber) {
 
         if ( roundsNumber == 0)  {
@@ -353,8 +280,7 @@ public class AppEAC4 {
         }
         System.out.printf("\n");
         System.out.printf(SPLIT_LINE.repeat(NUMBER_DOTS_TABLE_LINE));
- 
-    }
+     }
 
     public void askingForPlayersAndDataInitialization() {
 
@@ -371,7 +297,7 @@ public class AppEAC4 {
             return; // salit totalmente del programa
         }
 
-        // matrixs are initialized
+        // Matrixs are initialized
         initializePlayers(numPlayers);
         initializePoints(numPlayers);      
 
@@ -385,9 +311,7 @@ public class AppEAC4 {
             agePlayer = askForInteger(questionAge, ERROR_PLAYERAGE);
             insertPlayerNames(playersData, i, namePlayer, surnamePlayer, agePlayer);
         }
-
     }
-
 
     public void askingForRoundPoints() {
 
@@ -407,9 +331,8 @@ public class AppEAC4 {
                 correctRound = true;
             }
         } while (!correctRound);
-
   
-        // we loop among all the players of the round
+        // Loop among all the players of the round
         for (int i= 0; i<playersData.length; i++){
             playerFullName = playersData[i][0]+" "+playersData[i][1];
 
@@ -428,7 +351,6 @@ public class AppEAC4 {
 
             setRoundPoints(pointsMatrix, i, roundNumber, pointsToInsert);
         }
-
     }
 
     public void optionManager() {
@@ -439,7 +361,6 @@ public class AppEAC4 {
         int inputInt = 0;
 
         do{
-            
             showMenu(MENU_TEXT);
 
             corectData = reader.hasNextInt();
@@ -464,11 +385,5 @@ public class AppEAC4 {
                 reader.next();
             }
         } while( !finish );
-
-
-
     }
-
-
-
 }
