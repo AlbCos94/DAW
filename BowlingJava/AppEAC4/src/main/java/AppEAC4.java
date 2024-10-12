@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 /*
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class AppEAC4 {
     
     // Constant declarations
-    private static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player ( name, surname and age)
+    private static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player (name, surname and age)
     private static final int POS_NAME = 0;
     private static final int POS_LASTNAME = 1;
     private static final int POS_AGE = 2;
@@ -28,7 +27,7 @@ public class AppEAC4 {
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
     private static final String MENU_TEXT = "1) Puntuar ronda.\n2) Mostrar tauler. \n0) Sortir."; // Options menu
-    private static final String ERROR_OPTION = "No s'ha introduït un enter valid com a opció."; // Options menu
+    private static final String ERROR_OPTION = "No s'ha introduït un enter vàlid com a opció."; // Options menu
     private static final String ROUND_TO_POINT = "Quina ronda vol puntuar?"; // Question to ask to point a round
     private static final String ROUND_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point
     private static final String QUESTION_ENTER_POINTS = "Introdueixi els punts per "; 
@@ -61,7 +60,7 @@ public class AppEAC4 {
         if (playersData == null){
             return; // end of the program
         }
-        optionManager(); //traffic light control
+        optionManager(); 
     }
 
     // AUXILIAR METHODS
@@ -110,7 +109,7 @@ public class AppEAC4 {
         String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+MENU_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+menuText;
         System.out.println(stringResult); // printed in a new line
 
-        System.out.println(QUESTION_OPTIONS); // printed in a new line
+        System.out.println(QUESTION_OPTIONS); 
     }
 
     public void showError(String textError) {
@@ -119,18 +118,18 @@ public class AppEAC4 {
             return;
         }
         String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+ERROR_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+textError;
-        System.out.println(stringResult); // printed in a new line
+        System.out.println(stringResult); 
     }
 
     public String askForString(String message, String errorMessage){
         
-        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        Scanner reader = new Scanner(System.in); 
         boolean end = false;
         String inputString = "";
 
         do{
-            System.out.println(message); // user message with a request
-            inputString = reader.nextLine(); // get the next string line introduces by user (everything he wrote before enter -> (\n) )
+            System.out.println(message); // User message with a request
+            inputString = reader.nextLine(); // Get the next string line introduced by user (everything he wrote before enter -> (\n) )
 
             if (!inputString.isEmpty()){
                 end = true;
@@ -144,12 +143,12 @@ public class AppEAC4 {
     
     public int askForInteger(String message, String errorMessage) {
         
-        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        Scanner reader = new Scanner(System.in); 
         boolean corectData = false;
         int inputInt = 0;
 
         do{
-            System.out.println(message); // user message with a request
+            System.out.println(message); 
 
             corectData = reader.hasNextInt();
 
@@ -221,7 +220,7 @@ public class AppEAC4 {
             return;
         }
 
-        // number of rows of each matrix do not match 
+        // Number of rows between matrixs does not match 
         if ( playersData.length != pointsMatrix.length ) {
             return;
         }
@@ -255,7 +254,7 @@ public class AppEAC4 {
             return;
         }
 
-        // print full name plus age
+        // Print "full name" plus "age"
         String fullName = onePlayersData[POS_NAME] + " " + onePlayersData[POS_LASTNAME];
         System.out.printf("%-15s %10s", fullName, onePlayersData[POS_AGE]);
 
@@ -278,7 +277,6 @@ public class AppEAC4 {
         System.out.printf(SPLIT_LINE.repeat(NUMBER_DOTS_TABLE_LINE) +"\n");
         System.out.printf("%-15s %10s", MENU_FULLNAME, MENU_AGE);
         
-        //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
         for (int i= 0; i<roundsNumber; i++){
             System.out.printf("%5s", "R"+String.valueOf(i+1));
         }
@@ -341,13 +339,12 @@ public class AppEAC4 {
             playerFullName = playersData[i][0]+" "+playersData[i][1];
 
             do{
-                pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER); // it gives us an int but not sure if between 1 and 10
+                pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER); // it gives us an int but it is not sure if between 1 and 10
 
                 if ( (pointsToInsert >= 0) && (pointsToInsert <= MAX_POINTS) ){
                     correctPoints = true;
                 } else {
                     showError(ERROR_ENTER_RANGE + MAX_POINTS);
-                    //showError("Els punts han de ser entre 0 i " + MAX_POINTS);
                     correctPoints = false;
                 }
 
@@ -359,7 +356,7 @@ public class AppEAC4 {
 
     public void optionManager() {
 
-        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        Scanner reader = new Scanner(System.in); 
         boolean corectData = false;
         boolean finish = false;
         int inputInt = 0;
