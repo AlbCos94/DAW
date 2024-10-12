@@ -17,9 +17,22 @@ public class AppEAC4 {
     private static final int POS_AGE = 2;
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     private static final int MAX_POINTS = 10; // max number of points a player can get by round
-    private static final String MENU_LINE = "--------------------------"; // line displayed in the menu
+    private static final int OPTION_POINT_ROUND = 1; // option given to introduce the points of a round
+    private static final int OPTION_SHOW_TABLE = 2; // option given to display the points table
+    private static final int OPTION_QUIT = 0; // option given to finish the program
+    private static final String SPLIT_LINE = "-"; // line displayed in the menu
+    private static final int NUMBER_DOTS_MENU_LINE = 30;
+    private static final int NUMBER_DOTS_TABLE_LINE = 120;
+    private static final String MENU_FULLNAME = "FULL NAME"; // line displayed in the menu
+    private static final String MENU_AGE = "AGE"; // line displayed in the men
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
+    private static final String MENU_TEXT = "1) Puntuar ronda.\n2) Mostrar tauler. \n0) Sortir."; // Options menu
+    private static final String ERROR_OPTION = "Incorrect option given."; // Options menu
+    private static final String ROUNT_TO_POINT = "Quina ronda vol puntuar?"; // Questio to ask to point a round
+    private static final String ROUNT_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point
+    private static final String QUESTION_ENTER_POINTS = "Introdueixi els punts per "; 
+    private static final String ERROR_ENTER_POINTS = "Valor de punts introduït erroni "; 
 
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
@@ -39,9 +52,18 @@ public class AppEAC4 {
 
         // SKELETON OF THE PROGRAMM - traffic light control
         // get players data
+        
+        //ENABLE LATER
+        /* */
         askingForPlayersAndDataInitialization();
         
+        if (playersData == null){
+            return; // end of the program
+        }
+        
 
+        optionManager();
+        //showMenu(MENU_TEXT);
 
         // show menu
         // execute order
@@ -124,7 +146,7 @@ public class AppEAC4 {
             return;
         }
 
-        String stringResult = MENU_LINE+"\n"+MENU_TITLE+"\n"+MENU_LINE+"\n"+menuText;
+        String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+MENU_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+menuText;
         System.out.println(stringResult); // printed in a new line
     }
 
@@ -134,7 +156,7 @@ public class AppEAC4 {
             return;
         }
 
-        String stringResult = MENU_LINE+"\n"+ERROR_TITLE+"\n"+MENU_LINE+"\n"+textError;
+        String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+ERROR_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+textError;
         System.out.println(stringResult); // printed in a new line
     }
 
@@ -293,7 +315,6 @@ public class AppEAC4 {
 
         //System.out.printf("%5s %15s %10s %5s %5s %5s %5s %5s %5s %5s %5s %5s %n" , fullName, onePlayersData[POS_AGE], pPointsPrint[0], pPointsPrint[1], pPointsPrint[2], pPointsPrint[3], pPointsPrint[4], pPointsPrint[5], pPointsPrint[6], pPointsPrint[7], pPointsPrint[8], pPointsPrint[9]);
 
-
     }
  
 
@@ -304,14 +325,16 @@ public class AppEAC4 {
         }
 
         // print "full name" plus "age"
-        System.out.printf("%-15s %10s", "FULL NAME", "AGE");
-       
+        System.out.printf(SPLIT_LINE.repeat(NUMBER_DOTS_TABLE_LINE) +"\n");
+        System.out.printf("%-15s %10s", MENU_FULLNAME, MENU_AGE);
+        
         //String[] pPointsPrint = new String[pointsRow.length]; // player's points to print
         for (int i= 0; i<roundsNumber; i++){
             System.out.printf("%5s", "R"+String.valueOf(i+1));
         }
+        System.out.printf("\n");
+        System.out.printf(SPLIT_LINE.repeat(NUMBER_DOTS_TABLE_LINE));
  
-
     }
 
     public void askingForPlayersAndDataInitialization() {
@@ -323,14 +346,13 @@ public class AppEAC4 {
         int numPlayers = 0;
         numPlayers = askForInteger("Quants jugadors hi haurà?", "No s'ha introdït un nombre correcte de jugadors");
         
+        if (numPlayers <= 0) {
+            return; // salit totalmente del programa
+        }
+
         // matrixs are initialized
         initializePlayers(numPlayers);
-        initializePoints(numPlayers);
-        
-
-        if (numPlayers <= 0) {
-            // salit totalmente del programa
-        }
+        initializePoints(numPlayers);      
 
         for (int i= 0; i<numPlayers; i++){
             String playerNumber = String.valueOf(i+1)+"/"+String.valueOf(numPlayers);
@@ -344,6 +366,68 @@ public class AppEAC4 {
         }
 
     }
+
+
+    public void askingForRoundPoints() {
+
+        int roundNumber = 0;
+        int pointsToInsert = 0;
+        String playerFullName = "";
+
+        roundNumber = askForInteger(ROUNT_TO_POINT, ROUNT_TO_POINT_ERROR);
+
+        if ( (roundNumber<1) || (roundNumber > ROUNDS_NUMBER) ){
+            showError(ROUNT_TO_POINT_ERROR);
+        }
+  
+        // we loop among all the players of the round
+        for (int i= 0; i<playersData.length; i++){
+            playerFullName = playersData[i][0]+" "+playersData[i][1];
+
+            pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER_POINTS);
+            setRoundPoints(pointsMatrix, i, roundNumber, pointsToInsert);
+        }
+
+    }
+
+    public void optionManager() {
+
+        Scanner reader = new Scanner(System.in); //the scanner is initialized
+        boolean corectData = false;
+        boolean finish = false;
+        int inputInt = 0;
+
+        do{
+            
+            showMenu(MENU_TEXT);
+
+            corectData = reader.hasNextInt();
+
+            if(corectData){
+                
+                inputInt = reader.nextInt();
+
+                if (inputInt == OPTION_POINT_ROUND){
+                    askingForRoundPoints();
+                } else if (inputInt == OPTION_SHOW_TABLE){                   
+                    showRounds(playersData,pointsMatrix);
+                } else if (inputInt == OPTION_QUIT) {
+                    finish = true;
+                } else{
+                    showError(ERROR_OPTION);
+                }
+
+            } else{
+                
+                showError(ERROR_OPTION);
+                reader.next();
+            }
+        } while( !finish );
+
+
+
+    }
+
 
 
 }
