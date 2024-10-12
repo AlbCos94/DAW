@@ -28,11 +28,28 @@ public class AppEAC4 {
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
     private static final String MENU_TEXT = "1) Puntuar ronda.\n2) Mostrar tauler. \n0) Sortir."; // Options menu
-    private static final String ERROR_OPTION = "Incorrect option given."; // Options menu
-    private static final String ROUNT_TO_POINT = "Quina ronda vol puntuar?"; // Questio to ask to point a round
-    private static final String ROUNT_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point
+    private static final String ERROR_OPTION = "No s'ha introduït una opció vàlida."; // Options menu
+    private static final String ROUND_TO_POINT = "Quina ronda vol puntuar?"; // Questio to ask to point a round
+    private static final String ROUND_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point
     private static final String QUESTION_ENTER_POINTS = "Introdueixi els punts per "; 
-    private static final String ERROR_ENTER_POINTS = "Valor de punts introduït erroni "; 
+    private static final String ERROR_ENTER_POINTS = "Valor de punts introduït erroni.";
+    private static final String ERROR_ENTER_RANGE = "Els punts han de ser entre 0 i ";
+    private static final String ASK_FOR_PLAYERNAME = "Introdueixi el nom del jugador";
+    private static final String ERROR_PLAYERNAME = "El nom introduït es incorrecte";  
+    private static final String ASK_FOR_PLAYERSURNAME = "Introdueixi el cognom del jugador";
+    private static final String ERROR_PLAYERSURNAME = "El cognom introduït es incorrecte";   
+    private static final String ASK_FOR_PLAYERAGE = "Introdueixi l'edat del jugador";
+    private static final String ERROR_PLAYERAGE = "L'edat introduïda es incorrecte";  
+    private static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
+    private static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
+
+    
+    
+    
+
+
+
+
 
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
@@ -45,10 +62,7 @@ public class AppEAC4 {
     }
 
     public void start() {
-        String a = "\n hola Caracola";
-        System.out.println(a); // auxiliar method needed when we create new methods inside main. 
-
-
+        
 
         // SKELETON OF THE PROGRAMM - traffic light control
         // get players data
@@ -177,8 +191,6 @@ public class AppEAC4 {
             }
         } while ( end == false );
 
-        //reader.nextLine();
-        //reader.close();
         return inputString;
     }
     
@@ -250,7 +262,7 @@ public class AppEAC4 {
             return;
         }   
 
-        pointsMatrix[rowIndex][round] = points;
+        pointsMatrix[rowIndex][round-1] = points;
 
     }
 
@@ -344,9 +356,11 @@ public class AppEAC4 {
         int agePlayer = 0;
 
         int numPlayers = 0;
-        numPlayers = askForInteger("Quants jugadors hi haurà?", "No s'ha introdït un nombre correcte de jugadors");
+
+        numPlayers = askForInteger(ASK_FOR_NUM_PLAYERS, ERROR_NUM_PLAYERS);
         
         if (numPlayers <= 0) {
+            showError(ERROR_NUM_PLAYERS);
             return; // salit totalmente del programa
         }
 
@@ -356,12 +370,12 @@ public class AppEAC4 {
 
         for (int i= 0; i<numPlayers; i++){
             String playerNumber = String.valueOf(i+1)+"/"+String.valueOf(numPlayers);
-            String questionName  = playerNumber+"-"+"Introdueixi el nom del jugador";
-            String questionSurname  = playerNumber+"-"+"Introdueixi el cognom del jugador";
-            String questionAge  = playerNumber+"-"+"Introdueixi l'edat del jugador";
-            namePlayer = askForString(questionName, "El nom introduït es incorrecte");
-            surnamePlayer = askForString(questionSurname, "El cognom introduït es incorrecte");
-            agePlayer = askForInteger(questionAge, "L'edat introduïda es incorrecte");
+            String questionName  = playerNumber+" - "+ ASK_FOR_PLAYERNAME;
+            String questionSurname  = playerNumber+" - "+ ASK_FOR_PLAYERSURNAME;
+            String questionAge  = playerNumber+" - "+ ASK_FOR_PLAYERAGE;
+            namePlayer = askForString(questionName, ERROR_PLAYERNAME);
+            surnamePlayer = askForString(questionSurname, ERROR_PLAYERSURNAME);
+            agePlayer = askForInteger(questionAge, ERROR_PLAYERAGE);
             insertPlayerNames(playersData, i, namePlayer, surnamePlayer, agePlayer);
         }
 
@@ -372,19 +386,39 @@ public class AppEAC4 {
 
         int roundNumber = 0;
         int pointsToInsert = 0;
+        boolean correctPoints = false;
+        boolean correctRound = false;
         String playerFullName = "";
 
-        roundNumber = askForInteger(ROUNT_TO_POINT, ROUNT_TO_POINT_ERROR);
+        do{
+            roundNumber = askForInteger(ROUND_TO_POINT, ROUND_TO_POINT_ERROR);
 
-        if ( (roundNumber<1) || (roundNumber > ROUNDS_NUMBER) ){
-            showError(ROUNT_TO_POINT_ERROR);
-        }
+            if ( (roundNumber<1) || (roundNumber > ROUNDS_NUMBER) ){
+                showError(ROUND_TO_POINT_ERROR);
+                correctRound = false;
+            } else {
+                correctRound = true;
+            }
+        } while (!correctRound);
+
   
         // we loop among all the players of the round
         for (int i= 0; i<playersData.length; i++){
             playerFullName = playersData[i][0]+" "+playersData[i][1];
 
-            pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER_POINTS);
+            do{
+                pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER_POINTS); // it gives us an int but not sure if between 1 and 10
+
+                if ( (pointsToInsert >= 0) && (pointsToInsert <= MAX_POINTS) ){
+                    correctPoints = true;
+                } else {
+                    showError(ERROR_ENTER_RANGE + MAX_POINTS);
+                    //showError("Els punts han de ser entre 0 i " + MAX_POINTS);
+                    correctPoints = false;
+                }
+
+            } while (!correctPoints);
+
             setRoundPoints(pointsMatrix, i, roundNumber, pointsToInsert);
         }
 
