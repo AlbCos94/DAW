@@ -28,11 +28,11 @@ public class AppEAC4 {
     private static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     private static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
     private static final String MENU_TEXT = "1) Puntuar ronda.\n2) Mostrar tauler. \n0) Sortir."; // Options menu
-    private static final String ERROR_OPTION = "No s'ha introduït una opció vàlida."; // Options menu
-    private static final String ROUND_TO_POINT = "Quina ronda vol puntuar?"; // Questio to ask to point a round
+    private static final String ERROR_OPTION = "No s'ha introduït un enter valid com a opció."; // Options menu
+    private static final String ROUND_TO_POINT = "Quina ronda vol puntuar?"; // Question to ask to point a round
     private static final String ROUND_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point
     private static final String QUESTION_ENTER_POINTS = "Introdueixi els punts per "; 
-    private static final String ERROR_ENTER_POINTS = "Valor de punts introduït erroni.";
+    private static final String ERROR_ENTER = "No s'ha introduït un número enter";
     private static final String ERROR_ENTER_RANGE = "Els punts han de ser entre 0 i ";
     private static final String ASK_FOR_PLAYERNAME = "Introdueixi el nom del jugador";
     private static final String ERROR_PLAYERNAME = "El nom introduït es incorrecte";  
@@ -42,6 +42,8 @@ public class AppEAC4 {
     private static final String ERROR_PLAYERAGE = "L'edat introduïda es incorrecte";  
     private static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
     private static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
+    private static final String QUESTION_OPTIONS = "Introdueixi un valor enter per l'opció";
+
 
     // Global variable declarations
     private String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
@@ -107,6 +109,8 @@ public class AppEAC4 {
         }
         String stringResult = SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+MENU_TITLE+"\n"+SPLIT_LINE.repeat(NUMBER_DOTS_MENU_LINE)+"\n"+menuText;
         System.out.println(stringResult); // printed in a new line
+
+        System.out.println(QUESTION_OPTIONS); // printed in a new line
     }
 
     public void showError(String textError) {
@@ -294,7 +298,7 @@ public class AppEAC4 {
         
         if (numPlayers <= 0) {
             showError(ERROR_NUM_PLAYERS);
-            return; // salit totalmente del programa
+            return; // exit program
         }
 
         // Matrixs are initialized
@@ -322,7 +326,7 @@ public class AppEAC4 {
         String playerFullName = "";
 
         do{
-            roundNumber = askForInteger(ROUND_TO_POINT, ROUND_TO_POINT_ERROR);
+            roundNumber = askForInteger(ROUND_TO_POINT, ERROR_ENTER);
 
             if ( (roundNumber<1) || (roundNumber > ROUNDS_NUMBER) ){
                 showError(ROUND_TO_POINT_ERROR);
@@ -337,7 +341,7 @@ public class AppEAC4 {
             playerFullName = playersData[i][0]+" "+playersData[i][1];
 
             do{
-                pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER_POINTS); // it gives us an int but not sure if between 1 and 10
+                pointsToInsert = askForInteger(QUESTION_ENTER_POINTS + playerFullName, ERROR_ENTER); // it gives us an int but not sure if between 1 and 10
 
                 if ( (pointsToInsert >= 0) && (pointsToInsert <= MAX_POINTS) ){
                     correctPoints = true;
