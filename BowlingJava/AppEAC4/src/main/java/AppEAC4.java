@@ -119,7 +119,7 @@ public class AppEAC4 {
     public int[][] initializePoints(int playersNumber) {
 
         if (playersNumber<=0) {
-            System.out.println("Number of players should be greater than 0");
+            System.out.println(ERROR_NUM_PLAYERS);
             return null; 
         }
 
@@ -138,7 +138,7 @@ public class AppEAC4 {
     public String[][] initializePlayers(int playersNumber) {
 
         if (playersNumber<=0) {
-            System.out.println("Number of players should be greater than 0");
+            System.out.println(ERROR_NUM_PLAYERS);
             return null; 
         }
 
@@ -234,6 +234,11 @@ public class AppEAC4 {
             return;
         }
 
+
+        if ( (lastName == null) || (lastName.isEmpty()) ){
+            return;
+        }
+
         if (age < 0){
             return;
         }        
@@ -250,11 +255,13 @@ public class AppEAC4 {
             return;
         }
         
-        if ( (rowIndex < 0) || (rowIndex >= playersData.length) ) {
+
+        // playersData
+        if ( (rowIndex < 0) || (rowIndex >= pointsMatrix.length) ) {
             return;
         }
 
-        if ( (round < 0) || (round >= ROUNDS_NUMBER)){
+        if ( (round <= 0) || (round >= ROUNDS_NUMBER)){
             return;
         }   
 
@@ -281,7 +288,7 @@ public class AppEAC4 {
             return;
         }
 
-        //System.out.printf("%5s %15s %5s %5s %5s %5s %5s %5s %5s %5s %5s" ,"FULL NAME", "AGE", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10");
+        //Print header of the table containing all the rounds
         printHeaderTablePoints(ROUNDS_NUMBER);
         System.out.print("\n");
 
