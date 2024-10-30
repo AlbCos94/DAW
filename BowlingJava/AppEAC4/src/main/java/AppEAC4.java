@@ -14,6 +14,8 @@ public class AppEAC4 {
     private static final int POS_NAME = 0;
     private static final int POS_LASTNAME = 1;
     private static final int POS_AGE = 2;
+    private static final int MIN_AGE = 0;
+    private static final int MAX_AGE = 99;
     private static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     private static final int MAX_POINTS = 10; // max number of points a player can get by round
     private static final int OPTION_POINT_ROUND = 1; // option given to introduce the points of a round
@@ -38,10 +40,13 @@ public class AppEAC4 {
     private static final String ASK_FOR_PLAYERSURNAME = "Introdueixi el cognom del jugador";
     private static final String ERROR_PLAYERSURNAME = "El cognom introduït es incorrecte";   
     private static final String ASK_FOR_PLAYERAGE = "Introdueixi l'edat del jugador";
-    private static final String ERROR_PLAYERAGE = "L'edat introduïda es incorrecte";  
+    private static final String ERROR_PLAYERAGE = "L'edat introduïda es incorrecte"; 
+    private static final String ERROR_PLAYERAGE_RANGE = "L'edat introduïda ha de ser un valor entre 0 i 99 anys";   
     private static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
     private static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
     private static final String QUESTION_OPTIONS = "Introdueixi un valor enter per l'opció";
+
+
 
 
     // Global variable declarations
@@ -155,6 +160,39 @@ public class AppEAC4 {
             if(reader.hasNextInt()){
                 corectData = true;
                 inputInt = reader.nextInt();
+            } else{
+                
+                showError(errorMessage);
+                reader.next();
+            }
+        } while( !corectData );
+
+        return inputInt;
+    }
+
+
+    public int askForAge(String message, String errorMessage) {
+        
+        Scanner reader = new Scanner(System.in); 
+        boolean corectData = false;
+        int inputInt = 0;
+
+        do{
+            System.out.println(message); 
+
+            //corectData = reader.hasNextInt();
+
+            if(reader.hasNextInt()){
+                //corectData = true;
+                inputInt = reader.nextInt();
+
+                if (inputInt < MIN_AGE || inputInt > MAX_AGE){
+                    showError(ERROR_PLAYERAGE_RANGE);
+                    corectData = false;
+                } else{
+                    corectData = true;
+                }
+
             } else{
                 
                 showError(errorMessage);
@@ -310,7 +348,8 @@ public class AppEAC4 {
             String questionAge  = playerNumber+" - "+ ASK_FOR_PLAYERAGE;
             namePlayer = askForString(questionName, ERROR_PLAYERNAME);
             surnamePlayer = askForString(questionSurname, ERROR_PLAYERSURNAME);
-            agePlayer = askForInteger(questionAge, ERROR_PLAYERAGE);
+            agePlayer = askForAge(questionAge, ERROR_PLAYERAGE);
+
             insertPlayerNames(playersData, i, namePlayer, surnamePlayer, agePlayer);
         }
     }
