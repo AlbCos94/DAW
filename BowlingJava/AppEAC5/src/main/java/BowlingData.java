@@ -3,8 +3,7 @@ public class BowlingData {
     String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
     int[][] pointsMatrix = null; // matrix that will contain points of the players
 
-    // initializePoints
-    //public static int[][] initializePoints(int playerNumber);
+    // Initialize matrix of points
     public int[][] initializePoints(int playersNumber) {
 
         if (playersNumber<=0) {
@@ -12,7 +11,6 @@ public class BowlingData {
             return null; 
         }
 
-        //int [][] pointsMatrix = new int[playersNumber][Constants.ROUNDS_NUMBER];
         pointsMatrix = new int[playersNumber][Constants.ROUNDS_NUMBER];
 
         // pointsMatrix it is filled with -1's
@@ -25,9 +23,7 @@ public class BowlingData {
         return pointsMatrix;
     }
 
-
-    // initializedPlayers
-    //public static String[][] initializedPlayers(int playerNumber);
+    // Initialize matrix of players
     public String[][] initializePlayers(int playersNumber) {
 
         if (playersNumber<=0) {
@@ -35,7 +31,6 @@ public class BowlingData {
             return null; 
         }
 
-        //String [][] playersData = new String[playersNumber][Constants.PLAYER_DATA_ELEMENTS]; 
         playersData = new String[playersNumber][Constants.PLAYER_DATA_ELEMENTS]; 
         
         // playersData it is filled with empty strings
@@ -46,6 +41,5 @@ public class BowlingData {
         }
         return playersData;
     }
-
 
 }

@@ -39,7 +39,7 @@ public class UtilsBowling {
 
     // setRoundPoints 
     //public static void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points)
-    public void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
+    public static void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
         // if the array is null, we return
         if (pointsMatrix == null) {
             return;

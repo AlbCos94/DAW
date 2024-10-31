@@ -5,8 +5,8 @@ public class UtilsIO {
 
 	// US DE FUNCIONS ESTATIQUES
 
-	//public static void showMenu(String menuText);
-    public static void showMenu(String menuText) {
+	//Method to show the menu text
+    public static void showMenu(String menuText) {	
         
         if ( (menuText == null) || (menuText.isEmpty()) ){
             return;
@@ -17,7 +17,7 @@ public class UtilsIO {
         System.out.println(Constants.QUESTION_OPTIONS); 
     }
 
-	//public static void showError(String textError);
+	//Show a message with an error format
 	public static void showError(String textError) {
 
         if ( (textError == null) || (textError.isEmpty()) ){
@@ -28,7 +28,7 @@ public class UtilsIO {
         System.out.println(stringResult); 
     }
 
- 	//public static String askForString(String message, String errorMessage);
+ 	//Ask to the user for a string
 	public static String askForString(String message, String errorMessage){
         
 		Scanner reader = new Scanner(System.in); 
@@ -49,8 +49,7 @@ public class UtilsIO {
         return inputString;
     }
 
-
-	//public static int askForInteger(String message, String errorMessage);
+	//Ask to the user for a integer
     public static int askForInteger(String message, String errorMessage) {
         
         Scanner reader = new Scanner(System.in); 
@@ -75,8 +74,7 @@ public class UtilsIO {
         return inputInt;
     }
 
-
-
+	//Ask to the user for an age (it has to be between 0 and 99)
 	public static int askForAge(String message, String errorMessage) {
         
         Scanner reader = new Scanner(System.in); 
@@ -109,8 +107,7 @@ public class UtilsIO {
         return inputInt;
     }
 
-
-	//public static float askForFloat(String message, String errorMessage);
+	//Ask to the user for a float
     public static float askForFloat(String message, String errorMessage) {
         
         Scanner reader = new Scanner(System.in); 
@@ -135,8 +132,7 @@ public class UtilsIO {
         return inputFloat;
     }
 
-
-
+	//Method to print the header of a points table
     public static void printHeaderTablePoints(int roundsNumber) {
 
         if ( roundsNumber == 0)  {
@@ -154,8 +150,7 @@ public class UtilsIO {
         System.out.printf(Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_TABLE_LINE));
      }
 
-
-
+	//Method to print the points of a single player
     public static void print1PlayersPoints(String[] onePlayersData, int[] pointsRow) {
 
         if ( (onePlayersData == null) || (pointsRow == null) ) {
@@ -183,10 +178,7 @@ public class UtilsIO {
         }  
     }
 
-
-
-	//public static void showRounds(String[][] playersData, int[][] pointsMatrix);
-
+	//Method to show all the points of the rounds
     public static void showRounds(String[][] playersData, int[][] pointsMatrix) {
 
         if ( (playersData == null) || (pointsMatrix == null) ) {

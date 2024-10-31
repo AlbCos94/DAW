@@ -41,5 +41,6 @@ public class Constants {
     public static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
     public static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
     public static final String QUESTION_OPTIONS = "Introdueixi un valor enter per l'opció";
+    
 
 }
