@@ -16,6 +16,8 @@ public class Constants {
     public static final int NULL_POINTS = -1; // max number of points a player can get by round
     public static final int OPTION_POINT_ROUND = 1; // option given to introduce the points of a round
     public static final int OPTION_SHOW_TABLE = 2; // option given to display the points table
+    public static final int OPTION_CHANGE_POINTS = 9; // option given to correct a players points
+
     public static final int OPTION_QUIT = 0; // option given to finish the program
     public static final String SPLIT_LINE = "-"; // line displayed in the menu
     public static final int NUMBER_DOTS_MENU_LINE = 30;
@@ -24,7 +26,7 @@ public class Constants {
     public static final String MENU_AGE = "AGE"; // line displayed in the men
     public static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     public static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
-    public static final String MENU_TEXT = "1) Puntuar ronda.\n2) Mostrar tauler. \n0) Sortir."; // Options menu
+    public static final String MENU_TEXT = "1) Puntuar ronda. \n2) Mostrar tauler. \n9) Corregir puntuació. \n0) Sortir."; // Options menu
     public static final String ERROR_OPTION = "No s'ha introduït un enter vàlid com a opció."; // Options menu
     public static final String ROUND_TO_POINT = "Quina ronda vol puntuar?"; // Question to ask to point a round
     public static final String ROUND_TO_POINT_ERROR = "La ronda introduïda no existeix. Introdueixi un valor entre 1 i " + ROUNDS_NUMBER; // Error round to point

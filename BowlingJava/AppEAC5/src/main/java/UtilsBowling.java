@@ -61,4 +61,41 @@ public class UtilsBowling {
         // set the points in the array
         pointsMatrix[rowIndex][round-1] = points;
     }
+
+
+    // returns the index of a given player in the playersmatrix
+    public static int lookForPlayer(String[][] playersMatrix, String playerFullName){
+        
+        // if the array is null, we return
+        if (playersMatrix == null) {
+            return -1;
+        }
+
+        // if the playerFullName is null or empty, we return
+        if ( (playerFullName == null) || (playerFullName.isEmpty()) ){
+            return -1;
+        }
+
+        String[] splittedPlayerFullName = playerFullName.split(" ");
+
+        // Check that the name array has 2 elements
+        if ( splittedPlayerFullName.length != 2 ){
+            return -1;
+        }
+        
+        String namePlayer = splittedPlayerFullName[Constants.POS_NAME];
+        String lastnamePlayer = splittedPlayerFullName[Constants.POS_LASTNAME];
+        String name_i = "";
+        String lastname_i = "";
+        // loop among playersMatrix 
+        for (int i= 0; i<playersMatrix.length; i++){ 
+            name_i =  playersMatrix[i][Constants.POS_NAME];
+            lastname_i =  playersMatrix[i][Constants.POS_LASTNAME];
+            if ( (name_i == namePlayer) && (lastname_i == lastnamePlayer) ){
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }

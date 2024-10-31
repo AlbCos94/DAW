@@ -127,6 +127,10 @@ public class AppEAC5 {
                     askingForRoundPoints(bowlingData);
                 } else if (inputInt == Constants.OPTION_SHOW_TABLE){                   
                     UtilsIO.showRounds(bowlingData.playersData,bowlingData.pointsMatrix);
+                } else if (inputInt == Constants.OPTION_CHANGE_POINTS){                   
+                    
+                    //UtilsIO.showRounds(bowlingData.playersData,bowlingData.pointsMatrix);
+                
                 } else if (inputInt == Constants.OPTION_QUIT) {
                     finish = true;
                 } else{
