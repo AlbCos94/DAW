@@ -4,49 +4,7 @@ public class UtilsBowling {
 
     // US DE FUNCIONS ESTATIQUES -> clases es poden cridar sense necesitat de fer uns instanciacio
 
-    // initializePoints
-    //public static int[][] initializePoints(int playerNumber);
-    public static int[][] initializePoints(int playersNumber) {
 
-        if (playersNumber<=0) {
-            System.out.println(Constants.ERROR_NUM_PLAYERS);
-            return null; 
-        }
-
-        int [][] pointsMatrix = new int[playersNumber][Constants.ROUNDS_NUMBER];
-
-        // pointsMatrix it is filled with -1's
-        for (int i= 0; i<playersNumber; i++){ 
-            for (int j= 0; j<Constants.ROUNDS_NUMBER; j++){
-                pointsMatrix[i][j] = Constants.NULL_POINTS;
-            }              
-        }
-
-        return pointsMatrix;
-    }
-
-
-    // initializedPlayers
-    //public static String[][] initializedPlayers(int playerNumber);
-    public static String[][] initializePlayers(int playersNumber) {
-
-        if (playersNumber<=0) {
-            System.out.println(Constants.ERROR_NUM_PLAYERS);
-            return null; 
-        }
-
-        String [][] playersData = new String[playersNumber][Constants.PLAYER_DATA_ELEMENTS]; 
-        // playersData it is filled with empty strings
-        for (int i= 0; i<playersNumber; i++){ 
-            for (int j= 0; j<Constants.PLAYER_DATA_ELEMENTS; j++){
-                playersData[i][j] = "";
-            }              
-        }
-        return playersData;
-    }
-
-
-    
     // insertPlayerNames
     //public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age);
     public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {

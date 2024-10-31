@@ -5,6 +5,7 @@ public class Constants {
     // All the constants needed for Bowling Program
     // Constant declarations
     public static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player (name, surname and age)
+    public static final String EMPTY_DATA_PLAYER = "";
     public static final int POS_NAME = 0;
     public static final int POS_LASTNAME = 1;
     public static final int POS_AGE = 2;
@@ -12,6 +13,7 @@ public class Constants {
     public static final int MAX_AGE = 99;
     public static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     public static final int MAX_POINTS = 10; // max number of points a player can get by round
+    public static final int NULL_POINTS = -1; // max number of points a player can get by round
     public static final int OPTION_POINT_ROUND = 1; // option given to introduce the points of a round
     public static final int OPTION_SHOW_TABLE = 2; // option given to display the points table
     public static final int OPTION_QUIT = 0; // option given to finish the program
