@@ -18,7 +18,11 @@ public class AppEAC5 {
     }
 
     public void start() {
-        UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)
+
+
+
+
+/*         UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)
         UtilsIO.showMenu(Constants.MENU_TEXT);
 
         BowlingData bowlingData = new BowlingData(); // inicializaction of a new object bowlingData 
@@ -26,7 +30,35 @@ public class AppEAC5 {
         if (bowlingData.playersData == null){
             return; // end of the program
         }
-        optionManager(bowlingData); 
+        optionManager(bowlingData);  */
+
+        // testing area
+        
+        String [][] matrix1 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
+        int result1 = UtilsBowling.lookForPlayer(matrix1, "John Smith");
+        System.out.println("Result1 " + result1);
+
+        String [][] matrix2 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
+        int result2 = UtilsBowling.lookForPlayer(matrix2, "Peter Smith");
+        System.out.println("Result2 " + result2);
+
+
+        String [][] matrix3 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
+        int result3 = UtilsBowling.lookForPlayer(matrix3, "Ante Budimir");
+        System.out.println("Result3 " + result3);
+
+
+        int result4 = UtilsBowling.lookForPlayer(null, "Ante Budimir");
+        System.out.println("Result4 " + result4);
+
+        String [][] matrix5 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
+        int result5 = UtilsBowling.lookForPlayer(matrix5, "");
+        System.out.println("Result5 " + result5);
+
+        String [][] matrix6 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
+        int result6 = UtilsBowling.lookForPlayer(matrix6, "Ante Budimir dsad");
+        System.out.println("Result6 " + result6);
+
     }
 
 
