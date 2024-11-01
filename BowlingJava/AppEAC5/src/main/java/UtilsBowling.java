@@ -91,7 +91,7 @@ public class UtilsBowling {
         for (int i= 0; i<playersMatrix.length; i++){ 
             name_i =  playersMatrix[i][Constants.POS_NAME];
             lastname_i =  playersMatrix[i][Constants.POS_LASTNAME];
-            if ( (name_i == namePlayer) && (lastname_i == lastnamePlayer) ){
+            if ( name_i.equals(namePlayer) && lastname_i.equals(lastnamePlayer) ){
                 return i;
             }
         }
