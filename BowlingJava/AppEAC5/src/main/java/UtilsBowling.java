@@ -94,6 +94,7 @@ public class UtilsBowling {
         return Constants.ERROR_INT_RESULT;
     }
 
+    // Given a matrix of points, it computes the total points for each player
     public static int[] calculateTotalPointsArray(int[][] pointsMatrix){
         
         // if the matrix is null, we return null
@@ -124,6 +125,7 @@ public class UtilsBowling {
         return totalPointsArray;
     }
 
+    // Given an array of points, the corresponding index array ordering in a descending way the array of points is returned
     public static int[] getOrderedIndexArrayWithTotalPoints(int[] totalPointsArray){
 
         // If the array is null, we return null

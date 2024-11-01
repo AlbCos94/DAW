@@ -20,11 +20,6 @@ public class AppEAC5 {
 
     public void start() {
 
-        System.out.println("\n");
-        String[][] playersMatrix = {{"John", "Smith", "45"}, {"Peter", "Smith", "34"}};
-        int[] totalPoints = {10,7};
-        int[] indexArray = {0,1};
-        UtilsIO.showOrderedPointsList(playersMatrix,totalPoints,indexArray);
         
         //UtilsIO.printHeaderTableSumPoints();
 /* 
@@ -34,14 +29,14 @@ public class AppEAC5 {
 
 
 /*         UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)
-        UtilsIO.showMenu(Constants.MENU_TEXT);
+        UtilsIO.showMenu(Constants.MENU_TEXT); */
 
         BowlingData bowlingData = new BowlingData(); // inicializaction of a new object bowlingData 
         askingForPlayersAndDataInitialization(bowlingData);
         if (bowlingData.playersData == null){
             return; // end of the program
         }
-        optionManager(bowlingData);  */
+        optionManager(bowlingData); 
 
         // testing area
         
@@ -151,16 +146,21 @@ public class AppEAC5 {
 
                 if (inputInt == Constants.OPTION_POINT_ROUND){
                     askingForRoundPoints(bowlingData);
-                } else if (inputInt == Constants.OPTION_SHOW_TABLE){                   
                     UtilsIO.showRounds(bowlingData.playersData,bowlingData.pointsMatrix);
+
+                } else if (inputInt == Constants.OPTION_SHOW_RANKING){  
+                    showGeneralRanking(bowlingData);                                
+                
                 } else if (inputInt == Constants.OPTION_CHANGE_POINTS){                   
-                    
+                    //showGeneralRanking(bowlingData); 
                     //UtilsIO.showRounds(bowlingData.playersData,bowlingData.pointsMatrix);
                 
                 } else if (inputInt == Constants.OPTION_QUIT) {
                     finish = true;
+                
                 } else{
                     UtilsIO.showError(Constants.ERROR_OPTION);
+                
                 }
 
             } else{
@@ -172,7 +172,16 @@ public class AppEAC5 {
     }
 
 
+    public void showGeneralRanking(BowlingData bowlingData){
+        // Compute of the total points of each user
+        int [] totalPointsArray = UtilsBowling.calculateTotalPointsArray(bowlingData.pointsMatrix);
+        
+        // Get the array of indexes corresponding to the ordered array of total points
+        int [] arrayOfIndexes = UtilsBowling.getOrderedIndexArrayWithTotalPoints(totalPointsArray);
 
+        // Display the classification with the total points of each player
+        UtilsIO.showOrderedPointsList(bowlingData.playersData, totalPointsArray, arrayOfIndexes);
+    } 
 
 	
 }

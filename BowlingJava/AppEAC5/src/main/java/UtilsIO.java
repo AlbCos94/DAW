@@ -260,7 +260,6 @@ public class UtilsIO {
         // Print "full name" plus "age" plus "total points"
         String fullName = onePlayersData[Constants.POS_NAME] + " " + onePlayersData[Constants.POS_LASTNAME];
         System.out.printf("%-15s %10s %15s", fullName, onePlayersData[Constants.POS_AGE], totalPoints);
-
     }
 
 
