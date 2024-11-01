@@ -4,6 +4,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -20,6 +21,9 @@ public class AppEAC5 {
     public void start() {
 
 
+        int [] Arr1 = {30, 30, 54, 12, 43, 55};
+        int[] ArrRes = UtilsBowling.getOrderedIndexArrayWithTotalPoints(Arr1);
+        System.out.println("Copy Array 1: " + Arrays.toString(ArrRes));
 
 
 /*         UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)
@@ -34,30 +38,13 @@ public class AppEAC5 {
 
         // testing area
         
-        String [][] matrix1 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
-        int result1 = UtilsBowling.lookForPlayer(matrix1, "John Smith");
-        System.out.println("Result1 " + result1);
+/*         int [][] matrix1 = {{2, 3, 4, 10, 1, 7, -1, -1, -1, -1}, {10, 7, 3, 5, 2, 1, -1, -1, -1, -1}, {5, 5, 5, 4, 10, 5, -1, -1, -1, -1}};
+        int [] result1 = UtilsBowling.calculateTotalPointsArray(matrix1);
 
-        String [][] matrix2 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
-        int result2 = UtilsBowling.lookForPlayer(matrix2, "Peter Smith");
-        System.out.println("Result2 " + result2);
+        int [][] matrix2 = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
+        int [] result2 = UtilsBowling.calculateTotalPointsArray(matrix2); */
 
 
-        String [][] matrix3 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
-        int result3 = UtilsBowling.lookForPlayer(matrix3, "Ante Budimir");
-        System.out.println("Result3 " + result3);
-
-
-        int result4 = UtilsBowling.lookForPlayer(null, "Ante Budimir");
-        System.out.println("Result4 " + result4);
-
-        String [][] matrix5 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
-        int result5 = UtilsBowling.lookForPlayer(matrix5, "");
-        System.out.println("Result5 " + result5);
-
-        String [][] matrix6 = {{"John", "Smith", "11111111A"}, {"Peter", "Smith", "22222222B"}};
-        int result6 = UtilsBowling.lookForPlayer(matrix6, "Ante Budimir dsad");
-        System.out.println("Result6 " + result6);
 
     }
 

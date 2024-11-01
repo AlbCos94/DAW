@@ -103,7 +103,7 @@ public class UtilsBowling {
     public static int[] calculateTotalPointsArray(int[][] pointsMatrix){
         
         // if the matrix is null, we return null
-        if (pointsMatrix == null) {
+        if (pointsMatrix == null){
             return null;
         }
 
@@ -127,10 +127,45 @@ public class UtilsBowling {
             totalPointsPlayer = 0; // reset the value for the next player
 
         }
-
         return totalPointsArray;
+    }
 
+    public static int[] getOrderedIndexArrayWithTotalPoints(int[] totalPointsArray){
 
+        // If the array is null, we return null
+        if (totalPointsArray == null){
+            return null;
+        }
+
+        // Array containing the indexes
+        int[] indexArray = new int[totalPointsArray.length];
+
+        // Inicialization of the array with the indexes
+        for (int i = 0; i < indexArray.length; i++){
+            indexArray[i] = i;
+        }
+
+        // Copy of the array of points
+        int [] copyTotalPointsArray = Arrays.copyOf(totalPointsArray, totalPointsArray.length);
+
+        // BubbleSort algorithm
+        for ( int i = 0; i < copyTotalPointsArray.length-1; i++){  
+                 
+            for ( int j = i+1; j < copyTotalPointsArray.length; j++){
+
+                if (copyTotalPointsArray[i] < copyTotalPointsArray[j]){
+                    int changeValue = copyTotalPointsArray[i];
+                    int changeIndex = indexArray[i];
+
+                    copyTotalPointsArray[i] = copyTotalPointsArray[j];
+                    indexArray[i] = indexArray[j];
+
+                    copyTotalPointsArray[j] = changeValue;
+                    indexArray[j] = changeIndex;
+                } 
+            }
+        }
+        return indexArray;
     }
 
 

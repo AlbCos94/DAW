@@ -14,6 +14,7 @@ public class Constants {
     public static final int ROUNDS_NUMBER = 10; // number of rounds that will be played
     public static final int MAX_POINTS = 10; // max number of points a player can get by round
     public static final int NULL_POINTS = -1; // max number of points a player can get by round
+    public static final int ERROR_INT_RESULT = -1; 
     public static final int OPTION_POINT_ROUND = 1; // option given to introduce the points of a round
     public static final int OPTION_SHOW_TABLE = 2; // option given to display the points table
     public static final int OPTION_CHANGE_POINTS = 9; // option given to correct a players points
