@@ -68,19 +68,19 @@ public class UtilsBowling {
         
         // if the array is null, we return
         if (playersMatrix == null) {
-            return -1;
+            return Constants.ERROR_INT_RESULT;
         }
 
         // if the playerFullName is null or empty, we return
         if ( (playerFullName == null) || (playerFullName.isEmpty()) ){
-            return -1;
+            return Constants.ERROR_INT_RESULT;
         }
 
         String[] splittedPlayerFullName = playerFullName.split(" ");
 
         // Check that the name array has 2 elements
         if ( splittedPlayerFullName.length != 2 ){
-            return -1;
+            return Constants.ERROR_INT_RESULT;
         }
         
         String namePlayer = splittedPlayerFullName[Constants.POS_NAME];
@@ -96,6 +96,48 @@ public class UtilsBowling {
             }
         }
 
-        return -1;
+        return Constants.ERROR_INT_RESULT;
     }
+
+
+    public static int[] calculateTotalPointsArray(int[][] pointsMatrix){
+        
+        // if the matrix is null, we return null
+        if (pointsMatrix == null) {
+            return null;
+        }
+
+        // Array that will contain the total points of each player
+        int [] totalPointsArray = new int[pointsMatrix.length];
+        int totalPointsPlayer = 0;
+        int currentPoints = 0;
+
+        // Loop among playersMatrix (players)
+        for (int i= 0; i<pointsMatrix.length; i++){ 
+            
+            // Loop among all the points of a player
+            for (int j= 0; j<pointsMatrix[i].length; j++){ 
+                currentPoints = pointsMatrix[i][j];
+
+                if ( currentPoints >=0 ){
+                    totalPointsPlayer+=currentPoints;
+                }
+            }
+            totalPointsArray[i] = totalPointsPlayer;
+            totalPointsPlayer = 0; // reset the value for the next player
+
+        }
+
+        return totalPointsArray;
+
+
+    }
+
+
+
+
+
+
+
+
 }
