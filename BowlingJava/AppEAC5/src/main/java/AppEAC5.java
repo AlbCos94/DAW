@@ -19,41 +19,16 @@ public class AppEAC5 {
     }
 
     public void start() {
-
-        
-        //UtilsIO.printHeaderTableSumPoints();
-/* 
-        int [] Arr1 = {30, 30, 54, 12, 43, 55};
-        int[] ArrRes = UtilsBowling.getOrderedIndexArrayWithTotalPoints(Arr1);
-        System.out.println("Copy Array 1: " + Arrays.toString(ArrRes)); */
-
-
-/*         UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)
-        UtilsIO.showMenu(Constants.MENU_TEXT); */
-
         BowlingData bowlingData = new BowlingData(); // inicializaction of a new object bowlingData 
         askingForPlayersAndDataInitialization(bowlingData);
         if (bowlingData.playersData == null){
             return; // end of the program
         }
         optionManager(bowlingData); 
-
-        // testing area
-        
-/*         int [][] matrix1 = {{2, 3, 4, 10, 1, 7, -1, -1, -1, -1}, {10, 7, 3, 5, 2, 1, -1, -1, -1, -1}, {5, 5, 5, 4, 10, 5, -1, -1, -1, -1}};
-        int [] result1 = UtilsBowling.calculateTotalPointsArray(matrix1);
-
-        int [][] matrix2 = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-        int [] result2 = UtilsBowling.calculateTotalPointsArray(matrix2); */
-
-
-
     }
 
 
-
-
-    // Auxiliar methods:
+    // -- Auxiliar methods --
 
     // Method to ask for number of players and initialize the data structure.  
     public void askingForPlayersAndDataInitialization(BowlingData bowlingData) {
@@ -63,7 +38,7 @@ public class AppEAC5 {
         int agePlayer = 0;
         int numPlayers = 0;
 
-        numPlayers = UtilsIO.askForInteger(Constants.ASK_FOR_NUM_PLAYERS, Constants.ERROR_NUM_PLAYERS);
+        numPlayers = UtilsIO.askForInteger(Constants.ASK_FOR_NUM_PLAYERS, Constants.ERROR_ENTER);
         
         if (numPlayers <= 0) {
             UtilsIO.showError(Constants.ERROR_NUM_PLAYERS);
@@ -79,15 +54,15 @@ public class AppEAC5 {
             String questionName  = playerNumber+" - "+ Constants.ASK_FOR_PLAYERNAME;
             String questionSurname  = playerNumber+" - "+ Constants.ASK_FOR_PLAYERSURNAME;
             String questionAge  = playerNumber+" - "+ Constants.ASK_FOR_PLAYERAGE;
-            namePlayer = UtilsIO.askForString(questionName, Constants.ERROR_PLAYERNAME);
-            surnamePlayer = UtilsIO.askForString(questionSurname, Constants.ERROR_PLAYERSURNAME);
+            namePlayer = UtilsIO.askForString(questionName, Constants.ERROR_EMPTY_STRING);
+            surnamePlayer = UtilsIO.askForString(questionSurname, Constants.ERROR_EMPTY_STRING);
             agePlayer = UtilsIO.askForAge(questionAge, Constants.ERROR_PLAYERAGE);
 
             UtilsBowling.insertPlayerNames(bowlingData.playersData, i, namePlayer, surnamePlayer, agePlayer);
         }
     }
 
-    // Method to ask for number of players and initialize the data structure.  
+    // Method to ask for the points of all the players for a given round 
     public void askingForRoundPoints(BowlingData bowlingData) {
 
         int roundNumber = 0;
@@ -120,7 +95,6 @@ public class AppEAC5 {
                     UtilsIO.showError(Constants.ERROR_ENTER_RANGE + Constants.MAX_POINTS);
                     correctPoints = false;
                 }
-
             } while (!correctPoints);
 
             UtilsBowling.setRoundPoints(bowlingData.pointsMatrix, i, roundNumber, pointsToInsert);
@@ -152,7 +126,8 @@ public class AppEAC5 {
                     showGeneralRanking(bowlingData);                                
                 
                 } else if (inputInt == Constants.OPTION_CHANGE_POINTS){   
-                    changePlayersPoints(bowlingData);                
+                    changePlayersPoints(bowlingData);
+                    UtilsIO.showRounds(bowlingData.playersData,bowlingData.pointsMatrix);                
                 
                 } else if (inputInt == Constants.OPTION_QUIT){
                     finish = true;
@@ -169,7 +144,7 @@ public class AppEAC5 {
         } while( !finish );
     }
 
-
+    // Method to show the complete puntuations
     public void showGeneralRanking(BowlingData bowlingData){
         // Compute of the total points of each user
         int [] totalPointsArray = UtilsBowling.calculateTotalPointsArray(bowlingData.pointsMatrix);
@@ -181,10 +156,11 @@ public class AppEAC5 {
         UtilsIO.showOrderedPointsList(bowlingData.playersData, totalPointsArray, arrayOfIndexes);
     }
     
+    // Method to change some players points for a specific round
     public void changePlayersPoints(BowlingData bowlingData){
         
         // Ask for the name of the player
-        String playerFullName = UtilsIO.askForString(Constants.ASK_FOR_COMPLETE_NAME, Constants.STRING_ERROR);
+        String playerFullName = UtilsIO.askForString(Constants.ASK_FOR_COMPLETE_NAME, Constants.ERROR_EMPTY_STRING);
         
         // Get the index of the player
         int indexPlayer = UtilsBowling.lookForPlayer(bowlingData.playersData, playerFullName);
@@ -196,12 +172,9 @@ public class AppEAC5 {
 
         // We ask for the round to point, the new quantity of points and the matrix of points is changed
         askingForRoundPointsForOnePlayer(bowlingData.pointsMatrix, playerFullName, indexPlayer);
-
     } 
 
-
-
-    // Method to ask for number of players and initialize the data structure.  
+    // Method to ask for the points of a player for a specific round
     public void askingForRoundPointsForOnePlayer(int[][] pointsMatrix, String playerFullName, int indexPlayer) {
 
         int roundNumber = 0;
@@ -221,9 +194,8 @@ public class AppEAC5 {
             }
         } while (!correctRound);
     
-
         do{
-            pointsToInsert = UtilsIO.askForInteger(Constants.QUESTION_ENTER_POINTS + " " + playerFullName, Constants.ERROR_ENTER); // it gives us an int but it is not sure if between 1 and 10
+            pointsToInsert = UtilsIO.askForInteger(Constants.QUESTION_ENTER_POINTS + playerFullName, Constants.ERROR_ENTER); // it gives us an int but it is not sure if between 1 and 10
 
             if ( (pointsToInsert >= 0) && (pointsToInsert <= Constants.MAX_POINTS) ) {
                 correctPoints = true;
@@ -235,7 +207,6 @@ public class AppEAC5 {
         } while (!correctPoints);
 
         UtilsBowling.setRoundPoints(pointsMatrix, indexPlayer, roundNumber, pointsToInsert);
-
     }
 
 	

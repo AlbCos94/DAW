@@ -2,8 +2,6 @@ import java.util.Arrays;
 
 public class UtilsBowling {
 
-    // US DE FUNCIONS ESTATIQUES -> clases es poden cridar sense necesitat de fer uns instanciacio
-
     // insertPlayerNames
     public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {
         
@@ -163,12 +161,5 @@ public class UtilsBowling {
         }
         return indexArray;
     }
-
-
-
-
-
-
-
 
 }

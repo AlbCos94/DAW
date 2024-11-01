@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class UtilsIO {
-	// tots el metodes que intervenen en funcions d'entrada i sortida (interaccio entre pantalla i teclat)
-
-	// US DE FUNCIONS ESTATIQUES
+	// Methods to interact with the user ( intput and output streams of data )
 
 	//Method to show the menu text
     public static void showMenu(String menuText) {	
@@ -13,7 +11,7 @@ public class UtilsIO {
         }
         String stringResult = Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_MENU_LINE)+"\n"+Constants.MENU_TITLE+"\n"+Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_MENU_LINE)+"\n"+menuText;
         System.out.println(stringResult); // printed in a new line
-
+        System.out.println("\n");
         System.out.println(Constants.QUESTION_OPTIONS); 
     }
 
@@ -245,7 +243,6 @@ public class UtilsIO {
         System.out.printf(Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_SUMTABLE_LINE));
     }
 
-
     //Method to print the sum of points of a single player
     public static void print1PlayersSumPoints(String[] onePlayersData, int totalPoints) {
 
@@ -261,8 +258,5 @@ public class UtilsIO {
         String fullName = onePlayersData[Constants.POS_NAME] + " " + onePlayersData[Constants.POS_LASTNAME];
         System.out.printf("%-15s %10s %15s", fullName, onePlayersData[Constants.POS_AGE], totalPoints);
     }
-
-
-/*	public static void pointsOrDash(int points); */
 
 }
