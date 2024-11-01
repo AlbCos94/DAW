@@ -58,7 +58,7 @@ public class UtilsBowling {
         pointsMatrix[rowIndex][round-1] = points;
     }
 
-    // returns the index of a given player in the playersmatrix
+    // returns the index of a given player in the playersmatrix. If it does not exists, returns -1
     public static int lookForPlayer(String[][] playersMatrix, String playerFullName){
         
         // if the array is null, we return

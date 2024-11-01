@@ -24,6 +24,7 @@ public class Constants {
     public static final int NUMBER_DOTS_MENU_LINE = 30;
     public static final int NUMBER_DOTS_SUMTABLE_LINE = 45;
     public static final int NUMBER_DOTS_TABLE_LINE = 120;
+    
     public static final String MENU_FULLNAME = "FULL NAME"; // line displayed in the menu
     public static final String MENU_AGE = "AGE"; // line displayed in the men
     public static final String MENU_POINTS = "POINTS"; // line displayed in the men
@@ -46,6 +47,9 @@ public class Constants {
     public static final String ASK_FOR_NUM_PLAYERS = "\nQuants jugadors hi haurà?";
     public static final String ERROR_NUM_PLAYERS = "No s'ha introdït un nombre correcte de jugadors";
     public static final String QUESTION_OPTIONS = "Introdueixi un valor enter per l'opció";
-    
+    public static final String ASK_FOR_COMPLETE_NAME = "Introdueixi el nom complet del jugador";
+    public static final String STRING_ERROR = "Valor incorrecte. Introdueixi un nom";
+    public static final String PLAYER_NOT_FOUND = "El jugador no s'ha trobat";
+
 
 }
