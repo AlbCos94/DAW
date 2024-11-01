@@ -20,10 +20,17 @@ public class AppEAC5 {
 
     public void start() {
 
-
+        System.out.println("\n");
+        String[][] playersMatrix = {{"John", "Smith", "45"}, {"Peter", "Smith", "34"}};
+        int[] totalPoints = {10,7};
+        int[] indexArray = {0,1};
+        UtilsIO.showOrderedPointsList(playersMatrix,totalPoints,indexArray);
+        
+        //UtilsIO.printHeaderTableSumPoints();
+/* 
         int [] Arr1 = {30, 30, 54, 12, 43, 55};
         int[] ArrRes = UtilsBowling.getOrderedIndexArrayWithTotalPoints(Arr1);
-        System.out.println("Copy Array 1: " + Arrays.toString(ArrRes));
+        System.out.println("Copy Array 1: " + Arrays.toString(ArrRes)); */
 
 
 /*         UtilsIO.showError("Hola Caracol"); // since it is static function it can be used like this. (without having to create first an object)

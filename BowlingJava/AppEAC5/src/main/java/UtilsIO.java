@@ -204,6 +204,65 @@ public class UtilsIO {
         }
     }
 
+    // Show table with the total points
+    public static void showOrderedPointsList(String[][] playersData, int[] totalPoints, int[] indexArray){
+
+        if ( (playersData == null) || (totalPoints == null) || (indexArray == null) ) {
+            return;
+        }
+
+        // Number of rows between matrixs and arrays do not match 
+        if ( (playersData.length != totalPoints.length) || (totalPoints.length != indexArray.length) ) {
+            return;
+        }
+
+        // Matrixs of arrays have lenght equal to 0 
+        if ( (playersData.length == 0) || (totalPoints.length == 0) || (indexArray.length == 0)) {
+            return;
+        }
+
+        printHeaderTableSumPoints();
+        System.out.print("\n");
+
+        int j = 0; // current index in the index array
+        
+        // Loop among the index array where puntuations ared oredered
+        for (int i= 0; i<indexArray.length; i++){ 
+            j = indexArray[i];
+            print1PlayersSumPoints(playersData[j], totalPoints[j]);
+            System.out.print("\n"); // line break is added at the end
+        }
+    }
+
+    //Method to print the header of a points table
+    public static void printHeaderTableSumPoints() {
+
+        // print "full name" plus "age" plus points
+        System.out.printf(Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_SUMTABLE_LINE) +"\n");
+        System.out.printf("%-15s %10s %15s", Constants.MENU_FULLNAME, Constants.MENU_AGE, Constants.MENU_POINTS);
+       
+        System.out.printf("\n");
+        System.out.printf(Constants.SPLIT_LINE.repeat(Constants.NUMBER_DOTS_SUMTABLE_LINE));
+    }
+
+
+    //Method to print the sum of points of a single player
+    public static void print1PlayersSumPoints(String[] onePlayersData, int totalPoints) {
+
+        if ( onePlayersData == null ) {
+            return;
+        }
+
+        if ( onePlayersData.length == 0 ) {
+            return;
+        }
+
+        // Print "full name" plus "age" plus "total points"
+        String fullName = onePlayersData[Constants.POS_NAME] + " " + onePlayersData[Constants.POS_LASTNAME];
+        System.out.printf("%-15s %10s %15s", fullName, onePlayersData[Constants.POS_AGE], totalPoints);
+
+    }
+
 
 /*	public static void pointsOrDash(int points); */
 

@@ -22,9 +22,11 @@ public class Constants {
     public static final int OPTION_QUIT = 0; // option given to finish the program
     public static final String SPLIT_LINE = "-"; // line displayed in the menu
     public static final int NUMBER_DOTS_MENU_LINE = 30;
+    public static final int NUMBER_DOTS_SUMTABLE_LINE = 45;
     public static final int NUMBER_DOTS_TABLE_LINE = 120;
     public static final String MENU_FULLNAME = "FULL NAME"; // line displayed in the menu
     public static final String MENU_AGE = "AGE"; // line displayed in the men
+    public static final String MENU_POINTS = "POINTS"; // line displayed in the men
     public static final String MENU_TITLE = "GESTIO IOC BOWLING"; // title displayed in the menu
     public static final String ERROR_TITLE = "ERROR"; // error title displayed in the menu
     public static final String MENU_TEXT = "1) Puntuar ronda. \n2) Mostrar tauler. \n9) Corregir puntuació. \n0) Sortir."; // Options menu

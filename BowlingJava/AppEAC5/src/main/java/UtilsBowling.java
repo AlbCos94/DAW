@@ -4,9 +4,7 @@ public class UtilsBowling {
 
     // US DE FUNCIONS ESTATIQUES -> clases es poden cridar sense necesitat de fer uns instanciacio
 
-
     // insertPlayerNames
-    //public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age);
     public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {
         
         // if the array is null, we return
@@ -36,9 +34,7 @@ public class UtilsBowling {
         playersData[rowNumber][Constants.POS_AGE] = String.valueOf(age);
     }
 
-
     // setRoundPoints 
-    //public static void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points)
     public static void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
         // if the array is null, we return
         if (pointsMatrix == null) {
@@ -61,7 +57,6 @@ public class UtilsBowling {
         // set the points in the array
         pointsMatrix[rowIndex][round-1] = points;
     }
-
 
     // returns the index of a given player in the playersmatrix
     public static int lookForPlayer(String[][] playersMatrix, String playerFullName){
@@ -98,7 +93,6 @@ public class UtilsBowling {
 
         return Constants.ERROR_INT_RESULT;
     }
-
 
     public static int[] calculateTotalPointsArray(int[][] pointsMatrix){
         
@@ -150,7 +144,7 @@ public class UtilsBowling {
 
         // BubbleSort algorithm
         for ( int i = 0; i < copyTotalPointsArray.length-1; i++){  
-                 
+
             for ( int j = i+1; j < copyTotalPointsArray.length; j++){
 
                 if (copyTotalPointsArray[i] < copyTotalPointsArray[j]){
