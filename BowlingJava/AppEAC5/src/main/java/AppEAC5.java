@@ -1,5 +1,3 @@
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
@@ -27,10 +25,9 @@ public class AppEAC5 {
         optionManager(bowlingData); 
     }
 
-
     // -- Auxiliar methods --
 
-    // Method to ask for number of players and initialize the data structure.  
+    // Method to ask for the number of players and initialize the data structure.  
     public void askingForPlayersAndDataInitialization(BowlingData bowlingData) {
 
         String namePlayer = "";

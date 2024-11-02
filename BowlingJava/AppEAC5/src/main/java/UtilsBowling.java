@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class UtilsBowling {
 
-    // insertPlayerNames
+    // Set the players names 
     public static void insertPlayerNames(String[][] playersData, int rowNumber, String name, String lastName, int age) {
         
         // if the array is null, we return
@@ -32,7 +32,7 @@ public class UtilsBowling {
         playersData[rowNumber][Constants.POS_AGE] = String.valueOf(age);
     }
 
-    // setRoundPoints 
+    // Set the points of a Round
     public static void setRoundPoints(int[][] pointsMatrix, int rowIndex, int round, int points) {
         // if the array is null, we return
         if (pointsMatrix == null) {
@@ -56,7 +56,7 @@ public class UtilsBowling {
         pointsMatrix[rowIndex][round-1] = points;
     }
 
-    // returns the index of a given player in the playersmatrix. If it does not exists, returns -1
+    // Returns the index of a given player in the playersmatrix. If it does not exists, returns -1
     public static int lookForPlayer(String[][] playersMatrix, String playerFullName){
         
         // if the array is null, we return
@@ -123,7 +123,7 @@ public class UtilsBowling {
         return totalPointsArray;
     }
 
-    // Given an array of points, the corresponding index array ordering in a descending way the array of points is returned
+    // Given an array of points, the corresponding index array ordering it in a descending way is returned
     public static int[] getOrderedIndexArrayWithTotalPoints(int[] totalPointsArray){
 
         // If the array is null, we return null

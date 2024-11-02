@@ -1,5 +1,7 @@
 public class BowlingData {
 
+    // Data structure to model the Bowling program
+
     String[][] playersData = null; // matrix that will contain data of the players // defer / lazy initialization - its creation is deferred until it is first used.
     int[][] pointsMatrix = null; // matrix that will contain points of the players
 

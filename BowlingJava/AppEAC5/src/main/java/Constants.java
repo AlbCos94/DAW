@@ -1,8 +1,7 @@
 public class Constants {
-	// aqui nomes farem crida a constants
-    // UNICA CLASSE QUE PODRA SER UTILITZADA PER ALTRES CLASSES (A PART DEL MAIN de AppEAC5)!!
+    // All the constants needed for Bowling Program 
+    // They will be used in other classes
     
-    // All the constants needed for Bowling Program
     // Constant declarations
     public static final int PLAYER_DATA_ELEMENTS = 3; // number of data elemetns that will be add for each player (name, surname and age)
     public static final String EMPTY_DATA_PLAYER = "";
