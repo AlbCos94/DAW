@@ -14,9 +14,13 @@ import java.util.Set;
 public class FileUtils {
     String dataDirectory;
  
+
+    
     public void inicialitzeWorkDirectory(){
 
     } 
+    
+    /* 
     public String getDirectoryDades(){
 
     }
@@ -47,6 +51,7 @@ public class FileUtils {
     public void deletePartialFile(FileUtils futils, String dateInput) {
 
     }
+    */
 
 }//Fi FileUtils
     
