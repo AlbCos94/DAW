@@ -18,11 +18,20 @@ public class AppEAC6 {
         BowlingApp.start();
     }
 
+    //START METHOD FOR TESTING -> REMOVED WHEN FINISHED- UNCOMMENT THE OTHER ONE FOR FINAL USE
     public void start() {
         
         System.out.println("hola");
         FileUtils testFileUtils = new FileUtils();
+        
         testFileUtils.inicialitzeWorkDirectory();
+        System.out.println(testFileUtils.getDirectoryDades());
+        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/hola.txt");
+        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/vacio.txt");
+        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/texto.txt");
+
+        testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/hola.txt");
+        testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/vacio.txt");
         return;
     }
 

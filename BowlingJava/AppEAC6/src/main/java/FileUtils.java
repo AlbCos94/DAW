@@ -35,18 +35,49 @@ public class FileUtils {
 
     } 
     
-    /* 
+    
     public String getDirectoryDades(){
+        return dataDirectory;
+    }
 
-    }
+    
     public void showDirectory(){
+        System.out.println(dataDirectory);
     }
+
+
     public boolean deleteFile(String Filename){
 
-    } 
-    public boolean fileExists(String Filename){
 
+        File fileToDelete = new File (Filename);
+        
+        // file is deleted if exists
+        if (fileToDelete.isFile()) {
+            //System.out.println("file " + Filename + " exists");
+            return fileToDelete.delete();
+        } else {
+            //System.out.println("file " + Filename + " does not exist");
+            return false;
+        }
+
+    } 
+
+
+    public boolean fileExists(String Filename){
+        
+        File fileToCheck = new File (Filename);
+        
+        // file hast to exist and its length be greater than 0
+        if (fileToCheck.isFile() && fileToCheck.length()>0) {
+            //System.out.println("file " + Filename + " exists");
+            return true;
+        } else {
+            //System.out.println("file " + Filename + " does not exist");
+            return false;
+        }
     }
+
+    /*
     public void saveDataToFile(String[][] playersData, int[][] pointsMatrix) {
 
     }
