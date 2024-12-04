@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class FileUtils {
@@ -97,11 +98,40 @@ public class FileUtils {
     public void saveDataToFile(String[][] playersData, int[][] pointsMatrix) {
 
     }
+    */
 
     public void listUniqueFirstField(String filePath){
+        Set<String> uniqueIdentifiers = new HashSet<>();
 
+        try {
+            File fileToRead = new File(filePath);
+            Scanner reader = new Scanner(fileToRead); // if file does not exist, it will throw an exception.
+           
+            // while we have a next line to read, the file keeps being read
+            while (reader.hasNextLine()){
+                String currentLine = reader.nextLine();
+                String[] lineArray = currentLine.split(Constants.SPLITTING_CHARACTER);
+                
+                if (lineArray.length>0) {
+                    uniqueIdentifiers.add(lineArray[0]);
+                }
+            }
+
+            System.out.println(Constants.UNIQUE_IDENTIFIERS_MESSAGE);
+            for (String element : uniqueIdentifiers) {
+                System.out.println(element);
+            }
+
+            // finally the folder is closed
+            reader.close();
+
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
+
+    /*
     public int countRowsWithCode(String lineCode) {
 
     }

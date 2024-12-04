@@ -35,6 +35,11 @@ public class AppEAC6 {
 
 
         testFileUtils.showDirectory();
+
+
+
+        testFileUtils.listUniqueFirstField("C:/Users/alcos/OneDrive/Escritorio/testDaw/splitFile2.txt");
+
         return;
     }
 
