@@ -43,6 +43,22 @@ public class FileUtils {
     
     public void showDirectory(){
         System.out.println(dataDirectory);
+        // it is shown the content of the working directory (first level) 
+        File workDirectory = new File(dataDirectory);
+        File[] arrayElements = workDirectory.listFiles();
+
+        System.out.println(Constants.DIRECTORY_CONTENT_MESSAGE + " " + workDirectory.getAbsolutePath() + " és:");
+
+        for (int i = 0; i < arrayElements.length; i++) {
+            File f = arrayElements[i];
+            if (f.isDirectory()) {
+                System.out.print("[DIR] ");
+            } else {
+                System.out.print("[FIT] ");
+            }
+            System.out.println(f.getName());
+        }
+
     }
 
 

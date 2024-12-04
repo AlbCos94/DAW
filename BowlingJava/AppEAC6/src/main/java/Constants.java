@@ -74,5 +74,6 @@ public class Constants {
 
     // My constant values
     public static final String DATA_FOLDER_NAME = "dades";
+    public static final String DIRECTORY_CONTENT_MESSAGE = "El contingut del directori";
 
 }

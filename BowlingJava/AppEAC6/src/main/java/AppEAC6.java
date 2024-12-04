@@ -32,6 +32,9 @@ public class AppEAC6 {
 
         testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/hola.txt");
         testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/vacio.txt");
+
+
+        testFileUtils.showDirectory();
         return;
     }
 
