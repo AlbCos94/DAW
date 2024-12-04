@@ -44,6 +44,18 @@ public class AppEAC6 {
         System.out.println(testFileUtils.countRowsWithCode("202410271807"));
         System.out.println(testFileUtils.countRowsWithCode("hola"));
 
+
+
+
+        int[][] pointsMatrix = new int[][] {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, 
+        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
+        String[][] playersMatrix = new String[][] {{"John", "Doe", "23"}, {"Albert", "Costa", "30"}, {"Vanessa", "Lamas", "29"}};
+
+
+        testFileUtils.saveDataToFile(playersMatrix, pointsMatrix);
+
+
         return;
     }
 

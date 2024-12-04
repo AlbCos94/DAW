@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -98,27 +99,135 @@ public class FileUtils {
     public void saveDataToFile(String[][] playersData, int[][] pointsMatrix) {
 
 
-        // check data matrix are not null and not empty
+        // playerData -> name, surname, age
+        // pointsMatrix -> pointsRound1, pointsRound2, ..., pointsRoundN
+
+        // check data matrix are not null and not empty or different length
         if ( (playersData == null) || (pointsMatrix == null)){
 
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.NULL_MATRIX_DATA);
             return;
         }
 
-
-        if ( (playersData.length == 0) || (pointsMatrix.length == 0)){
+        if ( (playersData.length == 0) || (pointsMatrix.length == 0)) {
 
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.EMPTY_MATRIX_DATA);
             return;
         }
 
+        if ( playersData.length != pointsMatrix.length ) {
 
-        String pathToDataFile = dataDirectory + File.separator + Constants.DATA_FILE; 
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.MATRIX_NOT_EQUAL);
+            return;
+        }
 
 
+        try{
+
+            // path where to add the data.
+            String absPathToDataFile = dataDirectory + File.separator + Constants.DATA_FILE; 
+
+            // File object pointing to the abs path
+            File dataFile = new File(absPathToDataFile);
+
+            // declaration of a string Builder where to append all the data that will be written to the file. 
+            StringBuilder dataToWrite = new StringBuilder(); //StringBuilder)
+
+            // if it contains already data, the new data will be appended 
+            dataToWrite.append(getOldDataFile(dataFile));
+
+            // the writer object is declared pointing to the data file (dataBowling.txt)
+            PrintStream writer = new PrintStream(dataFile.getAbsolutePath());
+
+            // current data time
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT);  
+            LocalDateTime now = LocalDateTime.now();  
+            String current_date = new String(dtf.format(now));
+            // what to print -> dtf.format(now))
+            
+            // declaration of a data line to be written to the file. 
+            StringBuilder dataLine = new StringBuilder(); 
+            
+            // iterate among the two matrixs
+            for (int i = 0; i < playersData.length; i++) {
+
+                // Add the data of the player i
+                dataLine.append(current_date + getPlayerData(playersData[i]) + Constants.SPLIT_CHAR);
+                // Add the points of the player i
+                dataLine.append(getPlayerPoints(pointsMatrix[i]));
+                // Add the full line to the stringBuilder object of the whole data
+                dataToWrite.append(dataLine + System.getProperty("line.separator"));
+
+                // clean the StringBuffer of line
+                dataLine.setLength(0);
+
+            }
+
+            // apppend the whole data to the file 
+            writer.append(dataToWrite);
+
+            // the file is closed
+            writer.close();
+        
+        }catch (Exception e){
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
+        }
+        
 
     }
+
+
+    public StringBuilder getOldDataFile(File dataFile) {
+
+        StringBuilder oldDataFile = new StringBuilder();
+        
+        if ( fileExists(dataFile.getAbsolutePath()) ) {
+
+            try {
+                Scanner reader = new Scanner(dataFile);
     
+                while (reader.hasNextLine()){
+                    String linia = new String(reader.nextLine());
+                    oldDataFile.append(linia);
+                    oldDataFile.append(System.getProperty("line.separator"));
+                }
+    
+                reader.close();
+
+            } catch (Exception e) {
+                System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
+            }
+
+        }
+
+        return oldDataFile;
+    
+    }
+
+    public String getPlayerData(String[] playerData) {
+        
+        String stringPlayerData = new String(Constants.SPLIT_CHAR + playerData[0] + Constants.SPLIT_CHAR + playerData[1] + Constants.SPLIT_CHAR + playerData[2]);
+        return stringPlayerData;
+    }
+
+    public StringBuilder getPlayerPoints(int[] playerPoints) {
+        
+
+        StringBuilder pointsPlayer = new StringBuilder();
+        for (int i = 0; i < playerPoints.length; i++) {
+
+            if ( i == (playerPoints.length-1) ) {
+                pointsPlayer.append(playerPoints[i]);
+            } else {
+                pointsPlayer.append(playerPoints[i]+Constants.SPLIT_CHAR);
+            }
+
+        }
+
+        return pointsPlayer;
+
+    }
+
 
     public void listUniqueFirstField(String filePath){
         Set<String> uniqueIdentifiers = new HashSet<>();
@@ -130,7 +239,7 @@ public class FileUtils {
             // while we have a next line to read, the file keeps being read
             while (reader.hasNextLine()){
                 String currentLine = reader.nextLine();
-                String[] lineArray = currentLine.split(Constants.SPLITTING_CHARACTER);
+                String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
                 
                 if (lineArray.length>0) {
                     uniqueIdentifiers.add(lineArray[0]);
@@ -146,14 +255,14 @@ public class FileUtils {
             reader.close();
 
         } catch (Exception e){
-            System.out.println("Error: " + e);
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
     }
 
 
-    // !!! CHECK AGAIN.. DOES NO MAKE SENSE.. WE ARE CHECKING THE LINES OF A FOLDER
     public int countRowsWithCode(String lineCode) {
         
+        // file object is initialized pointing to the datafile
         File dataFile = new File(dataDirectory + File.separator + Constants.DATA_FILE);
         int numLines = 0;
 
@@ -164,7 +273,7 @@ public class FileUtils {
             // while we have a next line to read, the file keeps being read
             while (reader.hasNextLine()){
                 String currentLine = reader.nextLine();
-                String[] lineArray = currentLine.split(Constants.SPLITTING_CHARACTER);
+                String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
                 
                 if ( (lineArray.length>0) && (lineArray[0].equals(lineCode)) ) {
                     numLines++;
@@ -175,7 +284,7 @@ public class FileUtils {
             reader.close();
 
         } catch (Exception e){
-            System.out.println("Error: " + e);
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
 
         return numLines;
