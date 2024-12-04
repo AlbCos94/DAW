@@ -76,6 +76,9 @@ public class Constants {
     public static final String DATA_FOLDER_NAME = "dades";
     public static final String DIRECTORY_CONTENT_MESSAGE = "El contingut del directori";
     public static final String SPLITTING_CHARACTER = ",";
-    public static final String UNIQUE_IDENTIFIERS_MESSAGE = "Identificadors únics";
+    public static final String NULL_MATRIX_DATA = "Matrius de dades nules";
+    public static final String EMPTY_MATRIX_DATA = "Matrius de dades buides";
+    //public static final String UNIQUE_IDENTIFIERS_MESSAGE = "Identificadors únics";
+    //public static final String DATA_BOWLING_FILE = "dataBowling.txt";
 
 }

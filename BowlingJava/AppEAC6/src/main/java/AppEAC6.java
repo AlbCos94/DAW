@@ -40,6 +40,10 @@ public class AppEAC6 {
 
         testFileUtils.listUniqueFirstField("C:/Users/alcos/OneDrive/Escritorio/testDaw/splitFile2.txt");
 
+        System.out.println(testFileUtils.countRowsWithCode("202410271805"));
+        System.out.println(testFileUtils.countRowsWithCode("202410271807"));
+        System.out.println(testFileUtils.countRowsWithCode("hola"));
+
         return;
     }
 

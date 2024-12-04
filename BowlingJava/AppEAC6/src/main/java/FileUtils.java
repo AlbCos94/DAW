@@ -94,11 +94,31 @@ public class FileUtils {
         }
     }
 
-    /*
+    
     public void saveDataToFile(String[][] playersData, int[][] pointsMatrix) {
 
+
+        // check data matrix are not null and not empty
+        if ( (playersData == null) || (pointsMatrix == null)){
+
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.NULL_MATRIX_DATA);
+            return;
+        }
+
+
+        if ( (playersData.length == 0) || (pointsMatrix.length == 0)){
+
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.EMPTY_MATRIX_DATA);
+            return;
+        }
+
+
+        String pathToDataFile = dataDirectory + File.separator + Constants.DATA_FILE; 
+
+
+
     }
-    */
+    
 
     public void listUniqueFirstField(String filePath){
         Set<String> uniqueIdentifiers = new HashSet<>();
@@ -117,7 +137,7 @@ public class FileUtils {
                 }
             }
 
-            System.out.println(Constants.UNIQUE_IDENTIFIERS_MESSAGE);
+            System.out.println(Constants.UNIQUE_ID);
             for (String element : uniqueIdentifiers) {
                 System.out.println(element);
             }
@@ -131,11 +151,38 @@ public class FileUtils {
     }
 
 
-    /*
+    // !!! CHECK AGAIN.. DOES NO MAKE SENSE.. WE ARE CHECKING THE LINES OF A FOLDER
     public int countRowsWithCode(String lineCode) {
+        
+        File dataFile = new File(dataDirectory + File.separator + Constants.DATA_FILE);
+        int numLines = 0;
 
+        try {
+
+            Scanner reader = new Scanner(dataFile); // if file does not exist, it will throw an exception.
+           
+            // while we have a next line to read, the file keeps being read
+            while (reader.hasNextLine()){
+                String currentLine = reader.nextLine();
+                String[] lineArray = currentLine.split(Constants.SPLITTING_CHARACTER);
+                
+                if ( (lineArray.length>0) && (lineArray[0].equals(lineCode)) ) {
+                    numLines++;
+                }
+            }
+
+            // finally the folder is closed
+            reader.close();
+
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+
+        return numLines;
     }
 
+
+    /*
     public void loadDataFromFile(long dataNumber, String[][] playersData, int[][] pointsMatrix) {
 
     }
