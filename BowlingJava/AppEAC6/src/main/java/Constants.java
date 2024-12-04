@@ -70,4 +70,9 @@ public class Constants {
     public static final String MESSAGE_REG_BEFORE_FI = " han estat eliminats correctament.";
     public static final String MESSAGE_NO_UPDATE_FILE = "No s'ha pogut actualitzar el fitxer.";
     public static final String MESSAGE_ERROR_PROCESS = "S'ha produït un error: ";
+
+
+    // My constant values
+    public static final String DATA_FOLDER_NAME = "dades";
+
 }

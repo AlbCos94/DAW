@@ -21,6 +21,8 @@ public class AppEAC6 {
     public void start() {
         
         System.out.println("hola");
+        FileUtils testFileUtils = new FileUtils();
+        testFileUtils.inicialitzeWorkDirectory();
         return;
     }
 
