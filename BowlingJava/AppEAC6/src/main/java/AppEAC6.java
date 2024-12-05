@@ -17,7 +17,6 @@ public class AppEAC6 {
         BowlingApp.start();
     }
 
-     
     public void start() {
         //FileUtils object instantiation and initialize working directory
         FileUtils futils = new FileUtils();

@@ -388,7 +388,14 @@ public class FileUtils {
 
     public StringBuilder getRemainingDataFileContent(File dataFile, String dateInput) {
 
-        Date dateToCompare = new Date(Long.parseLong(dateInput));
+
+        DateTimeFormatter f = DateTimeFormatter.ofPattern( Constants.DATE_FORMAT );
+
+        LocalDateTime dateToCompare = LocalDateTime.parse(dateInput,f);
+
+
+
+        //Date dateToCompare = new Date(Long.parseLong(dateInput));
 
         StringBuilder remDataFile = new StringBuilder();
         
@@ -403,11 +410,13 @@ public class FileUtils {
                     String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
 
                     // convert to Date value
-                    long longDate = Long.parseLong(lineArray[0]);
-                    Date dateLine = new Date(longDate);
+                    //long longDate = Long.parseLong(lineArray[0]);
+                    LocalDateTime dateLine = LocalDateTime.parse(lineArray[0],f);
+                    
+                    //Date dateLine = new Date(longDate);
 
                     // check if the current date is greater than the splitting date
-                    if ( dateToCompare.compareTo(dateLine) < 0 ){
+                    if ( dateToCompare.isBefore(dateLine) || dateToCompare.isEqual(dateLine) ){
                         remDataFile.append(currentLine);
                         remDataFile.append(System.getProperty("line.separator"));
                     }
