@@ -68,7 +68,7 @@ public class FileUtils {
     public boolean deleteFile(String Filename){
 
 
-        File fileToDelete = new File (Filename);
+        File fileToDelete = new File (dataDirectory + File.separator + Filename);
         
         // file is deleted if exists
         if (fileToDelete.isFile()) {
@@ -84,7 +84,9 @@ public class FileUtils {
 
     public boolean fileExists(String Filename){
         
-        File fileToCheck = new File (Filename);
+
+
+        File fileToCheck = new File (dataDirectory + File.separator + Filename);
         
         // file hast to exist and its length be greater than 0
         if (fileToCheck.isFile() && fileToCheck.length()>0) {

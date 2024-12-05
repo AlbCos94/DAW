@@ -19,6 +19,7 @@ public class AppEAC6 {
     }
 
     //START METHOD FOR TESTING -> REMOVED WHEN FINISHED- UNCOMMENT THE OTHER ONE FOR FINAL USE
+    /* 
     public void start() {
         
         System.out.println("hola");
@@ -52,25 +53,25 @@ public class AppEAC6 {
         {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
         String[][] playersMatrix = new String[][] {{"John", "Doe", "23"}, {"Pepe", "Costa", "30"}, {"Tomas", "Lamas", "29"}};
 
-        /* 
+        
         testFileUtils.saveDataToFile(playersMatrix, pointsMatrix);
         
         int[][] pointsMatrix; 
-        String[][] playersMatrix; */
+        String[][] playersMatrix; 
 
-        /* 
+        
         long value = 202412042344L; /// L -> to mark that this literal is a long value an not an int
         testFileUtils.loadDataFromFile(value, playersMatrix, pointsMatrix);
-        */
+        
         
         testFileUtils.deletePartialFile(testFileUtils, "202410271805");
 
 
         return;
     }
+    */
 
-
-    /* 
+     
     public void start() {
         //FileUtils object instantiation and initialize working directory
         FileUtils futils = new FileUtils();
@@ -135,11 +136,8 @@ public class AppEAC6 {
             }
         }
     }
+
     
-
-    */
-
-    /* 
      private void filesMenu(FileUtils futils, BowlingData bowlingData) {
         boolean exitLoop = false;
         while (!exitLoop) {
@@ -182,17 +180,17 @@ public class AppEAC6 {
             }
         }  
     }
-    */
+    
 
     //UF3
-    /*  
+
     public void OptionShowPath(FileUtils futils){
         System.out.println(Constants.DIRECTORY_MESSAGE_IO);
         System.out.println(futils.getDirectoryDades());
     }
-    */
 
-    /* 
+
+
     public void optionCheckFiles(FileUtils futils){
         
         if(futils.fileExists(Constants.DATA_FILE) == true){
@@ -201,9 +199,9 @@ public class AppEAC6 {
             System.err.println(Constants.MESSAGE_FILE_DOES_NOT_EXIST);
         }
     }
-    */
+
     
-    /* 
+
     public void recoverGame(FileUtils futils, BowlingData bowlingData){
 
         //Ask the user if they want to save the current data or overwrite it.
@@ -235,16 +233,16 @@ public class AppEAC6 {
          else System.out.println (Constants.NO_DATA_TO_RECOVERY);
     }
     
-    */
 
-    /* 
+
+
     private void saveCurrentData(FileUtils futils, BowlingData bowlingData) {
         //Save data to the file databowling.txt.
         futils.saveDataToFile(bowlingData.playersData, bowlingData.pointsMatrix);
-}
-*/
+    }
 
-/* 
+
+
     private void loadDataFromFile(FileUtils futils, BowlingData bowlingData) {
         //Load a round from the historical dataBowling file. Display the dates without duplicates
         futils.listUniqueFirstField(futils.getDirectoryDades());
@@ -268,9 +266,9 @@ public class AppEAC6 {
         futils.loadDataFromFile(numero, bowlingData.playersData, bowlingData.pointsMatrix);
         System.out.println(Constants.DATA_LOADED_OK);
     }
-    */
 
-    /* 
+
+ 
     private void deletePartialFile(FileUtils futils){
         // List the unique dates from the first field
         String dataFile = futils.getDirectoryDades(); 
@@ -285,7 +283,7 @@ public class AppEAC6 {
         }
         else System.out.println(Constants.MESSAGE_FILE_EMPTY);
     }
-        */
+
     //Fi UF3
 
     private void showTotalPoints(String[][] playersData, int[][] pointsMatrix) {
