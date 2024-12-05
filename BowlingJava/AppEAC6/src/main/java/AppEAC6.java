@@ -57,8 +57,14 @@ public class AppEAC6 {
         
         int[][] pointsMatrix; 
         String[][] playersMatrix; */
+
+        /* 
         long value = 202412042344L; /// L -> to mark that this literal is a long value an not an int
         testFileUtils.loadDataFromFile(value, playersMatrix, pointsMatrix);
+        */
+        
+        testFileUtils.deletePartialFile(testFileUtils, "202410271805");
+
 
         return;
     }

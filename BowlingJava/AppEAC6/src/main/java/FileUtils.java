@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -360,11 +361,69 @@ public class FileUtils {
     }
     
     
-    /*
+  
     public void deletePartialFile(FileUtils futils, String dateInput) {
+        String dataDirectory = futils.dataDirectory;
+        
+        // path pointing to the data file
+        String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
+        File dataFile = new File(absPathToLoadData);
+
+        try {
+            // get remaining data file content
+            StringBuilder remDataFileContent = getRemainingDataFileContent(dataFile, dateInput); 
+
+            // the writer object is declared pointing to the data file (dataBowling.txt)
+            PrintStream writer = new PrintStream(dataFile.getAbsolutePath());
+
+            // apppend the whole data to the file 
+            writer.append(remDataFileContent);
+            writer.close();
+
+        } catch (Exception e) {
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
+        }
 
     }
-    */
+    
+
+
+    public StringBuilder getRemainingDataFileContent(File dataFile, String dateInput) {
+
+        Date dateToCompare = new Date(Long.parseLong(dateInput));
+
+        StringBuilder remDataFile = new StringBuilder();
+        
+        if ( fileExists(dataFile.getAbsolutePath()) ) {
+
+            try {
+                Scanner reader = new Scanner(dataFile);
+    
+                while (reader.hasNextLine()){
+                    String currentLine = new String(reader.nextLine());
+
+                    String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
+
+                    // convert to Date value
+                    long longDate = Long.parseLong(lineArray[0]);
+                    Date dateLine = new Date(longDate);
+
+                    // check if the current date is greater than the splitting date
+                    if ( dateToCompare.compareTo(dateLine) < 0 ){
+                        remDataFile.append(currentLine);
+                        remDataFile.append(System.getProperty("line.separator"));
+                    }
+
+                }
+                reader.close();
+
+            } catch (Exception e) {
+                System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
+            }
+        }
+        return remDataFile;
+    }
+
 
 }//Fi FileUtils
     
