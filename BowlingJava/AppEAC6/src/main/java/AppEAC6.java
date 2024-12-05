@@ -1,5 +1,3 @@
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
@@ -128,13 +126,11 @@ public class AppEAC6 {
     
 
     //UF3
-
+    
     public void OptionShowPath(FileUtils futils){
         System.out.println(Constants.DIRECTORY_MESSAGE_IO);
         System.out.println(futils.getDirectoryDades());
     }
-
-
 
     public void optionCheckFiles(FileUtils futils){
         
@@ -146,7 +142,6 @@ public class AppEAC6 {
     }
 
     
-
     public void recoverGame(FileUtils futils, BowlingData bowlingData){
 
         //Ask the user if they want to save the current data or overwrite it.
@@ -179,13 +174,10 @@ public class AppEAC6 {
     }
     
 
-
-
     private void saveCurrentData(FileUtils futils, BowlingData bowlingData) {
         //Save data to the file databowling.txt.
         futils.saveDataToFile(bowlingData.playersData, bowlingData.pointsMatrix);
     }
-
 
 
     private void loadDataFromFile(FileUtils futils, BowlingData bowlingData) {
@@ -213,7 +205,6 @@ public class AppEAC6 {
     }
 
 
- 
     private void deletePartialFile(FileUtils futils){
         // List the unique dates from the first field
         String dataFile = futils.getDirectoryDades(); 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -14,28 +15,26 @@ import java.util.Set;
 
 public class FileUtils {
     String dataDirectory; // absolut path
- 
-    
+     
     public void inicialitzeWorkDirectory(){
         
         // Get the working directory of the program
         String workingDirectory = System.getProperty("user.dir");
 
-        // Check if folder "dades" exists inside the working directory
+        // Build path to "dades" folder
         String folderPath = workingDirectory + File.separator + Constants.DATA_FOLDER_NAME; 
 
-        // Declarion File object pointing to the data Folder
+        // Declarion of File object pointing to the "dades" folder
         File dataFolder = new File(folderPath);
 
         // check if the folder exists
         if (dataFolder.isDirectory()){
             dataDirectory = dataFolder.getAbsolutePath();
         } else {
-            // folder is created
+            // if folder does not exist, it is created
             dataFolder.mkdir();
             dataDirectory = dataFolder.getAbsolutePath();
         }
-
     } 
     
     
@@ -46,11 +45,11 @@ public class FileUtils {
     
     public void showDirectory(){
         System.out.println(dataDirectory);
-        // it is shown the content of the working directory (first level) 
+        // The content of the working directory is displayed (first level) 
         File workDirectory = new File(dataDirectory);
         File[] arrayElements = workDirectory.listFiles();
 
-        System.out.println(Constants.DIRECTORY_CONTENT_MESSAGE + " " + workDirectory.getAbsolutePath() + " és:");
+        System.out.println(Constants.DIRECTORY_CONTENT_MESSAGE + workDirectory.getAbsolutePath() + Constants.DIRECTORY_CONTENT_END_MESSAGE);
 
         for (int i = 0; i < arrayElements.length; i++) {
             File f = arrayElements[i];
@@ -61,39 +60,30 @@ public class FileUtils {
             }
             System.out.println(f.getName());
         }
-
     }
 
 
     public boolean deleteFile(String Filename){
 
-
         File fileToDelete = new File (dataDirectory + File.separator + Filename);
         
-        // file is deleted if exists
+        // File is deleted, if it exists
         if (fileToDelete.isFile()) {
-            //System.out.println("file " + Filename + " exists");
             return fileToDelete.delete();
         } else {
-            //System.out.println("file " + Filename + " does not exist");
             return false;
         }
-
     } 
 
 
     public boolean fileExists(String Filename){
         
-
-
         File fileToCheck = new File (dataDirectory + File.separator + Filename);
         
-        // file hast to exist and its length be greater than 0
+        // File is check if exists and its length is greater than 0
         if (fileToCheck.isFile() && fileToCheck.length()>0) {
-            //System.out.println("file " + Filename + " exists");
             return true;
         } else {
-            //System.out.println("file " + Filename + " does not exist");
             return false;
         }
     }
@@ -101,11 +91,7 @@ public class FileUtils {
     
     public void saveDataToFile(String[][] playersData, int[][] pointsMatrix) {
 
-
-        // playerData -> name, surname, age
-        // pointsMatrix -> pointsRound1, pointsRound2, ..., pointsRoundN
-
-        // check data matrix are not null and not empty or different length
+        // Check matrix data is not null, not empty or have different length
         if ( (playersData == null) || (pointsMatrix == null)){
 
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.NULL_MATRIX_DATA);
@@ -124,59 +110,54 @@ public class FileUtils {
             return;
         }
 
-
         try{
 
-            // path where to write the data.
+            // Path where to write the data
             String absPathToDataFile = dataDirectory + File.separator + Constants.DATA_FILE; 
 
             // File object pointing to the abs path
             File dataFile = new File(absPathToDataFile);
 
-            // declaration of a string Builder where to append all the data that will be written to the file. 
-            StringBuilder dataToWrite = new StringBuilder(); //StringBuilder)
+            // Declaration of a string Builder where to append all the data that will be written to the file. 
+            StringBuilder dataToWrite = new StringBuilder(); 
 
-            // if it contains already data, the new data will be appended 
+            // If file contains already data, the new data will be appended 
             dataToWrite.append(getOldDataFileContent(dataFile));
 
-            // the writer object is declared pointing to the data file (dataBowling.txt)
+            // The writer object is declared pointing to the data file (dataBowling.txt)
             PrintStream writer = new PrintStream(dataFile.getAbsolutePath());
 
-            // current data time
+            // Current data time
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT);  
             LocalDateTime now = LocalDateTime.now();  
             String current_date = new String(dtf.format(now));
-            // what to print -> dtf.format(now))
             
-            // declaration of a data line to be written to the file. 
+            // Declaration of a data line to be written to the file. 
             StringBuilder dataLine = new StringBuilder(); 
             
-            // iterate among the two matrixs
+            // Iterate among playersData matrix
             for (int i = 0; i < playersData.length; i++) {
 
                 // Add the data of the player i
                 dataLine.append(current_date + getPlayerData(playersData[i]) + Constants.SPLIT_CHAR);
                 // Add the points of the player i
                 dataLine.append(getPlayerPoints(pointsMatrix[i]));
-                // Add the full line to the stringBuilder object of the whole data
+                // Add the full line to the stringBuilder object of the whole data that will be written
                 dataToWrite.append(dataLine + System.getProperty("line.separator"));
 
-                // clean the StringBuffer of line
+                // Clean the StringBuffer of line
                 dataLine.setLength(0);
-
             }
 
-            // apppend the whole data to the file 
+            // Apppend the whole data to the file 
             writer.append(dataToWrite);
 
-            // the file is closed
+            // The file is closed
             writer.close();
         
         }catch (Exception e){
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
-        
-
     }
 
 
@@ -200,11 +181,9 @@ public class FileUtils {
             } catch (Exception e) {
                 System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
             }
-
         }
 
         return oldDataFile;
-    
     }
 
     public String getPlayerData(String[] playerData) {
@@ -215,7 +194,6 @@ public class FileUtils {
 
     public StringBuilder getPlayerPoints(int[] playerPoints) {
         
-
         StringBuilder pointsPlayer = new StringBuilder();
         for (int i = 0; i < playerPoints.length; i++) {
 
@@ -224,15 +202,14 @@ public class FileUtils {
             } else {
                 pointsPlayer.append(playerPoints[i]+Constants.SPLIT_CHAR);
             }
-
         }
 
         return pointsPlayer;
-
     }
 
 
     public void listUniqueFirstField(String filePath){
+        
         Set<String> uniqueIdentifiers = new HashSet<>();
 
         try {
@@ -254,7 +231,7 @@ public class FileUtils {
                 System.out.println(element);
             }
 
-            // finally the folder is closed
+            // Finally the folder is closed
             reader.close();
 
         } catch (Exception e){
@@ -265,7 +242,7 @@ public class FileUtils {
 
     public int countRowsWithCode(String lineCode) {
         
-        // file object is initialized pointing to the datafile
+        // File object is initialized pointing to the datafile
         File dataFile = new File(dataDirectory + File.separator + Constants.DATA_FILE);
         int numLines = 0;
 
@@ -273,7 +250,7 @@ public class FileUtils {
 
             Scanner reader = new Scanner(dataFile); // if file does not exist, it will throw an exception.
            
-            // while we have a next line to read, the file keeps being read
+            // While we have a next line to read, the file keeps being read
             while (reader.hasNextLine()){
                 String currentLine = reader.nextLine();
                 String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
@@ -283,7 +260,7 @@ public class FileUtils {
                 }
             }
 
-            // finally the folder is closed
+            // Finally the folder is closed
             reader.close();
 
         } catch (Exception e){
@@ -294,19 +271,18 @@ public class FileUtils {
     }
 
 
-    // method to load the data of the bowling game for a specific date 
+    // Method to load the data of the bowling game for a specific datestamp
     public void loadDataFromFile(long dataNumber, String[][] playersData, int[][] pointsMatrix) {
 
-        // check data number has the correct format. Needs further improvement.!!!!!!!!!! -> HACER METODO PARA TRATAR ESTO??
-        if ( dataNumber < 0) {
+        // Check data number has the correct format. Needs further improvement.!!!!!!!!!! -> HACER METODO PARA TRATAR ESTO??
+        // Data number is parsed to string
+        String stringDataNumber = String.valueOf(dataNumber);
 
-            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.INCORRECT_DATA_NUMBER);
+        // Check if String is of a given format
+        if (isStringInFormat(stringDataNumber, Constants.DATE_FORMAT) == false){
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.INCORRECT_DATE_FORMAT);
             return;
         }
-        // data number is parsed to string
-        String stringDataNumber = String.valueOf(dataNumber);
-        // in case format still does not match
-        //String stringDataNumber = String.format(Constants.DATE_FORMAT, dataNumber); 
         
         // Count the number of players that we have for the given data Number
         int numPlayers = countRowsWithCode(stringDataNumber);
@@ -316,7 +292,6 @@ public class FileUtils {
         }
 
         // We proceed to recover the data from the file into the data matrix
-        // path from where to load the data.
         String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
         File dataFile = new File(absPathToLoadData);
        
@@ -351,19 +326,38 @@ public class FileUtils {
                     playerIndex++;
                 }
             }
-            // finally the folder is closed
+            // Finally the folder is closed
             reader.close();
         } catch (Exception e){
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
     }
     
+    // Check for a date format
+    public Boolean isStringInFormat(String stringToCheck, String dataFormat) {
+        
+        // Checking first if they have the same lenght
+        if (stringToCheck.length() != dataFormat.length()) {
+            return false;
+        }
+
+        // Checking second if they correspond to the given format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dataFormat);
+
+        try {
+            // Try to parse the string into a LocalDateTime
+            LocalDateTime.parse(stringToCheck, formatter);
+            return true; // Parsing successful
+        } catch (DateTimeParseException e) {
+            return false; // Parsing failed
+        }
+    }
     
   
     public void deletePartialFile(FileUtils futils, String dateInput) {
         String dataDirectory = futils.dataDirectory;
         
-        // path pointing to the data file
+        // Path pointing to the data file
         String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
         File dataFile = new File(absPathToLoadData);
 
@@ -381,21 +375,14 @@ public class FileUtils {
         } catch (Exception e) {
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
-
     }
-    
 
 
     public StringBuilder getRemainingDataFileContent(File dataFile, String dateInput) {
 
-
         DateTimeFormatter f = DateTimeFormatter.ofPattern( Constants.DATE_FORMAT );
 
         LocalDateTime dateToCompare = LocalDateTime.parse(dateInput,f);
-
-
-
-        //Date dateToCompare = new Date(Long.parseLong(dateInput));
 
         StringBuilder remDataFile = new StringBuilder();
         
@@ -412,15 +399,12 @@ public class FileUtils {
                     // convert to Date value
                     //long longDate = Long.parseLong(lineArray[0]);
                     LocalDateTime dateLine = LocalDateTime.parse(lineArray[0],f);
-                    
-                    //Date dateLine = new Date(longDate);
 
                     // check if the current date is greater than the splitting date
                     if ( dateToCompare.isBefore(dateLine) || dateToCompare.isEqual(dateLine) ){
                         remDataFile.append(currentLine);
                         remDataFile.append(System.getProperty("line.separator"));
                     }
-
                 }
                 reader.close();
 
@@ -430,7 +414,6 @@ public class FileUtils {
         }
         return remDataFile;
     }
-
 
 }//Fi FileUtils
     
