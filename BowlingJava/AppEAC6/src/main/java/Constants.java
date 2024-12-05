@@ -79,6 +79,9 @@ public class Constants {
     public static final String NULL_MATRIX_DATA = "Matrius de dades nules";
     public static final String EMPTY_MATRIX_DATA = "Matrius de dades buides";
     public static final String MATRIX_NOT_EQUAL = "Matrius de mides diferents";
+    public static final String INCORRECT_DATA_NUMBER = "No s'ha introduït data number";
+
+    public static final int MIN_NUM_DATAELEMENTS = 4;
     //public static final String UNIQUE_IDENTIFIERS_MESSAGE = "Identificadors únics";
     //public static final String DATA_BOWLING_FILE = "dataBowling.txt";
 

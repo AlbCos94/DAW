@@ -46,15 +46,19 @@ public class AppEAC6 {
 
 
 
-
+        
         int[][] pointsMatrix = new int[][] {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, 
         {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
         {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-        String[][] playersMatrix = new String[][] {{"John", "Doe", "23"}, {"Albert", "Costa", "30"}, {"Vanessa", "Lamas", "29"}};
+        String[][] playersMatrix = new String[][] {{"John", "Doe", "23"}, {"Pepe", "Costa", "30"}, {"Tomas", "Lamas", "29"}};
 
-
+        /* 
         testFileUtils.saveDataToFile(playersMatrix, pointsMatrix);
-
+        
+        int[][] pointsMatrix; 
+        String[][] playersMatrix; */
+        long value = 202412042344L; /// L -> to mark that this literal is a long value an not an int
+        testFileUtils.loadDataFromFile(value, playersMatrix, pointsMatrix);
 
         return;
     }

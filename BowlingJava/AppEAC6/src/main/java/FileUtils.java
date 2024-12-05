@@ -124,7 +124,7 @@ public class FileUtils {
 
         try{
 
-            // path where to add the data.
+            // path where to write the data.
             String absPathToDataFile = dataDirectory + File.separator + Constants.DATA_FILE; 
 
             // File object pointing to the abs path
@@ -134,7 +134,7 @@ public class FileUtils {
             StringBuilder dataToWrite = new StringBuilder(); //StringBuilder)
 
             // if it contains already data, the new data will be appended 
-            dataToWrite.append(getOldDataFile(dataFile));
+            dataToWrite.append(getOldDataFileContent(dataFile));
 
             // the writer object is declared pointing to the data file (dataBowling.txt)
             PrintStream writer = new PrintStream(dataFile.getAbsolutePath());
@@ -177,7 +177,7 @@ public class FileUtils {
     }
 
 
-    public StringBuilder getOldDataFile(File dataFile) {
+    public StringBuilder getOldDataFileContent(File dataFile) {
 
         StringBuilder oldDataFile = new StringBuilder();
         
@@ -291,11 +291,76 @@ public class FileUtils {
     }
 
 
-    /*
+    // method to load the data of the bowling game for a specific date 
     public void loadDataFromFile(long dataNumber, String[][] playersData, int[][] pointsMatrix) {
 
-    }
+        // check data number has the correct format. Needs further improvement.!!!!!!!!!! -> HACER METODO PARA TRATAR ESTO??
+        if ( dataNumber < 0) {
 
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.INCORRECT_DATA_NUMBER);
+            return;
+        }
+        // data number is parsed to string
+        String stringDataNumber = String.valueOf(dataNumber);
+        // in case format still does not match
+        //String stringDataNumber = String.format(Constants.DATE_FORMAT, dataNumber); 
+        
+        // Count the number of players that we have for the given data Number
+        int numPlayers = countRowsWithCode(stringDataNumber);
+        if ( numPlayers <= 0) {
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.NO_DATA_TO_RECOVERY);
+            return;
+        }
+
+        // We proceed to recover the data from the file into the data matrix
+        // Matrixes are initialized:
+        playersData = new String[numPlayers][Constants.PLAYERS_MATRIX_COLUMNS];
+        pointsMatrix = new int[numPlayers][Constants.THROWS_NUMBER];
+
+        // path from where to load the data.
+        String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
+        File dataFile = new File(absPathToLoadData);
+       
+        try {
+            Scanner reader = new Scanner(dataFile); // if file does not exist, it will throw an exception.
+            int playerIndex = 0;
+            int filePointsIndex = Constants.PLAYERS_MATRIX_COLUMNS+1; // initialize the index from which the points appear. 
+            // while we have a next line to read, the file keeps being read
+            while (reader.hasNextLine()){
+                String currentLine = reader.nextLine();
+                String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
+                
+                if ( (lineArray.length >= Constants.MIN_NUM_DATAELEMENTS) && (lineArray[0].equals(stringDataNumber)) ) {
+                    
+                    if (playersData[playerIndex].length >= Constants.PLAYERS_MATRIX_COLUMNS){
+                        //name
+                        playersData[playerIndex][0]=lineArray[1];
+                        //surname
+                        playersData[playerIndex][1]=lineArray[2];
+                        //age
+                        playersData[playerIndex][2]=lineArray[3];
+                    }
+
+                    if (pointsMatrix[playerIndex].length >= Constants.THROWS_NUMBER ){
+                        
+                        int pointsIndex = 0;
+                        for (int i = filePointsIndex; i < lineArray.length; i++) {
+                            pointsMatrix[playerIndex][pointsIndex] = Integer.parseInt(lineArray[i]); // parse string to int
+                            pointsIndex++;
+                        }
+                    } 
+                    playerIndex++;
+                }
+            }
+            // finally the folder is closed
+            reader.close();
+        } catch (Exception e){
+            System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
+        }
+    }
+    
+    
+    /*
     public void deletePartialFile(FileUtils futils, String dateInput) {
 
     }
