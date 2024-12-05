@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author IOC - 2024-2025 - S1 - UF3
+ * @author IOC - 2024-2025 - S1 - UF3 & Albert Costa Ruiz
  */
 
 import java.util.Scanner;
