@@ -184,7 +184,7 @@ public class FileUtils {
 
         StringBuilder oldDataFile = new StringBuilder();
         
-        if ( fileExists(dataFile.getAbsolutePath()) ) {
+        if ( fileExists(Constants.DATA_FILE) ) {
 
             try {
                 Scanner reader = new Scanner(dataFile);
@@ -236,7 +236,7 @@ public class FileUtils {
         Set<String> uniqueIdentifiers = new HashSet<>();
 
         try {
-            File fileToRead = new File(filePath);
+            File fileToRead = new File(filePath + File.separator + Constants.DATA_FILE);
             Scanner reader = new Scanner(fileToRead); // if file does not exist, it will throw an exception.
            
             // while we have a next line to read, the file keeps being read
@@ -316,10 +316,6 @@ public class FileUtils {
         }
 
         // We proceed to recover the data from the file into the data matrix
-        // Matrixes are initialized:
-        playersData = new String[numPlayers][Constants.PLAYERS_MATRIX_COLUMNS];
-        pointsMatrix = new int[numPlayers][Constants.THROWS_NUMBER];
-
         // path from where to load the data.
         String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
         File dataFile = new File(absPathToLoadData);
@@ -396,7 +392,7 @@ public class FileUtils {
 
         StringBuilder remDataFile = new StringBuilder();
         
-        if ( fileExists(dataFile.getAbsolutePath()) ) {
+        if ( fileExists(Constants.DATA_FILE) ) {
 
             try {
                 Scanner reader = new Scanner(dataFile);

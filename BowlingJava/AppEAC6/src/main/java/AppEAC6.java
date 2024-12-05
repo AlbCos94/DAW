@@ -14,62 +14,8 @@ public class AppEAC6 {
 
     public static void main(String[] args) {
         AppEAC6 BowlingApp = new AppEAC6();
-        //BowlingApp.start();
         BowlingApp.start();
     }
-
-    //START METHOD FOR TESTING -> REMOVED WHEN FINISHED- UNCOMMENT THE OTHER ONE FOR FINAL USE
-    /* 
-    public void start() {
-        
-        System.out.println("hola");
-        FileUtils testFileUtils = new FileUtils();
-        
-        testFileUtils.inicialitzeWorkDirectory();
-        System.out.println(testFileUtils.getDirectoryDades());
-        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/hola.txt");
-        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/vacio.txt");
-        testFileUtils.fileExists("C:/Users/alcos/OneDrive/Escritorio/testDaw/texto.txt");
-
-        testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/hola.txt");
-        testFileUtils.deleteFile("C:/Users/alcos/OneDrive/Escritorio/testDaw/vacio.txt");
-
-
-        testFileUtils.showDirectory();
-
-
-
-        testFileUtils.listUniqueFirstField("C:/Users/alcos/OneDrive/Escritorio/testDaw/splitFile2.txt");
-
-        System.out.println(testFileUtils.countRowsWithCode("202410271805"));
-        System.out.println(testFileUtils.countRowsWithCode("202410271807"));
-        System.out.println(testFileUtils.countRowsWithCode("hola"));
-
-
-
-        
-        int[][] pointsMatrix = new int[][] {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, 
-        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-        String[][] playersMatrix = new String[][] {{"John", "Doe", "23"}, {"Pepe", "Costa", "30"}, {"Tomas", "Lamas", "29"}};
-
-        
-        testFileUtils.saveDataToFile(playersMatrix, pointsMatrix);
-        
-        int[][] pointsMatrix; 
-        String[][] playersMatrix; 
-
-        
-        long value = 202412042344L; /// L -> to mark that this literal is a long value an not an int
-        testFileUtils.loadDataFromFile(value, playersMatrix, pointsMatrix);
-        
-        
-        testFileUtils.deletePartialFile(testFileUtils, "202410271805");
-
-
-        return;
-    }
-    */
 
      
     public void start() {
