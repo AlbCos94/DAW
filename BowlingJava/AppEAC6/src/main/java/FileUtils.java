@@ -365,6 +365,7 @@ public class FileUtils {
             // Apppend the whole data to the file 
             writer.append(remDataFileContent);
             writer.close();
+            System.out.println(Constants.MESSAGE_REG_BEFORE + dateInput + Constants.MESSAGE_REG_BEFORE_FI);
 
         } catch (Exception e) {
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
