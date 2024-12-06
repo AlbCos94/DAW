@@ -174,8 +174,7 @@ public class FileUtils {
                     String linia = new String(reader.nextLine());
                     oldDataFile.append(linia);
                     oldDataFile.append(System.getProperty("line.separator"));
-                }
-    
+                }   
                 reader.close();
 
             } catch (Exception e) {
@@ -216,7 +215,7 @@ public class FileUtils {
             File fileToRead = new File(filePath + File.separator + Constants.DATA_FILE);
             Scanner reader = new Scanner(fileToRead); // if file does not exist, it will throw an exception.
            
-            // while we have a next line to read, the file keeps being read
+            // While we have a next line to read, the file keeps being read
             while (reader.hasNextLine()){
                 String currentLine = reader.nextLine();
                 String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
@@ -231,7 +230,6 @@ public class FileUtils {
                 System.out.println(element);
             }
 
-            // Finally the folder is closed
             reader.close();
 
         } catch (Exception e){
@@ -248,7 +246,7 @@ public class FileUtils {
 
         try {
 
-            Scanner reader = new Scanner(dataFile); // if file does not exist, it will throw an exception.
+            Scanner reader = new Scanner(dataFile); 
            
             // While we have a next line to read, the file keeps being read
             while (reader.hasNextLine()){
@@ -260,13 +258,11 @@ public class FileUtils {
                 }
             }
 
-            // Finally the folder is closed
             reader.close();
 
         } catch (Exception e){
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
-
         return numLines;
     }
 
@@ -274,11 +270,10 @@ public class FileUtils {
     // Method to load the data of the bowling game for a specific datestamp
     public void loadDataFromFile(long dataNumber, String[][] playersData, int[][] pointsMatrix) {
 
-        // Check data number has the correct format. Needs further improvement.!!!!!!!!!! -> HACER METODO PARA TRATAR ESTO??
-        // Data number is parsed to string
+        // Data number is parsed to a string
         String stringDataNumber = String.valueOf(dataNumber);
 
-        // Check if String is of a given format
+        // Check if String is of the correct format
         if (isStringInFormat(stringDataNumber, Constants.DATE_FORMAT) == false){
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + Constants.INCORRECT_DATE_FORMAT);
             return;
@@ -291,15 +286,15 @@ public class FileUtils {
             return;
         }
 
-        // We proceed to recover the data from the file into the data matrix
+        // Recover the data from the file into the data matrix
         String absPathToLoadData = dataDirectory + File.separator + Constants.DATA_FILE; 
         File dataFile = new File(absPathToLoadData);
        
         try {
-            Scanner reader = new Scanner(dataFile); // if file does not exist, it will throw an exception.
+            Scanner reader = new Scanner(dataFile); 
             int playerIndex = 0;
-            int filePointsIndex = Constants.PLAYERS_MATRIX_COLUMNS+1; // initialize the index from which the points appear. 
-            // while we have a next line to read, the file keeps being read
+            int filePointsIndex = Constants.PLAYERS_MATRIX_COLUMNS+1; // initialize the index from which the player points appear. 
+
             while (reader.hasNextLine()){
                 String currentLine = reader.nextLine();
                 String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
@@ -326,22 +321,21 @@ public class FileUtils {
                     playerIndex++;
                 }
             }
-            // Finally the folder is closed
             reader.close();
         } catch (Exception e){
             System.out.println(Constants.MESSAGE_ERROR_PROCESS + e);
         }
     }
     
-    // Check for a date format
+    // Check that a string is of a given a date format
     public Boolean isStringInFormat(String stringToCheck, String dataFormat) {
         
-        // Checking first if they have the same lenght
+        // Checking if they have the same lenght
         if (stringToCheck.length() != dataFormat.length()) {
             return false;
         }
 
-        // Checking second if they correspond to the given format
+        // Checking if they correspond to the given format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dataFormat);
 
         try {
@@ -362,13 +356,13 @@ public class FileUtils {
         File dataFile = new File(absPathToLoadData);
 
         try {
-            // get remaining data file content
+            // Get remaining data file content
             StringBuilder remDataFileContent = getRemainingDataFileContent(dataFile, dateInput); 
 
-            // the writer object is declared pointing to the data file (dataBowling.txt)
+            // The writer object is declared pointing to the data file (dataBowling.txt)
             PrintStream writer = new PrintStream(dataFile.getAbsolutePath());
 
-            // apppend the whole data to the file 
+            // Apppend the whole data to the file 
             writer.append(remDataFileContent);
             writer.close();
 
@@ -381,9 +375,7 @@ public class FileUtils {
     public StringBuilder getRemainingDataFileContent(File dataFile, String dateInput) {
 
         DateTimeFormatter f = DateTimeFormatter.ofPattern( Constants.DATE_FORMAT );
-
         LocalDateTime dateToCompare = LocalDateTime.parse(dateInput,f);
-
         StringBuilder remDataFile = new StringBuilder();
         
         if ( fileExists(Constants.DATA_FILE) ) {
@@ -396,11 +388,10 @@ public class FileUtils {
 
                     String[] lineArray = currentLine.split(Constants.SPLIT_CHAR);
 
-                    // convert to Date value
-                    //long longDate = Long.parseLong(lineArray[0]);
+                    // Convert to LocalDateTime object
                     LocalDateTime dateLine = LocalDateTime.parse(lineArray[0],f);
 
-                    // check if the current date is greater than the splitting date
+                    // Check if the current date is greater than the splitting date
                     if ( dateToCompare.isBefore(dateLine) || dateToCompare.isEqual(dateLine) ){
                         remDataFile.append(currentLine);
                         remDataFile.append(System.getProperty("line.separator"));
