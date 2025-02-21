@@ -31,8 +31,24 @@ public class AulaEstandard {
     /*
      * TODO Heu d'implementar tots els mètodes accessors possibles.  
      */
-    
-    
+
+    //Setters
+    void setCodi(String nouCodi){
+        codi = nouCodi;
+    }
+
+    void setNumeroAula(int nouNumeroAula){
+        numeroAula = nouNumeroAula;
+    }
+
+    void setCostPerDia(double nouCostPerDia){
+        costPerDia = nouCostPerDia;
+    }
+
+    //Getters
+    String getCodi(){ return codi; }
+    int getNumeroAula(){ return numeroAula; }
+    double getCostPerDia(){ return costPerDia; }
 
     /*
     * TODO
