@@ -3,18 +3,19 @@
  * Es defineixen pel seu codi, número d'aula i el seu cost per dia.
  */
 package universitat;
-
+import java.util.Scanner;
 
 /**
  *
  * @author fgarin
  */
 public class AulaEstandard {
-    private final static Scanner DADES = new Scanner(System.in);
+    private final static Scanner DADES = new Scanner(System.in); // atribut per llegir les dades que introdueixi l'usuari
 
     private String codi; // private attribute. It can only be accessed inside the class 
     private int numeroAula;
     private double costPerDia;
+
 
     /*
      * TODO CONSTRUCTOR
@@ -26,29 +27,43 @@ public class AulaEstandard {
      * Accions:
      * - Assignar als atributs corresponents els valors passats com a paràmetres.
      */
-    
+    public AulaEstandard (String sCodi, int nNumeroAula, double dCostPerDia){
+        codi = sCodi;
+        numeroAula = nNumeroAula;
+        costPerDia = dCostPerDia;
+    }
+
+
+    /*
+     * Creem un altre constructor sense parametres d'entrada, el qual crearà l'aula standard a través del totes les dades introduiides per consola
+     * 
+     */
+    public AulaEstandard(){
+        codi = this.askForString("Introdueis el codi de l'aula: ", "Codi de l'aula erroni");
+        numeroAula = this.askForInteger("Introdueis el número de l'aula: ", "Número de l'aula erroni");
+        costPerDia = this.askForDouble("Introdueis el cost per dua de l'aula: ", "Cost per dia de l'aula erroni");
+    }
 
     /*
      * TODO Heu d'implementar tots els mètodes accessors possibles.  
      */
-
     //Setters
-    void setCodi(String nouCodi){
+    public void setCodi(String nouCodi){
         codi = nouCodi;
     }
 
-    void setNumeroAula(int nouNumeroAula){
+    public void setNumeroAula(int nouNumeroAula){
         numeroAula = nouNumeroAula;
     }
 
-    void setCostPerDia(double nouCostPerDia){
+    public void setCostPerDia(double nouCostPerDia){
         costPerDia = nouCostPerDia;
     }
 
     //Getters
-    String getCodi(){ return codi; }
-    int getNumeroAula(){ return numeroAula; }
-    double getCostPerDia(){ return costPerDia; }
+    public String getCodi(){ return codi; }
+    public int getNumeroAula(){ return numeroAula; }
+    public double getCostPerDia(){ return costPerDia; }
 
     /*
     * TODO
@@ -62,7 +77,11 @@ public class AulaEstandard {
     *
     * Retorn: Objecte AulaEstandard creat.
     */
-   
+    public static AulaEstandard addAulaEstandard(){
+
+        return new AulaEstandard();
+
+    }
 
     /*
      * TODO
@@ -109,5 +128,61 @@ public class AulaEstandard {
      * Retorn: cost de manteniment de l'aula (double).
      */
     
+    /*
+     * 
+     * Métodes auxiliars
+     * 
+     */
+
+
+    // Métode per preguntar pel codi d'una aula
+    private String askForString(String message, String errorMessage){
+        System.out.println(message);
+        String inputText = this.DADES.nextLine();
+        while (inputText.isEmpty()){
+            System.out.println(errorMessage);
+            System.out.println(message);
+            inputText = this.DADES.nextLine();
+        }
+        return inputText;
+    }
+    
+    // Métode per preguntar pel numero d'una aula
+    private int askForInteger(String message, String errorMessage) {
+
+        int inputInt;
+        boolean correct;
+        do {
+            System.out.print(message + "\n");
+            correct = this.DADES.hasNextInt();
+            if (!correct) {
+                this.DADES.next();
+                System.out.println(errorMessage);
+            }
+        } while (!correct);
+        inputInt = this.DADES.nextInt();
+        this.DADES.nextLine();
+        return inputInt;
+    }
+
+
+    // Métode per preguntar pel cost per aula
+    private double askForDouble(String message, String errorMessage) {
+
+        double inputDouble;
+        boolean correct;
+        do {
+            System.out.print(message + "\n");
+            correct = this.DADES.hasNextDouble();
+            if (!correct) {
+                this.DADES.next();
+                System.out.println(errorMessage);
+            }
+        } while (!correct);
+        inputDouble = this.DADES.nextDouble();
+        this.DADES.nextLine();
+        return inputDouble;
+    }
+
 
 }
