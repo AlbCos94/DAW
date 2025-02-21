@@ -12,7 +12,7 @@ package universitat;
 public class AulaEstandard {
     private final static Scanner DADES = new Scanner(System.in);
 
-    private String codi;
+    private String codi; // private attribute. It can only be accessed inside the class 
     private int numeroAula;
     private double costPerDia;
 

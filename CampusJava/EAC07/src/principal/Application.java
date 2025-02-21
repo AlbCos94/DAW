@@ -7,6 +7,14 @@ import universitat.Universitat;
  *
  * @author fgarin
  */
+
+/*
+ * 
+ * classe Aplicacio per interactuar amb l'usuari, contenir universitats i cridar a la resta de classes i mètodes mitjançant uns menús.
+ * 
+ * 
+ */
+
 public class Application {
 
     private static Universitat[] universitats = new Universitat[10];
