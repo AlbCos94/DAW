@@ -97,7 +97,21 @@ public class AulaEstandard {
      * 
      * Retorn: cap
      */
-    
+     public void updateAulaEstandard(){
+        String nouCodi = this.askForString("Introdueis el codi de l'aula: ", "Codi de l'aula erroni");
+        int nouNumeroAula = this.askForInteger("Introdueis el número de l'aula: ", "Número de l'aula erroni");
+        double nouCostPerDia = this.askForDouble("Introdueis el cost per dua de l'aula: ", "Cost per dia de l'aula erroni");
+
+        System.out.println("Nou codi: " + nouCodi);
+        System.out.println("Nou número d'aula: " + nouNumeroAula);
+        System.out.println("Nou Cost per dia: " + nouCostPerDia);
+
+        this.codi = nouCodi;
+        this.numeroAula = nouNumeroAula;
+        this.costPerDia = nouCostPerDia;
+    }
+
+
     
     /*
      * TODO
@@ -111,7 +125,15 @@ public class AulaEstandard {
      * 
      * Retorn: cap
      */
-   
+    public void showAulaEstandard(){
+
+        System.out.println("Codi de l'aula: " + this.codi);
+        System.out.println("Número d'aula: " + this.numeroAula);
+        System.out.println("Nou Cost per dia: " + this.costPerDia);
+
+    }
+
+
 
     /*
      * TODO
