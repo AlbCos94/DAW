@@ -111,7 +111,6 @@ public class AulaEstandard {
         this.costPerDia = nouCostPerDia;
     }
 
-
     
     /*
      * TODO
@@ -129,10 +128,9 @@ public class AulaEstandard {
 
         System.out.println("Codi de l'aula: " + this.codi);
         System.out.println("Número d'aula: " + this.numeroAula);
-        System.out.println("Nou Cost per dia: " + this.costPerDia);
+        System.out.println("Cost per dia: " + this.costPerDia);
 
     }
-
 
 
     /*
@@ -149,13 +147,16 @@ public class AulaEstandard {
      * 
      * Retorn: cost de manteniment de l'aula (double).
      */
-    
+    public double costManteniment(){
+        return this.costPerDia*0.2;
+    }
+
+
     /*
      * 
      * Métodes auxiliars
      * 
      */
-
 
     // Métode per preguntar pel codi d'una aula
     private String askForString(String message, String errorMessage){
