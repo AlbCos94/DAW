@@ -5,7 +5,7 @@
  */
 
 package universitat;
-
+import java.util.Scanner;
 
 /**
  *
@@ -34,11 +34,38 @@ public class Campus {
      * Accions:
      * - Assignar als atributs els valors passats com a paràmetres.
      */
-    
+    public Campus(String sNomCampus, String sUbicacio){
+        nomCampus = sNomCampus;
+        ubicacio = sUbicacio;
+    }
+
+    /*
+     * Creem un altre constructor sense parametres d'entrada, el qual crearà un campus a través del totes les dades introduiides per consola
+     * 
+     */
+    public Campus(){
+        nomCampus = this.askForString("Introdueix el nom del campus: ", "Codi del laboratori erroni");
+        ubicacio = this.askForString("Introdueix la ubicació del campus: ", "Codi del laboratori erroni");
+
+    }
+
+
 
     /**
      * TODO Heu d'implementar tots els mètodes accessors possibles.
      */
+    //Setters
+    public void setNomCampus(String nouNomCampus){
+        this.nomCampus = nouNomCampus;
+    }
+
+    public void setUbicacio(String novaUbicacio){
+        this.ubicacio = novaUbicacio;
+    }
+
+    //Getters
+    public String getNomCampus(){ return this.nomCampus; }
+    public String getUbicacio(){ return this.ubicacio; }
 
     
 
@@ -55,7 +82,9 @@ public class Campus {
      *
      * Retorn: Objecte Campus creat.
      */
-    
+    public static Campus addCampus(){
+        return new Campus();
+    }
 
     /*
      * TODO
@@ -73,6 +102,16 @@ public class Campus {
      *
      * Retorn: cap
      */
+    public void updateCampus(){
+        String nouNomCampus = this.askForString("Introdueix el nou nom del campus: ", "Codi de l'aula erroni");
+        String novaUbicacio = this.askForString("Introdueix la nova ubicacio del campus: ", "Número de l'aula erroni");
+
+        System.out.println("Nou nom del campus: " + nouNomCampus);
+        System.out.println("Nova ubicació: " + novaUbicacio);
+
+        this.nomCampus = nouNomCampus;
+        this.ubicacio = novaUbicacio;
+    } 
     
 
     /*
@@ -88,7 +127,43 @@ public class Campus {
      *
      * Retorn: cost de manteniment total del campus.
      */
-   
+    public double costManteniment(){
+        double costTotal = 0.0;
+        
+        // loop from index 0 to first position without null element in the array
+        for (int i = 0; i < this.pAulesEstandard; i++) {
+            costTotal = costTotal + this.aulesEstandard[i].costManteniment();
+        }
+
+        for (int i = 0; i < this.pAulansInformatica; i++) {
+            costTotal = costTotal + this.aulesInformatica[i].costManteniment();
+        }
+
+        for (int i = 0; i < this.pLaboratoris; i++) {
+            costTotal = costTotal + this.laboratoris[i].costManteniment();
+        }
+
+
+        /* 
+        // cost per les aules estandard
+        for ( AulaEstandard aula : this.aulesEstandard ) {
+            costTotal = costTotal + aula.costManteniment();
+        }
+        
+        // cost per les aules d'informatica
+        for ( AulaInformatica aula : this.aulesInformatica ) {
+            costTotal = costTotal + aula.costManteniment();
+        }
+        
+        // cost pel laboratoris
+        for ( Laboratori aula : this.laboratoris ) {
+            costTotal = costTotal + aula.costManteniment();
+        }
+        */
+        
+        
+        return costTotal;
+    }
 
     /*
      * TODO
@@ -258,4 +333,26 @@ public class Campus {
 
         return -1;
     }
+
+
+    /*
+     * 
+     * Métodes auxiliars
+     * 
+     */
+
+    // Métode per preguntar pel nom del campus i la seva ubicació
+    private String askForString(String message, String errorMessage){
+        System.out.println(message);
+        String inputText = this.DADES.nextLine();
+        while (inputText.isEmpty()){
+            System.out.println(errorMessage);
+            System.out.println(message);
+            inputText = this.DADES.nextLine();
+        }
+        return inputText;
+    }
+
+
+
 }
