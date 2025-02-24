@@ -58,11 +58,18 @@ public class Universitat {
         this.ubicacioSeu = nouUbicacioSeu;
     }
 
+    public void setCampus(Campus[] campus){
+        this.campus = campus;
+    }
+
+    public void setpCampus(int pCampus){
+        this.pCampus = pCampus;
+    }
     //Getters
     public String getNomUniversitat(){ return this.nomUniversitat; }
     public String getUbicacioSeu(){ return this.ubicacioSeu; }
-   
-
+    public Campus[] getCampus(){ return this.campus; }
+    public int getpCampus(){ return this.pCampus; }
     /**
      * TODO
      *

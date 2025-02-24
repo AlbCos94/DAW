@@ -1,5 +1,7 @@
 package principal;
 
+import java.util.Scanner;
+
 import universitat.Universitat;
 
 
@@ -16,6 +18,8 @@ import universitat.Universitat;
  */
 
 public class Application {
+
+    private final static Scanner DADES = new Scanner(System.in);
 
     private static Universitat[] universitats = new Universitat[10];
     private static int Universitat = 0; //Primera posició buida del vector universitats
