@@ -63,10 +63,42 @@ public class Campus {
         this.ubicacio = novaUbicacio;
     }
 
+    public void setAulesEstandard(AulaEstandard[] aulesEstandard){
+        this.aulesEstandard = aulesEstandard;
+    }
+
+    public void setpAulesEstandard(int pAulesEstandard){
+        this.pAulesEstandard = pAulesEstandard;
+    }
+
+    public void setAulesInformatica(AulaInformatica[] aulesInformatica){
+        this.aulesInformatica = aulesInformatica;
+    }
+
+    public void setpAulesInformatica(int pAulesInformatica){
+        this.pAulesInformatica = pAulesInformatica;
+    }
+
+    public void setLaboratoris(Laboratori[] laboratoris){
+        this.laboratoris = laboratoris;
+    }
+
+    public void setpLaboratoris(int pLaboratoris){
+        this.pLaboratoris = pLaboratoris;
+    }
+
     //Getters
     public String getNomCampus(){ return this.nomCampus; }
     public String getUbicacio(){ return this.ubicacio; }
 
+    public AulaEstandard[] getAulesEstandard(){ return this.aulesEstandard; }
+    public int getpAulesEstandard(){ return this.pAulesEstandard; }
+
+    public AulaInformatica[] getAulesInformatica(){ return this.aulesInformatica; }
+    public int getpAulesInformatica(){ return this.pAulesInformatica; }
+
+    public Laboratori[] getLaboratoris(){ return this.laboratoris; }
+    public int getpLaboratoris(){ return this.pLaboratoris; }
     
 
     /**
@@ -144,26 +176,6 @@ public class Campus {
         }
 
         return costTotal;
-
-        /* 
-        // cost per les aules estandard
-        for ( AulaEstandard aula : this.aulesEstandard ) {
-            costTotal = costTotal + aula.costManteniment();
-        }
-        
-        // cost per les aules d'informatica
-        for ( AulaInformatica aula : this.aulesInformatica ) {
-            costTotal = costTotal + aula.costManteniment();
-        }
-        
-        // cost pel laboratoris
-        for ( Laboratori aula : this.laboratoris ) {
-            costTotal = costTotal + aula.costManteniment();
-        }
-        */
-        
-        
-
     }
 
     /*

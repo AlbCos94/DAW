@@ -5,12 +5,15 @@
 
 package universitat;
 
+import java.util.Scanner;
 
 /**
  *
  * @author fgarin
  */
 public class Universitat {
+
+    private final static Scanner DADES = new Scanner(System.in);
 
     private String nomUniversitat;
     private String ubicacioSeu;
@@ -27,14 +30,37 @@ public class Universitat {
      * Accions:
      * - Assignar als atributs corresponents els valors passats com a paràmetres.
      */
+    public Universitat(String sNomUniversitat, String sUbicacioSeu){
+        nomUniversitat = sNomUniversitat;
+        ubicacioSeu = sUbicacioSeu;
+    }    
     
-    
-    
+
+    /*
+     * Creem un altre constructor sense parametres d'entrada, el qual crearà un campus a través del totes les dades introduiides per consola
+     * 
+     */
+    public Universitat(){
+        nomUniversitat = this.askForString("Introdueix el nom de la universitat: ", "Nom de la universitat erroni");
+        ubicacioSeu = this.askForString("Introdueix la ubicació de la seu de la universitat: ", "Codi de la ubicacio erroni");
+    }
 
     /**
      * TODO Heu d'implementar tots els mètodes accessors possibles.
      */
-    
+
+    //Setters
+    public void setNomUniversitat(String nouNomUniversitat){
+        this.nomUniversitat = nouNomUniversitat;
+    }
+
+    public void setUbicacioSeu(String nouUbicacioSeu){
+        this.ubicacioSeu = nouUbicacioSeu;
+    }
+
+    //Getters
+    public String getNomUniversitat(){ return this.nomUniversitat; }
+    public String getUbicacioSeu(){ return this.ubicacioSeu; }
    
 
     /**
@@ -50,7 +76,9 @@ public class Universitat {
      * 
      * Retorn: Objecte Universitat creat.
      */
-    
+    public static Universitat addUniversitat(){
+        return new Universitat();
+    }
 
     /**
      * TODO
@@ -68,7 +96,16 @@ public class Universitat {
      * 
      * Retorn: cap
      */
-    
+    public void updateUniversitat(){
+        String nouNomUniversitat = this.askForString("Introdueix el nou nom de la universitat: ", "Codi de l'aula erroni");
+        String novaUbicacioSeu = this.askForString("Introdueix la nova ubicació de la seu de la universitat: ", "Número de l'aula erroni");
+
+        System.out.println("Nou nom de la universitat: " + nouNomUniversitat);
+        System.out.println("Nova ubicació de la seu: " + novaUbicacioSeu);
+
+        this.nomUniversitat = nouNomUniversitat;
+        this.ubicacioSeu = novaUbicacioSeu;
+    }     
     
 
     /**
@@ -85,6 +122,16 @@ public class Universitat {
      * Retorn: Cost de manteniment total de la universitat (double).
      */
     
+    public double costManteniment(){
+        double costTotal = 0.0;
+        
+        // loop from index 0 to first position without null element in the array
+        for (int i = 0; i < this.pCampus; i++) {
+            costTotal = costTotal + this.campus[i].costManteniment();
+        }
+
+        return costTotal;
+    }
 
     /**
      * TODO
@@ -99,7 +146,13 @@ public class Universitat {
      * Retorn: cap
      */
  
+    public void showUniversitat(){
 
+        System.out.println("Nom de la universitat: " + this.nomUniversitat);
+        System.out.println("Ubicació de la seu: " + this.ubicacioSeu);
+        
+        System.out.println("Cost manteniment : " + this.costManteniment());
+    }  
 
     /**
      * Campus
@@ -121,7 +174,20 @@ public class Universitat {
      * 
      * Retorn: cap
      */
-    
+    public void addCampus(){
+        
+        Campus campus = Campus.addCampus();
+
+        int posCampus = this.selectCampus(campus.getNomCampus());
+
+        if (posCampus == -1){
+            System.out.println("El campus ja existeix");
+        } else{
+            this.campus[posCampus] = campus;
+            this.pCampus = posCampus;
+        }
+
+    }
 
     /**
      *
@@ -228,4 +294,26 @@ public class Universitat {
             System.out.println("\nEl campus no existeix");
         }
     }
+
+
+    /*
+     * 
+     * Métodes auxiliars
+     * 
+     */
+
+    // Métode per preguntar pel nom de la universita i la ubicació de la seva seu
+    private String askForString(String message, String errorMessage){
+        System.out.println(message);
+        String inputText = this.DADES.nextLine();
+        while (inputText.isEmpty()){
+            System.out.println(errorMessage);
+            System.out.println(message);
+            inputText = this.DADES.nextLine();
+        }
+        return inputText;
+    }
+
+
+
 }
