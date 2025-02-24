@@ -127,6 +127,8 @@ public class AulaEstandard {
         System.out.println("Codi de l'aula: " + this.codi);
         System.out.println("Número d'aula: " + this.numeroAula);
         System.out.println("Cost per dia: " + this.costPerDia);
+        
+        System.out.println("Cost manteniment: " + this.costManteniment());
 
     }
 

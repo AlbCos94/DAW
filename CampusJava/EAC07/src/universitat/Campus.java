@@ -20,7 +20,7 @@ public class Campus {
     private AulaEstandard[] aulesEstandard = new AulaEstandard[100];
     private int pAulesEstandard = 0; //Primera posició buida de l'array d'aules estàndard
     private AulaInformatica[] aulesInformatica = new AulaInformatica[100];
-    private int pAulansInformatica = 0; //Primera posició buida de l'array d'aules d'informàtica
+    private int pAulesInformatica = 0; //Primera posició buida de l'array d'aules d'informàtica
     private Laboratori[] laboratoris = new Laboratori[100];
     private int pLaboratoris = 0; //Primera posició buida de l'array de laboratoris
 
@@ -135,7 +135,7 @@ public class Campus {
             costTotal = costTotal + this.aulesEstandard[i].costManteniment();
         }
 
-        for (int i = 0; i < this.pAulansInformatica; i++) {
+        for (int i = 0; i < this.pAulesInformatica; i++) {
             costTotal = costTotal + this.aulesInformatica[i].costManteniment();
         }
 
@@ -143,6 +143,7 @@ public class Campus {
             costTotal = costTotal + this.laboratoris[i].costManteniment();
         }
 
+        return costTotal;
 
         /* 
         // cost per les aules estandard
@@ -162,7 +163,7 @@ public class Campus {
         */
         
         
-        return costTotal;
+
     }
 
     /*
@@ -177,7 +178,14 @@ public class Campus {
      *
      * Retorn: cap
      */
-   
+
+    public void showCampus(){
+
+        System.out.println("Nom del campus: " + this.nomCampus);
+        System.out.println("Ubicació del campus: " + this.ubicacio);
+        
+        System.out.println("Cost manteniment: " + this.costManteniment());
+    }  
     
     /**
      * AulaEstandard
@@ -200,7 +208,21 @@ public class Campus {
      *
      * Retorn: cap
      */
+    public void addAulaEstandard(){
+        
+        AulaEstandard aula = AulaEstandard.addAulaEstandard();
+
+        int posAula = this.selectAulaEstandard(aula.getCodi());
+
+        if (posAula == -1){
+            System.out.println("L'aula estàndard ja existeix");
+        } else{
+            this.aulesEstandard[posAula] = aula;
+            this.pAulesEstandard = posAula;
+        }
+
     
+    }
 
     /**
      *
@@ -251,7 +273,21 @@ public class Campus {
      *
      * Retorn: cap
      */
+    public void addAulaInformatica(){
+        
+        AulaInformatica aula = AulaInformatica.addAulaInformatica();
+
+        int posAula = this.selectAulaInformatica(aula.getCodi());
+
+        if (posAula == -1){
+            System.out.println("L'aula d'informàtica ja existeix");
+        } else{
+            this.aulesInformatica[posAula] = aula;
+            this.pAulesInformatica = posAula;
+        }
+
     
+    }
     
     
     /**
@@ -304,7 +340,21 @@ public class Campus {
      * Retorn: cap
      */
     
+    public void addLaboratori(){
+        
+        Laboratori aula = Laboratori.addLaboratori();
 
+        int posAula = this.selectLaboratori(aula.getCodi());
+
+        if (posAula == -1){
+            System.out.println("El laboratori ja existeix");
+        } else{
+            this.laboratoris[posAula] = aula;
+            this.pLaboratoris = posAula;
+        }
+
+    
+    }
     /**
      *
      * Nom del mètode: selectLaboratori

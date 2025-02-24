@@ -142,7 +142,8 @@ public class Laboratori {
         System.out.println("Número del laboratori: " + this.numeroLaboratori);
         System.out.println("Cost per dia del laboratori: " + this.costPerDia);
         System.out.println("Area en m2 del laboratori: " + this.capacitat);
-
+        
+        System.out.println("Cost manteniment: " + this.costManteniment());
     }  
 
     /*

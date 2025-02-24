@@ -138,6 +138,8 @@ public class AulaInformatica {
         System.out.println("Número d'aula: " + this.numeroAula);
         System.out.println("Cost per dia: " + this.costPerDia);
         System.out.println("Area en m2: " + this.areaEnMetresQuadrats);
+        
+        System.out.println("Cost manteniment: " + this.costManteniment());
 
     }
 
