@@ -39,9 +39,9 @@ public class AulaEstandard {
      * 
      */
     public AulaEstandard(){
-        codi = this.askForString("Introdueis el codi de l'aula: ", "Codi de l'aula erroni");
-        numeroAula = this.askForInteger("Introdueis el número de l'aula: ", "Número de l'aula erroni");
-        costPerDia = this.askForDouble("Introdueis el cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
+        codi = this.askForString("Introdueix el codi de l'aula: ", "Codi de l'aula erroni");
+        numeroAula = this.askForInteger("Introdueix el número de l'aula: ", "Número de l'aula erroni");
+        costPerDia = this.askForDouble("Introdueix el cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
     }
 
     /*
@@ -49,21 +49,21 @@ public class AulaEstandard {
      */
     //Setters
     public void setCodi(String nouCodi){
-        codi = nouCodi;
+        this.codi = nouCodi;
     }
 
     public void setNumeroAula(int nouNumeroAula){
-        numeroAula = nouNumeroAula;
+        this.numeroAula = nouNumeroAula;
     }
 
     public void setCostPerDia(double nouCostPerDia){
-        costPerDia = nouCostPerDia;
+        this.costPerDia = nouCostPerDia;
     }
 
     //Getters
-    public String getCodi(){ return codi; }
-    public int getNumeroAula(){ return numeroAula; }
-    public double getCostPerDia(){ return costPerDia; }
+    public String getCodi(){ return this.codi; }
+    public int getNumeroAula(){ return this.numeroAula; }
+    public double getCostPerDia(){ return this.costPerDia; }
 
     /*
     * TODO
@@ -78,9 +78,7 @@ public class AulaEstandard {
     * Retorn: Objecte AulaEstandard creat.
     */
     public static AulaEstandard addAulaEstandard(){
-
         return new AulaEstandard();
-
     }
 
     /*
