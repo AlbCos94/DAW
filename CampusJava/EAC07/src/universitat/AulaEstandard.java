@@ -41,7 +41,7 @@ public class AulaEstandard {
     public AulaEstandard(){
         codi = this.askForString("Introdueis el codi de l'aula: ", "Codi de l'aula erroni");
         numeroAula = this.askForInteger("Introdueis el número de l'aula: ", "Número de l'aula erroni");
-        costPerDia = this.askForDouble("Introdueis el cost per dua de l'aula: ", "Cost per dia de l'aula erroni");
+        costPerDia = this.askForDouble("Introdueis el cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
     }
 
     /*
@@ -98,9 +98,9 @@ public class AulaEstandard {
      * Retorn: cap
      */
      public void updateAulaEstandard(){
-        String nouCodi = this.askForString("Introdueis el codi de l'aula: ", "Codi de l'aula erroni");
-        int nouNumeroAula = this.askForInteger("Introdueis el número de l'aula: ", "Número de l'aula erroni");
-        double nouCostPerDia = this.askForDouble("Introdueis el cost per dua de l'aula: ", "Cost per dia de l'aula erroni");
+        String nouCodi = this.askForString("Introdueix el nou codi de l'aula: ", "Codi de l'aula erroni");
+        int nouNumeroAula = this.askForInteger("Introdueix el nou número de l'aula: ", "Número de l'aula erroni");
+        double nouCostPerDia = this.askForDouble("Introdueix el nou cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
 
         System.out.println("Nou codi: " + nouCodi);
         System.out.println("Nou número d'aula: " + nouNumeroAula);
