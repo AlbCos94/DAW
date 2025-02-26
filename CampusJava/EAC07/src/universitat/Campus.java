@@ -224,16 +224,17 @@ public class Campus {
     public void addAulaEstandard(){
         
         AulaEstandard aula = AulaEstandard.addAulaEstandard();
-
-        int posAula = this.selectAulaEstandard(aula.getCodi());
+        String nomAula = aula.getCodi();
+        int posAula = this.selectAulaEstandard(nomAula);
 
         if (posAula == -1){
-            System.out.println("L'aula estàndard ja existeix");
+            this.aulesEstandard[this.getpAulesEstandard()] = aula;
+            // nova posicio
+            int novaPos = this.getpAulesEstandard()+1;
+            this.setpAulesEstandard(novaPos);
         } else{
-            this.aulesEstandard[posAula] = aula;
-            this.pAulesEstandard = posAula;
+            System.out.println("L'aula estàndard ja existeix");
         }
-
     
     }
 
@@ -289,17 +290,19 @@ public class Campus {
     public void addAulaInformatica(){
         
         AulaInformatica aula = AulaInformatica.addAulaInformatica();
-
-        int posAula = this.selectAulaInformatica(aula.getCodi());
+        String nomAula = aula.getCodi();
+        int posAula = this.selectAulaInformatica(nomAula);
 
         if (posAula == -1){
-            System.out.println("L'aula d'informàtica ja existeix");
+            this.aulesInformatica[this.getpAulesInformatica()] = aula;
+            // nova posicio
+            int novaPos = this.getpAulesInformatica()+1;
+            this.setpAulesInformatica(novaPos);
+
         } else{
-            this.aulesInformatica[posAula] = aula;
-            this.pAulesInformatica = posAula;
+            System.out.println("L'aula d'informàtica ja existeix");
         }
 
-    
     }
     
     
@@ -356,16 +359,18 @@ public class Campus {
     public void addLaboratori(){
         
         Laboratori aula = Laboratori.addLaboratori();
-
-        int posAula = this.selectLaboratori(aula.getCodi());
+        String nomAula = aula.getCodi();
+        int posAula = this.selectLaboratori(nomAula);
 
         if (posAula == -1){
-            System.out.println("El laboratori ja existeix");
+            this.laboratoris[this.getpLaboratoris()] = aula;
+            // nova posicio
+            int novaPos = this.getpLaboratoris()+1;
+            this.setpLaboratoris(novaPos);
         } else{
-            this.laboratoris[posAula] = aula;
-            this.pLaboratoris = posAula;
-        }
+            System.out.println("El laboratori ja existeix");
 
+        }
     
     }
     /**
