@@ -184,14 +184,17 @@ public class Universitat {
     public void addCampus(){
         
         Campus campus = Campus.addCampus();
+        String nomCampus = campus.getNomCampus();
+        int posCampus = this.selectCampus(nomCampus);
 
-        int posCampus = this.selectCampus(campus.getNomCampus());
-
+        // si no troba el campus entre els existens vol dir que l'hem d'afegir a l'array de campus de la universitat
         if (posCampus == -1){
-            System.out.println("El campus ja existeix");
+            this.campus[this.getpCampus()] = campus;
+            // nova posicio
+            int novaPos = this.pCampus+1;
+            this.setpCampus(novaPos);         
         } else{
-            this.campus[posCampus] = campus;
-            this.pCampus = posCampus;
+            System.out.println("El campus ja existeix");
         }
 
     }

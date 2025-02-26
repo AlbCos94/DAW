@@ -2,6 +2,7 @@ package principal;
 
 import java.util.Scanner;
 
+import universitat.Campus;
 import universitat.Universitat;
 
 
@@ -22,7 +23,7 @@ public class Application {
     private final static Scanner DADES = new Scanner(System.in);
 
     private static Universitat[] universitats = new Universitat[10];
-    private static int Universitat = 0; //Primera posició buida del vector universitats
+    private static int pUniversitat = 0; //Primera posició buida del vector universitats // HI HAVIA AQUI UN ERROR.. ERA pUniversitat... no
     private static Universitat universitatActual = null;
 
     public static void main(String[] args) {
@@ -59,21 +60,21 @@ public class Application {
                     break;
                 case 3:
                     if (universitatActual != null) {
-                        menuAulesEstandard();
+                        //menuAulesEstandard(); //REMOVE
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
                     break;
                 case 4:
                     if (universitatActual != null) {
-                        menuAulesInformatica();
+                        //menuAulesInformatica(); //REMOVE
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
                     break;
                 case 5:
                     if (universitatActual != null) {
-                        menuLaboratoris();
+                        //menuLaboratoris(); //REMOVE
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
@@ -155,10 +156,10 @@ public class Application {
      * Nota: penseu que quan arribem aquí, l'atribut universitatActual no és null.
      * 
      * Opció 0. Sortir          --> Surt del menú i retorna al menú principal.
-     * Opció 1. Alta            --> Crea una Campus del campus actual. Noteu que Universitat sap crear Campus.        
-     * Opció 2. Modificar       --> Permet modificar una Campus del campus actual.
+     * Opció 1. Alta            --> Crea una Campus de la universitat actual. Noteu que Universitat sap crear Campus.        
+     * Opció 2. Modificar       --> Permet modificar un Campus de la universitat actual.
      * (per comprovar l'existència d'una campus tenim un mètode en la classe Universitat que ens ajuda).
-     * Opció 3. Llista Campus   --> Imprimeix les dades dels campus del campus actual.
+     * Opció 3. Llista Campus   --> Imprimeix les dades dels campus de la universitat actual.
      * 
      * A més, heu de fer una estructura iterativa per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida.
      *
@@ -168,7 +169,69 @@ public class Application {
      * "S'ha de seleccionar una opció correcta del menú."
      * - definiu una variable opcio de tipus enter.
      */
-    
+    public static void menuCampus() {
+        int opcio;
+
+        do {
+            int indexSel;
+            System.out.println("\nMenú Campus. Selecciona una opció:");
+            System.out.println("\n0. Sortir");
+            System.out.println("\n1. Alta");
+            System.out.println("\n2. Modificar");
+            System.out.println("\n3. Llistar Campus");
+            System.out.println("\n");  
+
+            opcio = Integer.parseInt(DADES.nextLine());
+
+            switch (opcio) {
+
+                case 0:
+                    break;
+
+                case 1:
+                    universitatActual.addCampus();
+                    break;
+
+                case 2:
+                    int indexCampus = universitatActual.selectCampus(null); // si es null, ja es pregunta pel campus
+
+                    //posCampus = selectCampus
+                    //indexSel = selectUniversitat(null);
+
+                    if (indexCampus >= 0) {
+                        Campus campusActual = universitatActual.getCampus()[indexCampus]; //universitats[indexSel];
+                        campusActual.updateCampus();
+
+                    } else {
+                        System.out.println("\nNo existeix aquest campus");
+                    }
+
+                    break;
+
+                case 3:
+                    Campus[] campusUniActual = universitatActual.getCampus();
+                    int pCampusUniActual = universitatActual.getpCampus();
+
+                    for (int i = 0; i < pCampusUniActual; i++ ){
+                        campusUniActual[i].showCampus();
+                    }
+
+                    break;
+
+                default:
+                    System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
+                    break;
+            }
+        } while (opcio != 0);
+    }    
+
+
+
+
+
+
+
+
 
     /*
      * TODO

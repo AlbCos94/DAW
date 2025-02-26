@@ -115,7 +115,8 @@ public class Campus {
      * Retorn: Objecte Campus creat.
      */
     public static Campus addCampus(){
-        return new Campus();
+        Campus campus = new Campus();
+        return campus;
     }
 
     /*
