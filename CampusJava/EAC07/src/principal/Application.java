@@ -2,6 +2,7 @@ package principal;
 
 import java.util.Scanner;
 
+import universitat.AulaEstandard;
 import universitat.Campus;
 import universitat.Universitat;
 
@@ -60,7 +61,7 @@ public class Application {
                     break;
                 case 3:
                     if (universitatActual != null) {
-                        //menuAulesEstandard(); //REMOVE
+                        menuAulesEstandard(); //REMOVE
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
@@ -228,11 +229,6 @@ public class Application {
 
 
 
-
-
-
-
-
     /*
      * TODO
      * 
@@ -245,7 +241,7 @@ public class Application {
      * Opció 1. Alta -->         Crea Aula estàndard del campus actual afegint-lo a un Campus. 
      *                           Penseu que Universitat sap afegir Aules estàndard a una Campus seleccionat.       
      * Opció 2. Modificar -->    Permet modificar AulaEstàndard del campus actual. Penseu que tots els 
-     *                           AulesEstandard d'un campus pertanyen a una Campus d'aquest campus i que 
+     *                           AulesEstandard d'un campus pertanyen a una Campus d'aquesta Universitat i que 
      *                           Universitat sap modificar AulaEstàndard que pertany a una dels seu Campus.
      * Opció 3. Llista AulesEstandard --> Imprimeix les dades de tots els AulesEstandard del campus actual.
      *  
@@ -257,6 +253,101 @@ public class Application {
      * - definiu una variable opcio de tipus enter
      */
     
+    public static void menuAulesEstandard() {
+        int opcio;
+
+        do {
+            int indexSel;
+            System.out.println("\nMenú Aules Estàndard. Selecciona una opció:");
+            System.out.println("\n0. Sortir");
+            System.out.println("\n1. Alta");
+            System.out.println("\n2. Modificar");
+            System.out.println("\n3. Llistar AulesEstandard");
+            System.out.println("\n");  
+
+            opcio = Integer.parseInt(DADES.nextLine());
+
+            switch (opcio) {
+
+                case 0:
+                    break;
+
+                case 1:
+                    
+                    universitatActual.addAulaEstandardCampus();
+
+                    /* 
+
+                    int indexCampus = universitatActual.selectCampus(null);
+                    
+                    if (indexCampus >= 0) {
+                        Campus campusActual = universitatActual.getCampus()[indexCampus]; //universitats[indexSel];
+                        campusActual.addAulaEstandard();
+                    } else{
+                        System.out.println("\nNo existeix aquest campus");
+                    }*/
+
+                    break;
+
+                case 2:
+                    universitatActual.updateAulaEstandardCampus();
+                    //this.un  updateAulaEstandardCampus();
+                    
+                    /* 
+                    int indexCampus2 = universitatActual.selectCampus(null);
+                        
+                    if (indexCampus2 >= 0) {
+                        Campus campusActual = universitatActual.getCampus()[indexCampus2]; //universitats[indexSel];
+                        
+                        campusActual.updateAulaEstandardCampus();
+
+                        int indexAulaEstand = campusActual.selectAulaEstandard(null);
+
+                        if (indexAulaEstand >= 0) {
+                            AulaEstandard aulaStandardActual = campusActual.getAulesEstandard()[indexAulaEstand]; //universitats[indexSel];
+                            aulaStandardActual.updateAulaEstandard();
+                        } else{
+                            System.out.println("\nNo existeix aquesta aula");
+                        }
+
+                    } else{
+                        System.out.println("\nNo existeix aquest campus");
+                    }*/
+
+                    break;
+
+                case 3:
+
+                    int indexCampus = universitatActual.selectCampus(null);
+
+                    if (indexCampus != -1) {
+
+                        Campus campus = universitatActual.getCampus()[indexCampus];
+
+                        AulaEstandard[] aulesEstandard = campus.getAulesEstandard(); 
+                        int pAulesEstandard = campus.getpAulesEstandard(); //Primera posició buida de l'array d'aules estàndard
+
+
+                        for (int i = 0; i < pAulesEstandard; i++) {
+                            aulesEstandard[i].showAulaEstandard();
+                        }
+
+                    } else {
+                        System.out.println("\nEl campus no existeix");
+                    }
+
+                    break;
+
+                default:
+                    System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
+                    break;
+            }
+        } while (opcio != 0);
+    }    
+
+
+
+
 
     /*
      * TODO
