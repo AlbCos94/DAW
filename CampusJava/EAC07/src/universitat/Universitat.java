@@ -251,7 +251,7 @@ public class Universitat {
         if (index != -1) {
             campus[index].addAulaInformatica();
         } else {
-            System.out.println("\nLEl campus no existeix");
+            System.out.println("\nEl campus no existeix");
         }
     }
 

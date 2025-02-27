@@ -113,8 +113,7 @@ public class Campus {
      * Retorn: Objecte Campus creat.
      */
     public static Campus addCampus(){
-        Campus campus = new Campus(); // CAMBIAR!!
-        return campus;
+        return new Campus();
     }
 
     /*

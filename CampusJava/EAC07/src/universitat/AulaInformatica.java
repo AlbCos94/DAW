@@ -108,10 +108,10 @@ public class AulaInformatica {
         double nouCostPerDia = this.askForDouble("Introdueix el nou cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
         double nouAreaEnMetresQuadrats = this.askForDouble("Introdueix els nous metres quadrats de l'aula: ", "Metres quadrats de l'aula erronis");
 
-        System.out.println("Nou codi: " + nouCodi);
-        System.out.println("Nou número d'aula: " + nouNumeroAula);
-        System.out.println("Nou Cost per dia: " + nouCostPerDia);
-        System.out.println("Nou número de metres quadrats de l'aula: " + nouAreaEnMetresQuadrats);
+        System.out.println("Nou codi aula informàtica: " + nouCodi);
+        System.out.println("Nou número d'aula informàtica: " + nouNumeroAula);
+        System.out.println("Nou cost per dia aula informàtica: " + nouCostPerDia);
+        System.out.println("Nou número de metres quadrats de l'aula d'informàtica: " + nouAreaEnMetresQuadrats);
 
         this.codi = nouCodi;
         this.numeroAula = nouNumeroAula;
@@ -129,12 +129,12 @@ public class AulaInformatica {
      */
     public void showAulaInformatica(){
 
-        System.out.println("Codi de l'aula d'inforàtica: " + this.codi);
-        System.out.println("Número d'aula d'inforàtica: " + this.numeroAula);
-        System.out.println("Cost per dia d'inforàtica: " + this.costPerDia);
-        System.out.println("Area en m2 d'inforàtica:  " + this.areaEnMetresQuadrats);
+        System.out.println("Codi de l'aula d'informàtica: " + this.codi);
+        System.out.println("Número d'aula d'informàtica: " + this.numeroAula);
+        System.out.println("Cost per dia d'informàtica: " + this.costPerDia);
+        System.out.println("Area en m2 d'informàtica:  " + this.areaEnMetresQuadrats);
         
-        System.out.println("Cost manteniment: " + this.costManteniment());
+        System.out.println("Cost manteniment aula informàtica: " + this.costManteniment());
 
     }
 
