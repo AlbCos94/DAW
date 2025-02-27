@@ -11,7 +11,7 @@ import universitat.Universitat;
 
 /**
  *
- * @author fgarin
+ * @author fgarin 
  */
 
 /*
@@ -26,7 +26,7 @@ public class Application {
     private final static Scanner DADES = new Scanner(System.in);
 
     private static Universitat[] universitats = new Universitat[10];
-    private static int pUniversitat = 0; //Primera posició buida del vector universitats // HI HAVIA AQUI UN ERROR.. ERA pUniversitat... no
+    private static int pUniversitat = 0; //Primera posició buida del vector universitats // Hi havia aqui un ERROR al codi original!.. era pUniversitat... no Universitat
     private static Universitat universitatActual = null;
 
     public static void main(String[] args) {
@@ -151,8 +151,6 @@ public class Application {
     }
 
     /*
-     * TODO
-     * 
      * Nom del mètode: menuCampus
      *     
      * Heu de desenvolupar el menu Campus amb les opcions que podeu veure.
@@ -198,11 +196,8 @@ public class Application {
                 case 2:
                     int indexCampus = universitatActual.selectCampus(null); // si es null, ja es pregunta pel campus
 
-                    //posCampus = selectCampus
-                    //indexSel = selectUniversitat(null);
-
                     if (indexCampus >= 0) {
-                        Campus campusActual = universitatActual.getCampus()[indexCampus]; //universitats[indexSel];
+                        Campus campusActual = universitatActual.getCampus()[indexCampus];
                         campusActual.updateCampus();
 
                     } else {
@@ -211,9 +206,9 @@ public class Application {
 
                     break;
 
-                case 3:
-                    Campus[] campusUniActual = universitatActual.getCampus();
-                    int pCampusUniActual = universitatActual.getpCampus();
+                case 3: 
+                    Campus[] campusUniActual = universitatActual.getCampus(); // array de tots els campus de la uni actual
+                    int pCampusUniActual = universitatActual.getpCampus(); // numero de campus que hi han 
 
                     for (int i = 0; i < pCampusUniActual; i++ ){
                         campusUniActual[i].showCampus();
@@ -232,8 +227,6 @@ public class Application {
 
 
     /*
-     * TODO
-     * 
      * Nom del mètode: menu Aules Estàndard
      *     
      * Heu de desenvolupar el menuAulesEstandard amb les opcions que podeu veure.
@@ -314,8 +307,6 @@ public class Application {
 
 
     /*
-     * TODO
-     * 
      * Nom del mètode: menuAulesInformatica
      *    
      * Heu de desenvolupar el menuAulesInformatica amb les opcions que podeu veure.
@@ -369,7 +360,7 @@ public class Application {
                     if (indexCampus != -1) {
 
                         Campus campus = universitatActual.getCampus()[indexCampus];
-                        AulaInformatica[] aulesInformatica = campus.getAulesInformatica(); 
+                        AulaInformatica[] aulesInformatica = campus.getAulesInformatica(); // array de totes les aules d'informàtica del campus escollit
                         int pAulesInformatica = campus.getpAulesInformatica(); //Primera posició buida de l'array d'aules estàndard
 
                         for (int i = 0; i < pAulesInformatica; i++) {
@@ -391,8 +382,6 @@ public class Application {
     }    
 
     /*
-     * TODO
-     * 
      * Nom del mètode: menuLaboratoris
      *     
      * Heu de desenvolupar el menuLaboratoris amb les opcions que podeu veure.
@@ -447,7 +436,7 @@ public class Application {
                     if (indexCampus != -1) {
 
                         Campus campus = universitatActual.getCampus()[indexCampus];
-                        Laboratori[] laboratoris = campus.getLaboratoris(); 
+                        Laboratori[] laboratoris = campus.getLaboratoris(); // array de tots el laboratoris del campus escollit
                         int pLaboratoris = campus.getpLaboratoris(); //Primera posició buida de l'array d'aules estàndard
 
                         for (int i = 0; i < pLaboratoris; i++) {

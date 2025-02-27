@@ -25,7 +25,7 @@ public class Campus {
     private int pLaboratoris = 0; //Primera posició buida de l'array de laboratoris
 
     /**
-     * TODO CONSTRUCTOR
+     * CONSTRUCTOR
      *
      * Nom del mètode: Campus
      *
@@ -40,19 +40,19 @@ public class Campus {
     }
 
     /*
+     * CONSTRUCTOR
      * Creem un altre constructor sense parametres d'entrada, el qual crearà un campus a través del totes les dades introduiides per consola
      * 
      */
     public Campus(){
         nomCampus = this.askForString("Introdueix el nom del campus: ", "Codi del laboratori erroni");
         ubicacio = this.askForString("Introdueix la ubicació del campus: ", "Codi del laboratori erroni");
-
     }
 
 
 
     /**
-     * TODO Heu d'implementar tots els mètodes accessors possibles.
+     * Mètodes accessors
      */
     //Setters
     public void setNomCampus(String nouNomCampus){
@@ -102,8 +102,6 @@ public class Campus {
     
 
     /**
-     * TODO
-     *
      * Nom del mètode: addCampus
      *
      * Paràmetres: cap
@@ -115,13 +113,11 @@ public class Campus {
      * Retorn: Objecte Campus creat.
      */
     public static Campus addCampus(){
-        Campus campus = new Campus();
+        Campus campus = new Campus(); // CAMBIAR!!
         return campus;
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: updateCampus
      *
      * Paràmetres: cap
@@ -148,8 +144,6 @@ public class Campus {
     
 
     /*
-     * TODO
-     *
      * Nom del mètode: costManteniment
      *
      * Paràmetres: cap
@@ -180,8 +174,6 @@ public class Campus {
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: showCampus
      *
      * Paràmetres: cap
@@ -202,9 +194,6 @@ public class Campus {
     
     /**
      * AulaEstandard
-     *
-     * TODO
-     *
      * Nom del mètode: addAulaEstandard
      *
      * Paràmetres: cap
@@ -268,8 +257,6 @@ public class Campus {
 
     /**
      * AulaInformatica
-     *
-     * TODO
      *
      * Nom del mètode: addAulaInformatica
      *
@@ -336,8 +323,6 @@ public class Campus {
     
     /**
      * Laboratori
-     *
-     * TODO
      *
      * Nom del mètode: addLaboratori
      *
@@ -420,7 +405,5 @@ public class Campus {
         }
         return inputText;
     }
-
-
 
 }

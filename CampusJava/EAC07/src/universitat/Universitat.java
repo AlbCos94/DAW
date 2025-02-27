@@ -21,7 +21,7 @@ public class Universitat {
     private int pCampus = 0; //Primera posició buida de l'array de campus
 
     /*
-     * TODO CONSTRUCTOR
+     * CONSTRUCTOR
      *
      * Nom del mètode: Universitat
      *
@@ -37,16 +37,17 @@ public class Universitat {
     
 
     /*
+     * CONSTRUCTOR
      * Creem un altre constructor sense parametres d'entrada, el qual crearà un campus a través del totes les dades introduiides per consola
      * 
      */
     public Universitat(){
         nomUniversitat = this.askForString("Introdueix el nom de la universitat: ", "Nom de la universitat erroni");
-        ubicacioSeu = this.askForString("Introdueix la ubicació de la seu de la universitat: ", "Codi de la ubicacio erroni");
+        ubicacioSeu = this.askForString("Introdueix la ubicació de la seu de la universitat: ", "Codi de la ubicacio de la seu erroni");
     }
 
     /**
-     * TODO Heu d'implementar tots els mètodes accessors possibles.
+     * Mètodes accessors possibles.
      */
 
     //Setters
@@ -71,7 +72,6 @@ public class Universitat {
     public Campus[] getCampus(){ return this.campus; }
     public int getpCampus(){ return this.pCampus; }
     /**
-     * TODO
      *
      * Nom del mètode: addUniversitat
      *
@@ -88,8 +88,6 @@ public class Universitat {
     }
 
     /**
-     * TODO
-     *
      * Nom del mètode: updateUniversitat
      * 
      * Paràmetres: cap
@@ -104,8 +102,8 @@ public class Universitat {
      * Retorn: cap
      */
     public void updateUniversitat(){
-        String nouNomUniversitat = this.askForString("Introdueix el nou nom de la universitat: ", "Codi de l'aula erroni");
-        String novaUbicacioSeu = this.askForString("Introdueix la nova ubicació de la seu de la universitat: ", "Número de l'aula erroni");
+        String nouNomUniversitat = this.askForString("Introdueix el nou nom de la universitat: ", "Codi de la universitat erroni");
+        String novaUbicacioSeu = this.askForString("Introdueix la nova ubicació de la seu de la universitat: ", "Número de la universitat erroni");
 
         System.out.println("Nou nom de la universitat: " + nouNomUniversitat);
         System.out.println("Nova ubicació de la seu: " + novaUbicacioSeu);
@@ -116,8 +114,6 @@ public class Universitat {
     
 
     /**
-     * TODO
-     *
      * Nom del mètode: costManteniment
      *  
      * Paràmetres: cap
@@ -141,8 +137,6 @@ public class Universitat {
     }
 
     /**
-     * TODO
-     *
      * Nom del mètode: showUniversitat
      * 
      * Paràmetres: cap
@@ -164,8 +158,6 @@ public class Universitat {
     /**
      * Campus
      * 
-     * TODO
-     *
      * Nom del mètode: addCampus
      *  
      * Paràmetres: cap

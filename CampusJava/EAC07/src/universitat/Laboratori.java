@@ -20,8 +20,6 @@ public class Laboratori {
     private int capacitat;
 
     /*
-     * TODO CONSTRUCTOR
-     *
      * Nom del mètode: Laboratori
      *
      * Paràmetres: valors per tots els atributs de la classe.
@@ -50,7 +48,7 @@ public class Laboratori {
 
 
     /*
-     * TODO Heu d'implementar tots els mètodes accessors possibles.  
+     * Mètodes accessors
      */
     //Setters
     public void setCodi(String nouCodi){
@@ -76,8 +74,6 @@ public class Laboratori {
     public int getCapacitat(){ return this.capacitat; }
 
     /*
-     * TODO
-     *
      * Nom del mètode: addLaboratori
      *
      * Paràmetres: cap
@@ -94,8 +90,6 @@ public class Laboratori {
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: updateLaboratori
      *
      * Paràmetres: cap
@@ -108,10 +102,10 @@ public class Laboratori {
      * Retorn: cap
      */
     public void updateLaboratori(){
-        String nouCodi = this.askForString("Introdueix el nou codi del laboratori: ", "Codi de l'aula erroni");
-        int nouNumeroLaboratori = this.askForInteger("Introdueix el nou número del laboratori: ", "Número de l'aula erroni");
-        double nouCostPerDia = this.askForDouble("Introdueix el nou cost per dia del laboratori: ", "Cost per dia de l'aula erroni");
-        int novaCapacitat = this.askForInteger("Introdueix els nous metres quadrats del laboratori: ", "Metres quadrats de l'aula erronis");
+        String nouCodi = this.askForString("Introdueix el nou codi del laboratori: ", "Codi del laboratori erroni");
+        int nouNumeroLaboratori = this.askForInteger("Introdueix el nou número del laboratori: ", "Número del laboratori erroni");
+        double nouCostPerDia = this.askForDouble("Introdueix el nou cost per dia del laboratori: ", "Cost per dia del laboratori erroni");
+        int novaCapacitat = this.askForInteger("Introdueix els nous metres quadrats del laboratori: ", "Metres quadrats del laboratori erronis");
 
         System.out.println("Nou codi de laboratori: " + nouCodi);
         System.out.println("Nou número del laboratori: " + nouNumeroLaboratori);
@@ -125,8 +119,6 @@ public class Laboratori {
     } 
 
     /*
-     * TODO
-     *
      * Nom del mètode: showLaboratori
      *
      * Paràmetres: cap
@@ -147,8 +139,6 @@ public class Laboratori {
     }  
 
     /*
-     * TODO
-     *
      * Nom del mètode: costManteniment
      *
      * Paràmetres: cap

@@ -18,8 +18,6 @@ public class AulaEstandard {
 
 
     /*
-     * TODO CONSTRUCTOR
-     *
      * Nom del mètode: AulaEstandard
      * 
      * Paràmetres: valors per tots els atributs de la classe.
@@ -45,7 +43,7 @@ public class AulaEstandard {
     }
 
     /*
-     * TODO Heu d'implementar tots els mètodes accessors possibles.  
+     * mètodes accessors possibles.  
      */
     //Setters
     public void setCodi(String nouCodi){
@@ -66,8 +64,6 @@ public class AulaEstandard {
     public double getCostPerDia(){ return this.costPerDia; }
 
     /*
-    * TODO
-    *
     * Nom del mètode: addAulaEstandard
     *
     * Accions:
@@ -82,8 +78,6 @@ public class AulaEstandard {
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: updateAulaEstandard
      * 
      * Paràmetres: cap
@@ -111,8 +105,6 @@ public class AulaEstandard {
 
     
     /*
-     * TODO
-     *
      * Nom del mètode: showAulaEstandard
      * 
      * Paràmetres: cap
@@ -134,8 +126,6 @@ public class AulaEstandard {
 
 
     /*
-     * TODO
-     *
      * Nom del mètode: costManteniment
      * 
      * Paràmetres: cap
@@ -172,7 +162,6 @@ public class AulaEstandard {
     
     // Métode per preguntar pel numero d'una aula
     private int askForInteger(String message, String errorMessage) {
-
         int inputInt;
         boolean correct;
         do {
@@ -191,7 +180,6 @@ public class AulaEstandard {
 
     // Métode per preguntar pel cost per aula
     private double askForDouble(String message, String errorMessage) {
-
         double inputDouble;
         boolean correct;
         do {

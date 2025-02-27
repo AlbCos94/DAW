@@ -19,7 +19,7 @@ public class AulaInformatica {
     private double areaEnMetresQuadrats;
 
     /*
-     * TODO CONSTRUCTOR
+     * CONSTRUCTOR
      *
      * Nom del mètode: AulaInformatica          
      *
@@ -37,18 +37,19 @@ public class AulaInformatica {
 
 
     /*
+     * CONSTRUCTOR
      * Creem un altre constructor sense parametres d'entrada, el qual crearà l'aula d'informatica a través del totes les dades introduiides per consola
      * 
      */
     public AulaInformatica(){
-        codi = this.askForString("Introdueix el codi de l'aula: ", "Codi de l'aula erroni");
-        numeroAula = this.askForInteger("Introdueix el número de l'aula: ", "Número de l'aula erroni");
-        costPerDia = this.askForDouble("Introdueix el cost per dia de l'aula: ", "Cost per dia de l'aula erroni");
-        areaEnMetresQuadrats = this.askForDouble("Introdueix els metres quadrats de l'aula: ", "Metres quadrats de l'aula erronis");
+        codi = this.askForString("Introdueix el codi de l'aula d'informàtica: ", "Codi de l'aula erroni");
+        numeroAula = this.askForInteger("Introdueix el número de l'aula d'informàtica: ", "Número de l'aula erroni");
+        costPerDia = this.askForDouble("Introdueix el cost per dia de l'aula d'informàtica: ", "Cost per dia de l'aula erroni");
+        areaEnMetresQuadrats = this.askForDouble("Introdueix els metres quadrats de l'aula d'informàtica: ", "Metres quadrats de l'aula erronis");
     }
 
     /*
-     * TODO Heu d'implementar tots els mètodes accessors possibles.  
+     * Mètodes accessors 
      */
 
     //Setters
@@ -75,8 +76,6 @@ public class AulaInformatica {
     public double getAreaEnMetresQuadrats(){ return this.areaEnMetresQuadrats; }
 
     /*
-     * TODO
-     *
      * Nom del mètode: addAulaInformatica
      *
      * Paràmetres: cap
@@ -92,8 +91,6 @@ public class AulaInformatica {
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: updateAulaInformatica
      *
      * Paràmetres: cap
@@ -123,8 +120,6 @@ public class AulaInformatica {
     }    
 
     /*
-     * TODO
-     *
      * Nom del mètode: showAulaInformatica
      * 
      * Accions:
@@ -134,18 +129,16 @@ public class AulaInformatica {
      */
     public void showAulaInformatica(){
 
-        System.out.println("Codi de l'aula: " + this.codi);
-        System.out.println("Número d'aula: " + this.numeroAula);
-        System.out.println("Cost per dia: " + this.costPerDia);
-        System.out.println("Area en m2: " + this.areaEnMetresQuadrats);
+        System.out.println("Codi de l'aula d'inforàtica: " + this.codi);
+        System.out.println("Número d'aula d'inforàtica: " + this.numeroAula);
+        System.out.println("Cost per dia d'inforàtica: " + this.costPerDia);
+        System.out.println("Area en m2 d'inforàtica:  " + this.areaEnMetresQuadrats);
         
         System.out.println("Cost manteniment: " + this.costManteniment());
 
     }
 
     /*
-     * TODO
-     *
      * Nom del mètode: costManteniment
      *
      * Paràmetres: cap
@@ -159,7 +152,6 @@ public class AulaInformatica {
     public double costManteniment(){
         return (this.costPerDia*0.3 + this.areaEnMetresQuadrats*0.05);
     }
-
 
 
     /*
