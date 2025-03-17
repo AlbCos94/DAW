@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class AulaEstandard extends Aula {
-    private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
+    //private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
 
     
     //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
@@ -112,7 +112,14 @@ public class AulaEstandard extends Aula {
      * 
      * Retorn: cap
      */
-    public void updateAulaEstandard() {
+    public void updateUnitatUniversitat() {
+
+        super.updateUnitatUniversitat();
+
+        // No cal afegir cap nova funcionalitat per a aula estandard en relación amb la funcionalitat basica que ja s'ha afegit a la classe Aula
+
+
+        /* 
         System.out.println("\nCodi de l'aula estàndard: " + this.getCodi());
         System.out.println("\nEntra el nou valor del codi d'aula: ");
         codi = DADES.nextLine();
@@ -124,6 +131,8 @@ public class AulaEstandard extends Aula {
         System.out.println("\nCost per dia de l'aula: " + this.getCostPerDia());
         System.out.println("\nEntra nou valor del cost per dia de l'aula: ");
         costPerDia = Double.parseDouble(DADES.nextLine());
+        
+        */
     }
     
     /*
@@ -137,10 +146,17 @@ public class AulaEstandard extends Aula {
      * 
      * Retorn: cap
      */
-    public void showAulaEstandard() {
+    public void showUnitatUniversitat() {
+        
+        // Codi que ha esta implementat a la classe pare:
+        super.showUnitatUniversitat();
+        /* 
         System.out.println("\nLes dades de l'aula estàndard amb codi " + this.getCodi() + " són: ");
         System.out.println("\nNúmero de l'aula: " + this.getNumeroAula());
         System.out.println("\nCost per dia de l'aula: " + this.getCostPerDia());
+        */
+
+        // Linea extra que particular per a Aula Estandard
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }
 

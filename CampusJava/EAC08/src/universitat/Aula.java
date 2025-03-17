@@ -10,8 +10,10 @@ import java.util.Scanner;
  *
  * @author fgarin
  */
-abstract public class Aula {
-    private final static Scanner DADES = new Scanner(System.in); // THIS WILL BE IMPLEMENTED AS INTERFACE
+abstract public class Aula implements UnitatUniversitat{
+   
+    
+    //private final static Scanner DADES = new Scanner(System.in); //AIXO JA NO CAL IMPLEMENTAR  // THIS WILL BE IMPLEMENTED AS INTERFACE
 
     private String codi;
     private int numeroAula;
@@ -55,10 +57,13 @@ abstract public class Aula {
     public void setcostPerDia(double costPerDia) {
         this.costPerDia = costPerDia;
     }
-   
+
+
+
+    // AIXO NO SEMBLA QUE S'HAGI D'IMPLEMENTAR
     /*
     *
-    * Nom del mètode: addAula
+    * Nom del mètode: updateUnitatUniversitat
     *
     * Accions:
     * - Demanar a l'usuari les dades per consola per crear una nova 
@@ -67,6 +72,7 @@ abstract public class Aula {
     *
     * Retorn: Objecte Aula creat.
     */
+    /*
     public static Aula addAula() {
         String codi;
         int numeroAula;
@@ -83,10 +89,13 @@ abstract public class Aula {
 
         return new Aula(codi, numeroAula, costPerDia);
     }
+    */
 
+
+    // metode updateUnitatUniversitat() - implementacio part del mètode que sempre s'emprarà
     /*
      *
-     * Nom del mètode: updateAula
+     * Nom del mètode: updateUnitatUniversitat
      * 
      * Paràmetres: cap
      * 
@@ -97,8 +106,8 @@ abstract public class Aula {
      * 
      * Retorn: cap
      */
-    public void updateAula() {
-        System.out.println("\nCodi de l'aula estàndard: " + this.getCodi());
+    public void updateUnitatUniversitat() {
+        System.out.println("\nCodi de l'aula: " + this.getCodi());
         System.out.println("\nEntra el nou valor del codi d'aula: ");
         codi = DADES.nextLine();
 
@@ -113,7 +122,7 @@ abstract public class Aula {
     
     /*
      *
-     * Nom del mètode: showAula
+     * Nom del mètode: showUnitatUniversitat
      * 
      * Paràmetres: cap
      * 
@@ -122,15 +131,16 @@ abstract public class Aula {
      * 
      * Retorn: cap
      */
-    public void showAula() {
-        System.out.println("\nLes dades de l'aula estàndard amb codi " + this.getCodi() + " són: ");
+    // metode showUnitatUniversitat() - implementacio part del mètode que sempre s'emprarà
+    public void showUnitatUniversitat() {
+        System.out.println("\nLes dades de l'aula amb codi " + this.getCodi() + " són: ");
         System.out.println("\nNúmero de l'aula: " + this.getNumeroAula());
         System.out.println("\nCost per dia de l'aula: " + this.getCostPerDia());
-        System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
+        //System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }
 
     /*
-     *
+     * AQUEST METODE SERA DIFERENT PER CADA CLASSE
      * Nom del mètode: costManteniment
      * 
      * Paràmetres: cap
@@ -142,7 +152,8 @@ abstract public class Aula {
      * 
      * Retorn: cost de manteniment de l'aula (double).
      */
-    public double costManteniment() {
-        return (this.getCostPerDia() * 0.2);
-    }
+    /* */
+    // metode abstracte -> haura de ser implementat per la resta de classes
+    public abstract double costManteniment();
+    
 }

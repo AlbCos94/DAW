@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class AulaInformatica extends Aula {
-    private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
+    //private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
 
     //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
     /*
@@ -102,7 +102,7 @@ public class AulaInformatica extends Aula {
 
     /*
      *
-     * Nom del mètode: updateAulaInformatica
+     * Nom del mètode: updateUnitatUniversitat
      *
      * Paràmetres: cap
      *
@@ -113,7 +113,13 @@ public class AulaInformatica extends Aula {
      *
      * Retorn: cap
      */
-    public void updateAulaInformatica() {
+    public void updateUnitatUniversitat() {
+
+        // Preguntes base
+        super.updateUnitatUniversitat();
+        
+        // codi a ometre
+        /* 
         System.out.println("\nCodi de l'aula d'informàtica: " + this.getCodi());
         System.out.println("Entra el nou valor del codi: ");
         codi = DADES.nextLine();
@@ -125,7 +131,9 @@ public class AulaInformatica extends Aula {
         System.out.println("\nCost per dia de l'aula d'informàtica: " + this.getCostPerDia());
         System.out.println("Entra el nou valor del cost per dia de l'aula d'informàtica:");
         costPerDia = Double.parseDouble(DADES.nextLine());
-
+        */
+        
+        // Es pregunta per l'atribut particular de l'aula d'informatica
         System.out.println("\nÀrea en metres quadrats de l'aula d'informàtica: " + this.getAreaEnMetresQuadrats());
         System.out.println("Entra el nou valor de l'àrea en metres quadrats de l'aula d'informàtica:");
         areaEnMetresQuadrats = Double.parseDouble(DADES.nextLine());
@@ -140,10 +148,17 @@ public class AulaInformatica extends Aula {
      *
      * Retorn: cap
      */
-    public void showAulaInformatica() {
-        System.out.println("\nLes dades de l'aula d'informàtica amb codi " + this.getCodi() + " són: ");
-        System.out.println("\nNúmero d'aula: " + this.getNumeroAula());
-        System.out.println("\nCost per dia de l'aula d'informàtica: " + this.getCostPerDia());
+    public void showUnitatUniversitat() {
+
+        // Informacio basica de l'aula
+        super.showUnitatUniversitat();
+        /*
+            System.out.println("\nLes dades de l'aula d'informàtica amb codi " + this.getCodi() + " són: ");
+            System.out.println("\nNúmero d'aula: " + this.getNumeroAula());
+            System.out.println("\nCost per dia de l'aula d'informàtica: " + this.getCostPerDia());
+        */
+
+        // Atributs particulars de l'aula d'informatica
         System.out.println("\nL'àrea en metres quadrats de l'aula: " + this.getAreaEnMetresQuadrats());
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }

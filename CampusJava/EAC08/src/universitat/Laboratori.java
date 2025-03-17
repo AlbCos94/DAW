@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class Laboratori extends Aula {
-    private final static Scanner DADES = new Scanner(System.in);
+    //private final static Scanner DADES = new Scanner(System.in);
 
     //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
     /*
@@ -102,7 +102,7 @@ public class Laboratori extends Aula {
     }
 
     /*
-     * Nom del mètode: updateLaboratori
+     * Nom del mètode: updateUnitatUniversitat
      *
      * Paràmetres: cap
      *
@@ -113,7 +113,15 @@ public class Laboratori extends Aula {
      *
      * Retorn: cap
      */
-    public void updateLaboratori() {
+
+     
+    public void updateUnitatUniversitat() {
+
+        // Preguntes core d'aula per construir el laboratori 
+        super.updateUnitatUniversitat();
+
+        // ja no necesari
+        /* 
         System.out.println("\nCodi del Laboratori: " + this.getCodi());
         System.out.println("Entra el nou valor codi:");
         codi = DADES.nextLine();
@@ -125,14 +133,16 @@ public class Laboratori extends Aula {
         System.out.println("\nCost per dia del Laboratori: " + this.getCostPerDia());
         System.out.println("Entra el nou valor del cost per dia:");
         costPerDia = Integer.parseInt(DADES.nextLine());
-        
+        */
+
+        // atribut particular del laboratori
         System.out.println("\nCapacitat del Laboratori: " + this.getCapacitat());
         System.out.println("Entra el nou valor de la capacitat:");
         capacitat = Integer.parseInt(DADES.nextLine());
     }
 
     /*
-     * Nom del mètode: showLaboratori
+     * Nom del mètode: showUnitatUniversitat
      *
      * Paràmetres: cap
      *
@@ -141,10 +151,16 @@ public class Laboratori extends Aula {
      * 
      * Retorn: cap    
      */
-    public void showLaboratori() {
+    public void showUnitatUniversitat() {
+        
+        super.showUnitatUniversitat();
+        /* 
         System.out.println("\nLes dades del Laboratori amb codi " + this.getCodi() + " són:");
         System.out.println("\nNúmero del Laboratori: " + this.getNumeroLaboratori());
         System.out.println("\nCost per dia: " + this.getCostPerDia());
+        */
+
+        // Atributs particular per laboratori
         System.out.println("\nCapacitat: " + this.getCapacitat());
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }

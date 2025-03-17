@@ -12,19 +12,28 @@ import java.util.Scanner;
  *
  * @author fgarin
  */
-public class Campus {
-    private final static Scanner DADES = new Scanner(System.in);
+public class Campus implements UnitatUniversitat {
+    
+    //private final static Scanner DADES = new Scanner(System.in); // The scanner is not needed anymore
 
     private String nomCampus;
     private String ubicacio;
+    private String codi; // nou atribute codi per Campus
 
+
+    private Aula[ ] aula = new Aula[300]; // array per guardar els tres tipus d'aules (Estandard, Informatica i Laboratori)
+    private int pAula= 0;
+
+    // Remove las attributes
+    /* 
     private AulaEstandard[] aulesEstandard = new AulaEstandard[100];
     private int pAulesEstandard = 0; //Primera posició buida de l'array d'aules estàndard
     private AulaInformatica[] aulesInformatica = new AulaInformatica[100];
     private int pAulesInformatica = 0; //Primera posició buida de l'array d'aules d'informàtica
     private Laboratori[] laboratoris = new Laboratori[100];
     private int pLaboratoris = 0; //Primera posició buida de l'array de laboratoris
-
+    */
+    
     /**
      *
      * Nom del mètode: Campus
@@ -55,52 +64,20 @@ public class Campus {
         this.ubicacio = ubicacio;
     }
 
-    public AulaEstandard[] getAulesEstandard() {
-        return this.aulesEstandard;
+    public Aula[] getAules() {
+        return this.aula;
     }
 
-    public void setAulesEstandard(AulaEstandard[] aulesEstandard) {
-        this.aulesEstandard = aulesEstandard;
-    }
-
-    public AulaInformatica[] getAulesInformatica() {
-        return this.aulesInformatica;
-    }
-
-    public void setAulesInformatica(AulaInformatica[] aulesInformatica) {
-        this.aulesInformatica = aulesInformatica;
-    }
-
-    public Laboratori[] getLaboratoris() {
-        return this.laboratoris;
-    }
-
-    public void setLaboratoris(Laboratori[] laboratoris) {
-        this.laboratoris = laboratoris;
-    }
-
-    public int getpAulesEstandard() {
-        return this.pAulesEstandard;
-    }
-
-    public void setpAulesEstandard(int pAulesEstandard) {
-        this.pAulesEstandard = pAulesEstandard;
+    public void setAules(Aula[] aules) {
+        this.aula = aules;
     }
     
-    public int getpAulesInformatica() {
-        return this.pAulesInformatica;
+    public int getpAula() {
+        return this.pAula;
     }
 
-    public void setpAulesInformatica(int pAulesInformatica) {
-        this.pAulesInformatica = pAulesInformatica;
-    }
-    
-    public int getpLaboratoris() {
-        return this.pLaboratoris;
-    }
-
-    public void setpLaboratoris(int pLaboratoris) {
-        this.pLaboratoris = pLaboratoris;
+    public void setpAula(int pAula) {
+        this.pAula = pAula;
     }
 
     /**
@@ -128,7 +105,7 @@ public class Campus {
 
     /*
      *
-     * Nom del mètode: updateCampus
+     * Nom del mètode: updateUnitatUniversitat
      *
      * Paràmetres: cap
      *
@@ -141,7 +118,7 @@ public class Campus {
      *
      * Retorn: cap
      */
-    public void updateCampus() {
+    public void updateUnitatUniversitat() {
         System.out.println("\nNom del campus: " + this.getNomCampus());
         System.out.println("\nEntra el nou nom del campus:");
         this.nomCampus = DADES.nextLine();
@@ -166,6 +143,13 @@ public class Campus {
         
         double costTotal = 0;
 
+
+        for (int i = 0; i < pAula; i++) {
+            costTotal += aula[i].costManteniment();
+        }
+
+
+        /* 
         for (int i = 0; i < pAulesEstandard; i++) {
             costTotal += aulesEstandard[i].costManteniment();
         }
@@ -177,6 +161,7 @@ public class Campus {
         for (int i = 0; i < pLaboratoris; i++) {
             costTotal += laboratoris[i].costManteniment();
         }
+        */
 
         return costTotal;
 
@@ -184,7 +169,7 @@ public class Campus {
     
     /*
      *
-     * Nom del mètode: showCampus
+     * Nom del mètode: showUnitatUniversitat
      *
      * Paràmetres: cap
      *
@@ -193,7 +178,7 @@ public class Campus {
      *
      * Retorn: cap
      */
-    public void showCampus() {
+    public void showUnitatUniversitat() {
         System.out.println("\nLes dades del campus " + this.nomCampus + " són: ");
         System.out.println("\nUbicació: " + this.getUbicacio());
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
@@ -222,13 +207,17 @@ public class Campus {
     public void addAulaEstandard() {
         AulaEstandard nouAulaEstandard = AulaEstandard.addAulaEstandard();
 
-        if (selectAulaEstandard(nouAulaEstandard.getCodi()) == -1) {
-            aulesEstandard[pAulesEstandard] = nouAulaEstandard;
-            pAulesEstandard++;
+        if (selectAula(1, nouAulaEstandard.getCodi()) == -1) {
+            aula[pAula] = nouAulaEstandard;
+            pAula++;
         } else {
             System.out.println("\nL'aula estàndard ja existeix");
         }
     }
+
+
+
+
 
     /**
      *
@@ -243,20 +232,21 @@ public class Campus {
      * Retorn: posició de l'aula estàndard seleccionat a l'array de aulesEstandard del campus actual.
      * Si l'aula estàndard no existeix retorna -1.
      */
+    /* 
     public int selectAulaEstandard(String codi) {
         if (codi == null) {
             System.out.println("\nCodi de l'aula estàndard:");
             codi = DADES.nextLine();
         }
 
-        for (int i = 0; i < pAulesEstandard; i++) {
-            if (aulesEstandard[i].getCodi().equals(codi)) {
+        for (int i = 0; i < pAula; i++) {
+            if (aula[i].getCodi().equals(codi)) {
                 return i;
             }
         }
 
         return -1;
-    }
+    }*/
 
     /**
      * AulaInformatica
@@ -281,9 +271,9 @@ public class Campus {
     public void addAulaInformatica() {
         AulaInformatica novaAulaInformatica = AulaInformatica.addAulaInformatica();
 
-        if (selectAulaInformatica(novaAulaInformatica.getCodi()) == -1) {
-            aulesInformatica[pAulesInformatica] = novaAulaInformatica;
-            pAulesInformatica++;
+        if (selectAula(2, novaAulaInformatica.getCodi()) == -1) {
+            aula[pAula] = novaAulaInformatica;
+            pAula++;
         } else {
             System.out.println("\nL'aula d'informàtica ja existeix");
         }
@@ -303,21 +293,23 @@ public class Campus {
      * Retorn: posició de la aulaInformatica seleccionada a l'array de aulesInformatica del campus actual.
      * Si l'aula d'informàtica no existeix retorna -1.
      */    
+    /* 
     public int selectAulaInformatica(String codi) {
         if (codi == null) {
             System.out.println("\nCodi de l'aula d'informàtica:");
             codi = DADES.nextLine();
         }
 
-        for (int i = 0; i < pAulesInformatica; i++) {
-            if (aulesInformatica[i].getCodi().equals(codi)) {
+        for (int i = 0; i < pAula; i++) {
+            if (aula[i].getCodi().equals(codi)) {
                 return i;
             }
         }
 
         return -1;
     }
-    
+    */
+
     /**
      * Laboratori
      *
@@ -341,9 +333,9 @@ public class Campus {
     public void addLaboratori() {
         Laboratori novaLaboratori = Laboratori.addLaboratori();
 
-        if (selectLaboratori(novaLaboratori.getCodi()) == -1) {
-            laboratoris[pLaboratoris] = novaLaboratori;
-            pLaboratoris++;
+        if (selectAula(3, novaLaboratori.getCodi()) == -1) {
+            aula[pAula] = novaLaboratori;
+            pAula++;
         } else {
             System.out.println("\nEl laboratori ja existeix");
         }
@@ -362,19 +354,77 @@ public class Campus {
      * Retorn: posició del laboratori seleccionada a l'array de laboratoris del campus actual.
      * Si el laboratori no existeix retorna -1.
      */      
-    
+    /* 
     public int selectLaboratori(String codi) {
         if (codi == null) {
             System.out.println("\nCodi del laboratori:");
             codi = DADES.nextLine();
         }
 
-        for (int i = 0; i < pLaboratoris; i++) {
-            if (laboratoris[i].getCodi().equals(codi)) {
+        for (int i = 0; i < pAula; i++) {
+            if (aula[i].getCodi().equals(codi)) {
                 return i;
             }
         }
 
         return -1;
     }
+    */
+
+
+    /**
+     *
+     * Nom del mètode: selectAula
+     *
+     * Paràmetres: 
+     * - tipus de l'aula
+     *  1: aula standard
+     *  2: aula informatica
+     *  3: laboratori
+     * - codi de l'aula 
+     *
+     * Accions:
+     * - Mètode que selecciona una aula estàndard de l'array de aulesEstandard del campus actual
+     *   a partir del seu codi.
+     *
+     * Retorn: posició de l'aula seleccionat a l'array de aulesEstandard del campus actual.
+     * Si l'aula estàndard no existeix retorna -1.
+     */
+    public int selectAula(int tipusAula, String codi) {
+        if (codi == null) {
+            System.out.println("\nCodi de l'aula:");
+            codi = DADES.nextLine();
+        }
+
+        for (int i = 0; i < pAula; i++) {
+            if (aula[i].getCodi().equals(codi)) {
+
+                switch (tipusAula) {
+                    case 1:
+                        if (aula[i] instanceof AulaEstandard){
+                            return i;
+                        } else{
+                            return -1;
+                        }
+                    case 2:
+                        if (aula[i] instanceof AulaInformatica){
+                            return i;
+                        } else{
+                            return -1;
+                        }
+                    case 3:
+                        if (aula[i] instanceof Laboratori){
+                            return i;
+                        } else{
+                            return -1;
+                        }
+                    default:
+                        break;
+                }
+                return -1;
+            }
+        }
+        return -1;
+    }
+
 }
