@@ -10,12 +10,15 @@ import java.util.Scanner;
  *
  * @author fgarin
  */
-public class AulaInformatica {
-    private final static Scanner DADES = new Scanner(System.in);
+public class AulaInformatica extends Aula {
+    private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
 
+    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
+    /*
     private String codi;
     private int numeroAula;
     private double costPerDia;
+    */
     private double areaEnMetresQuadrats;
 
     /*
@@ -27,12 +30,15 @@ public class AulaInformatica {
      * - Assignar als atributs corresponents els valors passats com a paràmetres.
      */
     public AulaInformatica(String codi, int numeroAula, double costPerDia, double areaEnMetresQuadrats) {
-        this.codi = codi;
-        this.numeroAula = numeroAula;
-        this.costPerDia = costPerDia;
+
+        // crida al constructor de Aula pels atributs principal
+        super(codi, numeroAula, costPerDia);
+        // Inicialitzacio de l'atribut propi de AulaInformatica
         this.areaEnMetresQuadrats = areaEnMetresQuadrats;
     }
 
+    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
+    /* 
     public String getCodi() {
         return this.codi;
     }
@@ -56,11 +62,13 @@ public class AulaInformatica {
     public void setCostPerDia(double costPerDia) {
         this.costPerDia = costPerDia;
     }
+    */
 
+    // Aquest getter es particular per la clase AulaInformatica
     public double getAreaEnMetresQuadrats() {
         return this.areaEnMetresQuadrats;
     }
-
+    // Aquest setter es particular per la clase AulaInformatica
     public void setAreaEnMetresQuadrats(double areaEnMetresQuadrats) {
         this.areaEnMetresQuadrats = areaEnMetresQuadrats;
     }

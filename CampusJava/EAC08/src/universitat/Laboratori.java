@@ -10,12 +10,15 @@ import java.util.Scanner;
  *
  * @author fgarin
  */
-public class Laboratori {
+public class Laboratori extends Aula {
     private final static Scanner DADES = new Scanner(System.in);
 
+    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
+    /*
     private String codi;
     private int numeroLaboratori;
     private double costPerDia;
+    */
     private int capacitat;
 
     /*
@@ -28,12 +31,14 @@ public class Laboratori {
      * - Assignar als atributs corresponents els valors passats com a paràmetres.
      */
     public Laboratori(String codi, int numeroLaboratori, double costPerDia, int capacitat) {
-        this.codi = codi;
-        this.numeroLaboratori = numeroLaboratori;
-        this.costPerDia = costPerDia;
+        // Crida al constructor de Aula pels atributs principal
+        super(codi, numeroLaboratori, costPerDia);
+        // Inicialitzacio de l'atribut propi de Laboratori
         this.capacitat = capacitat;
     }
 
+    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
+    /* 
     public String getCodi() {
         return this.codi;
     }
@@ -57,11 +62,13 @@ public class Laboratori {
     public void setCostPerDia(int costPerDia) {
         this.costPerDia = costPerDia;
     }
+    */
 
+    // Aquest getter es particular per la clase Laboratori
     public int getCapacitat() {
         return this.capacitat;
     }
-
+    // Aquest setter es particular per la clase Laboratori
     public void setCapacitat(int capacitat) {
         this.capacitat = capacitat;
     }
