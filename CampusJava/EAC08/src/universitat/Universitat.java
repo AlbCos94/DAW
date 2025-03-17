@@ -11,8 +11,8 @@ import java.util.Scanner;
  *
  * @author fgarin
  */
-public class Universitat {
-    private final static Scanner DADES = new Scanner(System.in);
+public class Universitat implements UnitatUniversitat {
+    //private final static Scanner DADES = new Scanner(System.in);
 
     private String nomUniversitat;
     private String ubicacioSeu;
@@ -92,7 +92,7 @@ public class Universitat {
 
     /**
      *
-     * Nom del mètode: updateUniversitat
+     * Nom del mètode: updateUnitatUniversitat
      * 
      * Paràmetres: cap
      * 
@@ -105,7 +105,7 @@ public class Universitat {
      * 
      * Retorn: cap
      */
-    public void updateUniversitat() {
+    public void updateUnitatUniversitat() {
         System.out.println("\nNom de la universitat: " + nomUniversitat);
         System.out.println("\nEntra el nou nom:");
         nomUniversitat = DADES.nextLine();
@@ -138,7 +138,7 @@ public class Universitat {
 
     /**
      *
-     * Nom del mètode: showUniversitat
+     * Nom del mètode: showUnitatUniversitat
      * 
      * Paràmetres: cap
      * 
@@ -147,7 +147,7 @@ public class Universitat {
      * 
      * Retorn: cap
      */
-    public void showUniversitat() {
+    public void showUnitatUniversitat() {
         System.out.println("\nLes dades de la universitat " + nomUniversitat + " són: ");
         System.out.println("\nUbicació: " + ubicacioSeu);
         System.out.println("\nCost de manteniment total: " + costManteniment() + " EUR");
@@ -222,10 +222,10 @@ public class Universitat {
         int indexCampus = selectCampus(null);
 
         if (indexCampus != -1) {
-            int indexAulaEstandard = campus[indexCampus].selectAulaEstandard(null);
+            int indexAulaEstandard = campus[indexCampus].selectAula(1,null);
 
             if (indexAulaEstandard != -1) {
-                campus[indexCampus].getAulesEstandard()[indexAulaEstandard].updateAulaEstandard();
+                campus[indexCampus].getAules()[indexAulaEstandard].updateUnitatUniversitat();
             } else {
                 System.out.println("\nL'aula estàndard no existeix");
             }
@@ -248,10 +248,10 @@ public class Universitat {
         int indexCampus = selectCampus(null);
 
         if (indexCampus != -1) {
-            int indexAulaInformatica = campus[indexCampus].selectAulaInformatica(null);
+            int indexAulaInformatica = campus[indexCampus].selectAula(2,null);
 
             if (indexAulaInformatica != -1) {
-                campus[indexCampus].getAulesInformatica()[indexAulaInformatica].updateAulaInformatica();
+                campus[indexCampus].getAules()[indexAulaInformatica].updateUnitatUniversitat();
             } else {
                 System.out.println("\nL'aula d'informàtica no existeix");
             }
@@ -274,10 +274,10 @@ public class Universitat {
         int indexCampus = selectCampus(null);
 
         if (indexCampus != -1) {
-            int indexLaboratori = campus[indexCampus].selectLaboratori(null);
+            int indexLaboratori = campus[indexCampus].selectAula(3,null);
 
             if (indexLaboratori != -1) {
-                campus[indexCampus].getLaboratoris()[indexLaboratori].updateLaboratori();
+                campus[indexCampus].getAules()[indexLaboratori].updateUnitatUniversitat();
             } else {
                 System.out.println("\nEl laboratori no existeix");
             }
