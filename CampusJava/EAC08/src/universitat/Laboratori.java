@@ -11,15 +11,8 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class Laboratori extends Aula {
-    //private final static Scanner DADES = new Scanner(System.in);
 
-    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
-    /*
-    private String codi;
-    private int numeroLaboratori;
-    private double costPerDia;
-    */
-    private int capacitat;
+    private int capacitat; // atribut propi d'Aula
 
     /*
      *
@@ -37,32 +30,6 @@ public class Laboratori extends Aula {
         this.capacitat = capacitat;
     }
 
-    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
-    /* 
-    public String getCodi() {
-        return this.codi;
-    }
-
-    public void setCodi(String codi) {
-        this.codi = codi;
-    }
-
-      public int getNumeroLaboratori() {
-        return this.numeroLaboratori;
-    }
-
-    public void setNumeroLaboratori(int numeroLaboratori) {
-        this.numeroLaboratori = numeroLaboratori;
-    }
-
-    public double getCostPerDia() {
-        return this.costPerDia;
-    }
-
-    public void setCostPerDia(int costPerDia) {
-        this.costPerDia = costPerDia;
-    }
-    */
 
     // Aquest getter es particular per la clase Laboratori
     public int getCapacitat() {
@@ -113,27 +80,10 @@ public class Laboratori extends Aula {
      *
      * Retorn: cap
      */
-
-     
     public void updateUnitatUniversitat() {
 
         // Preguntes core d'aula per construir el laboratori 
         super.updateUnitatUniversitat();
-
-        // ja no necesari
-        /* 
-        System.out.println("\nCodi del Laboratori: " + this.getCodi());
-        System.out.println("Entra el nou valor codi:");
-        codi = DADES.nextLine();
-       
-        System.out.println("\nNúmero del Laboratori: " + this.getNumeroLaboratori());
-        System.out.println("Entra el nou valor numeroLaboratori:");
-        numeroLaboratori = Integer.parseInt(DADES.nextLine());
-
-        System.out.println("\nCost per dia del Laboratori: " + this.getCostPerDia());
-        System.out.println("Entra el nou valor del cost per dia:");
-        costPerDia = Integer.parseInt(DADES.nextLine());
-        */
 
         // atribut particular del laboratori
         System.out.println("\nCapacitat del Laboratori: " + this.getCapacitat());
@@ -154,11 +104,6 @@ public class Laboratori extends Aula {
     public void showUnitatUniversitat() {
         
         super.showUnitatUniversitat();
-        /* 
-        System.out.println("\nLes dades del Laboratori amb codi " + this.getCodi() + " són:");
-        System.out.println("\nNúmero del Laboratori: " + this.getNumeroLaboratori());
-        System.out.println("\nCost per dia: " + this.getCostPerDia());
-        */
 
         // Atributs particular per laboratori
         System.out.println("\nCapacitat: " + this.getCapacitat());

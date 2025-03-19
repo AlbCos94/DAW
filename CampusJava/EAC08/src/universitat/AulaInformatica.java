@@ -11,15 +11,8 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class AulaInformatica extends Aula {
-    //private final static Scanner DADES = new Scanner(System.in); // THIS WILL ALSO BE NEEDED TO BE REMOVED
 
-    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
-    /*
-    private String codi;
-    private int numeroAula;
-    private double costPerDia;
-    */
-    private double areaEnMetresQuadrats;
+    private double areaEnMetresQuadrats; // Atribut propi d'aula d'informatica
 
     /*
      * Nom del mètode: AulaInformatica          
@@ -37,32 +30,6 @@ public class AulaInformatica extends Aula {
         this.areaEnMetresQuadrats = areaEnMetresQuadrats;
     }
 
-    //AFTER INHERITANCE THIS WILL NOT BE NEEDED ANYMORE
-    /* 
-    public String getCodi() {
-        return this.codi;
-    }
-
-    public void setCodi(String codi) {
-        this.codi = codi;
-    }
-
-    public int getNumeroAula() {
-        return this.numeroAula;
-    }
-
-    public void setNumeroAula(int numeroAula) {
-        this.numeroAula = numeroAula;
-    }
-
-    public double getCostPerDia() {
-        return this.costPerDia;
-    }
-
-    public void setCostPerDia(double costPerDia) {
-        this.costPerDia = costPerDia;
-    }
-    */
 
     // Aquest getter es particular per la clase AulaInformatica
     public double getAreaEnMetresQuadrats() {
@@ -115,23 +82,8 @@ public class AulaInformatica extends Aula {
      */
     public void updateUnitatUniversitat() {
 
-        // Preguntes base
+        // Preguntes base d'atributs d'Aula
         super.updateUnitatUniversitat();
-        
-        // codi a ometre
-        /* 
-        System.out.println("\nCodi de l'aula d'informàtica: " + this.getCodi());
-        System.out.println("Entra el nou valor del codi: ");
-        codi = DADES.nextLine();
-       
-        System.out.println("\nNúmero de l'aula d'informàtica: " + this.getNumeroAula());
-        System.out.println("\nEntra el nou valor del numero d'aula:");
-        numeroAula = Integer.parseInt(DADES.nextLine());
-        
-        System.out.println("\nCost per dia de l'aula d'informàtica: " + this.getCostPerDia());
-        System.out.println("Entra el nou valor del cost per dia de l'aula d'informàtica:");
-        costPerDia = Double.parseDouble(DADES.nextLine());
-        */
         
         // Es pregunta per l'atribut particular de l'aula d'informatica
         System.out.println("\nÀrea en metres quadrats de l'aula d'informàtica: " + this.getAreaEnMetresQuadrats());

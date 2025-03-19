@@ -59,39 +59,6 @@ abstract public class Aula implements UnitatUniversitat{
     }
 
 
-
-    // AIXO NO SEMBLA QUE S'HAGI D'IMPLEMENTAR
-    /*
-    *
-    * Nom del mètode: updateUnitatUniversitat
-    *
-    * Accions:
-    * - Demanar a l'usuari les dades per consola per crear una nova 
-    *   Aula. Les dades a demanar són les que necessita 
-    *   el constructor.
-    *
-    * Retorn: Objecte Aula creat.
-    */
-    /*
-    public static Aula addAula() {
-        String codi;
-        int numeroAula;
-        double costPerDia;
-
-        System.out.println("\nCodi de l'aula estandard: ");
-        codi = DADES.nextLine(); 
-
-        System.out.println("\nNúmero de l'aula estandard: ");
-        numeroAula = Integer.parseInt(DADES.nextLine());
-               
-        System.out.println("\nCost per dia de l'aula: ");
-        costPerDia = Double.parseDouble(DADES.nextLine());
-
-        return new Aula(codi, numeroAula, costPerDia);
-    }
-    */
-
-
     // metode updateUnitatUniversitat() - implementacio part del mètode que sempre s'emprarà
     /*
      *
@@ -136,7 +103,6 @@ abstract public class Aula implements UnitatUniversitat{
         System.out.println("\nLes dades de l'aula amb codi " + this.getCodi() + " són: ");
         System.out.println("\nNúmero de l'aula: " + this.getNumeroAula());
         System.out.println("\nCost per dia de l'aula: " + this.getCostPerDia());
-        //System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }
 
     /*

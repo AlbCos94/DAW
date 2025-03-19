@@ -13,26 +13,14 @@ import java.util.Scanner;
  * @author fgarin
  */
 public class Campus implements UnitatUniversitat {
-    
-    //private final static Scanner DADES = new Scanner(System.in); // The scanner is not needed anymore
 
     private String nomCampus;
     private String ubicacio;
     private String codi; // nou atribute codi per Campus
 
-
     private Aula[ ] aula = new Aula[300]; // array per guardar els tres tipus d'aules (Estandard, Informatica i Laboratori)
     private int pAula= 0;
 
-    // Remove las attributes
-    /* 
-    private AulaEstandard[] aulesEstandard = new AulaEstandard[100];
-    private int pAulesEstandard = 0; //Primera posició buida de l'array d'aules estàndard
-    private AulaInformatica[] aulesInformatica = new AulaInformatica[100];
-    private int pAulesInformatica = 0; //Primera posició buida de l'array d'aules d'informàtica
-    private Laboratori[] laboratoris = new Laboratori[100];
-    private int pLaboratoris = 0; //Primera posició buida de l'array de laboratoris
-    */
     
     /**
      *
@@ -62,6 +50,14 @@ public class Campus implements UnitatUniversitat {
 
     public void setUbicacio(String ubicacio) {
         this.ubicacio = ubicacio;
+    }
+
+    public String getCodi() {
+        return this.codi;
+    }
+
+    public void setCodi(String codi) {
+        this.codi = codi;
     }
 
     public Aula[] getAules() {
@@ -143,28 +139,11 @@ public class Campus implements UnitatUniversitat {
         
         double costTotal = 0;
 
-
         for (int i = 0; i < pAula; i++) {
             costTotal += aula[i].costManteniment();
         }
 
-
-        /* 
-        for (int i = 0; i < pAulesEstandard; i++) {
-            costTotal += aulesEstandard[i].costManteniment();
-        }
-
-        for (int i = 0; i < pAulesInformatica; i++) {
-            costTotal += aulesInformatica[i].costManteniment();
-        }
-
-        for (int i = 0; i < pLaboratoris; i++) {
-            costTotal += laboratoris[i].costManteniment();
-        }
-        */
-
         return costTotal;
-
     }
     
     /*
@@ -216,38 +195,6 @@ public class Campus implements UnitatUniversitat {
     }
 
 
-
-
-
-    /**
-     *
-     * Nom del mètode: selectAulaEstandard
-     *
-     * Paràmetres: codi de l'aula estàndard
-     *
-     * Accions:
-     * - Mètode que selecciona una aula estàndard de l'array de aulesEstandard del campus actual
-     *   a partir del seu codi.
-     *
-     * Retorn: posició de l'aula estàndard seleccionat a l'array de aulesEstandard del campus actual.
-     * Si l'aula estàndard no existeix retorna -1.
-     */
-    /* 
-    public int selectAulaEstandard(String codi) {
-        if (codi == null) {
-            System.out.println("\nCodi de l'aula estàndard:");
-            codi = DADES.nextLine();
-        }
-
-        for (int i = 0; i < pAula; i++) {
-            if (aula[i].getCodi().equals(codi)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }*/
-
     /**
      * AulaInformatica
      *
@@ -279,36 +226,6 @@ public class Campus implements UnitatUniversitat {
         }
     }
     
-    
-    /**
-     *
-     * Nom del mètode: selectAulaInformatica
-     *      
-     * Paràmetres: codi de la aulaInformatica
-     *
-     * Accions:
-     * - Mètode que selecciona una aulaInformatica de l'array de aulesInformatica del campus actual
-     *   a partir del seu codi.
-     *
-     * Retorn: posició de la aulaInformatica seleccionada a l'array de aulesInformatica del campus actual.
-     * Si l'aula d'informàtica no existeix retorna -1.
-     */    
-    /* 
-    public int selectAulaInformatica(String codi) {
-        if (codi == null) {
-            System.out.println("\nCodi de l'aula d'informàtica:");
-            codi = DADES.nextLine();
-        }
-
-        for (int i = 0; i < pAula; i++) {
-            if (aula[i].getCodi().equals(codi)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-    */
 
     /**
      * Laboratori
@@ -343,37 +260,6 @@ public class Campus implements UnitatUniversitat {
 
     /**
      *
-     * Nom del mètode: selectLaboratori
-     * 
-     * Paràmetres: codi del laboratori
-     *
-     * Accions:
-     * - Mètode que selecciona un laboratori de l'array d'aulesInformatica del campus actual
-     *   a partir del seu codi.
-     *
-     * Retorn: posició del laboratori seleccionada a l'array de laboratoris del campus actual.
-     * Si el laboratori no existeix retorna -1.
-     */      
-    /* 
-    public int selectLaboratori(String codi) {
-        if (codi == null) {
-            System.out.println("\nCodi del laboratori:");
-            codi = DADES.nextLine();
-        }
-
-        for (int i = 0; i < pAula; i++) {
-            if (aula[i].getCodi().equals(codi)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-    */
-
-
-    /**
-     *
      * Nom del mètode: selectAula
      *
      * Paràmetres: 
@@ -403,25 +289,21 @@ public class Campus implements UnitatUniversitat {
                     case 1:
                         if (aula[i] instanceof AulaEstandard){
                             return i;
-                        } else{
-                            return -1;
                         }
+                        break; 
                     case 2:
                         if (aula[i] instanceof AulaInformatica){
                             return i;
-                        } else{
-                            return -1;
-                        }
+                        } 
+                        break;
                     case 3:
                         if (aula[i] instanceof Laboratori){
                             return i;
-                        } else{
-                            return -1;
                         }
+                        break; 
                     default:
                         break;
                 }
-                return -1;
             }
         }
         return -1;
