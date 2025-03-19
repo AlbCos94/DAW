@@ -1,5 +1,8 @@
 package principal;
 
+import universitat.AulaEstandard;
+import universitat.AulaInformatica;
+import universitat.Laboratori;
 import universitat.Universitat;
 import java.util.Scanner;
 
@@ -26,9 +29,12 @@ public class Application {
             System.out.println("\n0. Sortir");
             System.out.println("\n1. Gestió d'universitats");
             System.out.println("\n2. Gestió de campus");
+
             System.out.println("\n3. Gestió d'aules estàndard");
             System.out.println("\n4. Gestió d'aules informàtica");
             System.out.println("\n5. Gestió de laboratoris");
+            
+            
             System.out.println("\n");       
 
             opcio = Integer.parseInt(DADES.nextLine());
@@ -48,21 +54,21 @@ public class Application {
                     break;
                 case 3:
                     if (universitatActual != null) {
-                        menuAulesEstandard();
+                        menuAules(1); // accedim al menu d'aules amb el paràmetre 1 - "Aula estàndard"
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
                     break;
                 case 4:
                     if (universitatActual != null) {
-                        menuAulesInformatica();
+                        menuAules(2); // accedim al menu d'aules amb el paràmetre 2 - "Aula informatica"
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
                     break;
                 case 5:
                     if (universitatActual != null) {
-                        menuLaboratoris();
+                        menuAules(3); // accedim al menu d'aules amb el paràmetre 3 - "Laboratori"
                     } else {
                         System.out.println("\nPrimer s'ha de seleccionar el campus al menú 1. Gestió de campus.");
                     }
@@ -79,7 +85,7 @@ public class Application {
 
         do {
             int indexSel;
-            System.out.println("\nenú d'universitats. Selecciona una opció:");
+            System.out.println("\nMenú d'universitats. Selecciona una opció:");
             System.out.println("\n0. Sortir");
             System.out.println("\n1. Alta");
             System.out.println("\n2. Seleccionar");
@@ -118,14 +124,14 @@ public class Application {
                     indexSel = selectUniversitat(null);
 
                     if (indexSel >= 0) {
-                        universitats[indexSel].updateUniversitat();
+                        universitats[indexSel].updateUnitatUniversitat();
                     } else {
                         System.out.println("\nNo existeix aquesta universitat");
                     }
                     break;
                 case 4:
                     for (int i = 0; i < pUniversitats; i++) {
-                        universitats[i].showUniversitat();
+                        universitats[i].showUnitatUniversitat();
                     }
                     break;
                 default:
@@ -179,14 +185,14 @@ public class Application {
                     int indexSel = universitatActual.selectCampus(null);
 
                     if (indexSel >= 0) {
-                        universitatActual.getCampus()[indexSel].updateCampus();
+                        universitatActual.getCampus()[indexSel].updateUnitatUniversitat();
                     } else {
                         System.out.println("\nNo existeix aquest Campus");
                     }
                     break;
                 case 3:
                     for (int i = 0; i < universitatActual.getpCampus(); i++) {
-                        universitatActual.getCampus()[i].showCampus();
+                        universitatActual.getCampus()[i].showUnitatUniversitat();
                     }
                     break;
                 default:
@@ -196,12 +202,18 @@ public class Application {
         } while (opcio != 0);
     }
 
+
+
     /*
      * 
-     * Nom del mètode: menu Aules Estàndard
+     * Nom del mètode: menu Aules 
      *     
-     * Heu de desenvolupar el menuAulesEstandard amb les opcions que podeu veure.
+     * Heu de desenvolupar el menuAulesamb les opcions que podeu veure.
      * Nota: penseu que quan arribem aquí, l'atribut universitatActual no és null
+     * 
+     * Input parameters:
+     * Aula estàndard = 1, Aula informatica= 2 i Laboratori=3
+     * 
      * 
      * Opció 0. Sortir -->       Surt del menú i retorna al menú principal
      * Opció 1. Alta -->         Crea Aula estàndard de la universitat actual afegint-la a un Campus. 
@@ -218,11 +230,31 @@ public class Application {
      * - si no s'ha introduït cap opció de les de la llista, s'ha de mostrar el missatge "S'ha de seleccionar una opció correcta del menú."
      * - definiu una variable opcio de tipus enter
      */
-    public static void menuAulesEstandard() {
+    public static void menuAules(int tipus) {
+        
         int opcio;
+        String tipusAulaText = ""; 
+
+        switch (tipus) {
+            case 0:
+                break;
+            case 1:
+                tipusAulaText = "Aula estàndard";
+                break;
+            case 2:
+                tipusAulaText = "Aula informàtica";
+                break;
+            case 3:
+                tipusAulaText = "Laboratori";
+                break;
+            default:
+                System.out.println("\nNo s'ha seleccionat un tipus d'aula correcte.");
+                break;
+        }
 
         do {
-            System.out.println("\nMenú d'aules estàndard. Selecciona una opció");
+
+            System.out.println("\nMenú d'aules tipus " + tipusAulaText + ". Selecciona una opció");
             System.out.println("\n0. Sortir");
             System.out.println("\n1. Alta");
             System.out.println("\n2. Modificar");
@@ -235,21 +267,83 @@ public class Application {
                 case 0:
                     break;
                 case 1:
-                    universitatActual.addAulaEstandardCampus();
-                    break;
-                case 2:
-                    universitatActual.updateAulaEstandardCampus();
-                    break;
-                case 3:
-                    for (int i = 0; i < universitatActual.getpCampus(); i++) {
-
-                        for (int j = 0; j < universitatActual.getCampus()[i].getpAulesEstandard(); j++) {
-
-                            universitatActual.getCampus()[i].getAulesEstandard()[j].showAulaEstandard();
-
-                        }
+                    switch (tipus) {
+                        case 1:
+                            universitatActual.addAulaEstandardCampus();
+                            break;
+                        case 2:
+                            universitatActual.addAulaInformaticaCampus();
+                            break;
+                        case 3:
+                            universitatActual.addLaboratoriCampus();
+                            break;
+                        default:
+                            System.out.println("\nNo s'ha seleccionat un tipus d'aula correcte.");
+                            break;
                     }
                     break;
+                case 2:
+                    switch (tipus) {
+                        case 1:
+                            universitatActual.updateAulaEstandardCampus();
+                            break;
+                        case 2:
+                            universitatActual.updateAulaInformaticaCampus();
+                            break;
+                        case 3:
+                            universitatActual.updateLaboratoriCampus();
+                            break;
+                        default:
+                            System.out.println("\nNo s'ha seleccionat un tipus d'aula correcte.");
+                            break;
+                    }
+                    break;
+
+                case 3:
+
+                    switch (tipus) {
+                        case 1:
+                            for (int i = 0; i < universitatActual.getpCampus(); i++) {
+
+                                for (int j = 0; j < universitatActual.getCampus()[i].getpAula(); j++) {
+                                    
+                                    if (universitatActual.getCampus()[i].getAules()[j] instanceof AulaEstandard){
+                                        universitatActual.getCampus()[i].getAules()[j].showUnitatUniversitat();
+                                    }
+                                    
+                                }
+                            }
+                            break;
+                        case 2:
+                            for (int i = 0; i < universitatActual.getpCampus(); i++) {
+
+                                for (int j = 0; j < universitatActual.getCampus()[i].getpAula(); j++) {
+                                    
+                                    if (universitatActual.getCampus()[i].getAules()[j] instanceof AulaInformatica){
+                                        universitatActual.getCampus()[i].getAules()[j].showUnitatUniversitat();
+                                    }
+                                    
+                                }
+                            }
+                            break;
+                        case 3:
+                            for (int i = 0; i < universitatActual.getpCampus(); i++) {
+
+                                for (int j = 0; j < universitatActual.getCampus()[i].getpAula(); j++) {
+                                    
+                                    if (universitatActual.getCampus()[i].getAules()[j] instanceof Laboratori){
+                                        universitatActual.getCampus()[i].getAules()[j].showUnitatUniversitat();
+                                    }
+                                    
+                                }
+                            }
+                            break;
+                        default:
+                            System.out.println("\nNo s'ha seleccionat un tipus d'aula correcte.");
+                            break;
+                    }
+                    break;
+
                 default:
                     System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
                     break;
@@ -258,126 +352,6 @@ public class Application {
     }
 
 
-    /*
-     * 
-     * Nom del mètode: menuAulesInformatica
-     *    
-     * Heu de desenvolupar el menuAulesInformatica amb les opcions que podeu veure.
-     * Nota: penseu que quan arribem aquí, l'atribut universitatActual no és null
-     * 
-     * Opció 0. Sortir -->       Surt del menú i retorna al menú principal
-     * Opció 1. Alta -->         Crea una AulaInformatica de la universitat afegint-la a un Campus. 
-     *                           Penseu que Universitat sap afegir una AulaInformatica a un campus seleccionat.       
-     * Opció 2. Modificar -->    Permet modificar una AulaInformatica de la universitat. Penseu que totes les 
-     *                           AulesInformatica d'una universitat pertanyen a un campus d'aquesta universitat i que 
-     *                           Universitat sap modificar una AulaInformatica que pertany a un dels seus Campus.
-     * Opció 3. Llista AulaInformatica --> Imprimeix les dades de tots/es AulesInformatica de la universitat actual.
-     * A més, heu de fer una estructura iterativa per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida
-     * 
-     * Recomanacions:
-     * - estructura de control switch-case per bifurcar les opcions
-     * - si no s'ha introduït cap opció de les de la llista, s'ha de mostrar el missatge "S'ha de seleccionar una opció correcta del menú."
-     * - definiu una variable opcio de tipus enter
-     */
-    public static void menuAulesInformatica() {
-        int opcio;
-
-        do {
-            System.out.println("\nMenú d'aules d'informàtica. Selecciona una opció:");
-            System.out.println("\n0. Sortir");
-            System.out.println("\n1. Alta");
-            System.out.println("\n2. Modificar");
-            System.out.println("\n3. Llistar");
-            System.out.println("\n");  
-
-            opcio = Integer.parseInt(DADES.nextLine());
-            
-            switch (opcio) {
-                case 0:
-                    break;
-                case 1:
-                    universitatActual.addAulaInformaticaCampus();
-                    break;
-                case 2:
-                    universitatActual.updateAulaInformaticaCampus();
-                    break;
-                case 3:
-                    for (int i = 0; i < universitatActual.getpCampus(); i++) {
-
-                        for (int j = 0; j < universitatActual.getCampus()[i].getpAulesInformatica(); j++) {
-
-                            universitatActual.getCampus()[i].getAulesInformatica()[j].showAulaInformatica();
-
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
-                    break;
-            }
-        } while (opcio != 0);
-    }
-
-    /*
-     * 
-     * Nom del mètode: menuLaboratoris
-     *     
-     * Heu de desenvolupar el menuLaboratoris amb les opcions que podeu veure.
-     * Nota: penseu que quan arribem aquí, l'atribut universitatActual no és null
-     * 
-     * Opció 0. Sortir -->       Surt del menú i retorna al menú principal
-     * Opció 1. Alta -->         Crea un Laboratori de la universitat actual afegint-lo a un Campus. 
-     *                           Penseu que Universitat sap afegir un Laboratori a un Campus seleccionat.       
-     * Opció 2. Modificar -->    Permet modificar un Laboratori de la universitat actual. Penseu que tots els 
-     *                           Laboratoris d'una universitat pertanyen a un Campus d'aquesta universitat i que 
-     *                           Universitat sap modificar un Laboratori que pertany a un dels seus Campus.
-     * Opció 3. Llista Laboratoris --> Imprimeix les dades de tots els Laboratoris de la universitat actual.
-     * 
-     * A més, heu de fer una estructura iterativa per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida
-     * 
-     * Recomanacions:
-     * - estructura de control switch-case per bifurcar les opcions
-     * - si no s'ha introduït cap opció de les de la llista, s'ha de mostrar el missatge "S'ha de seleccionar una opció correcta del menú."
-     * - definiu una variable opcio de tipus enter
-     */
-    public static void menuLaboratoris() {
-        int opcio;
-
-        do {
-            System.out.println("\nMenú de Laboratoris. Selecciona una opció:");
-            System.out.println("\n0. Sortir");
-            System.out.println("\n1. Alta");
-            System.out.println("\n2. Modificar");
-            System.out.println("\n3. Llistar");
-            System.out.println("\n");  
-
-            opcio = Integer.parseInt(DADES.nextLine());
-            
-            switch (opcio) {
-                case 0:
-                    break;
-                case 1:
-                    universitatActual.addLaboratoriCampus();
-                    break;
-                case 2:
-                    universitatActual.updateLaboratoriCampus();
-                    break;
-                case 3:
-                    for (int i = 0; i < universitatActual.getpCampus(); i++) {
-
-                        for (int j = 0; j < universitatActual.getCampus()[i].getpLaboratoris(); j++) {
-
-                            universitatActual.getCampus()[i].getLaboratoris()[j].showLaboratori();
-
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
-                    break;
-            }
-        } while (opcio != 0);
-    }
 
     public static Integer selectUniversitat(Universitat Universitat) {
         String nom;
