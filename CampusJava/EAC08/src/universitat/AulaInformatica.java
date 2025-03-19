@@ -4,7 +4,6 @@
  */
 package universitat;
 
-import java.util.Scanner;
 
 /**
  *
@@ -82,7 +81,7 @@ public class AulaInformatica extends Aula {
      */
     public void updateUnitatUniversitat() {
 
-        // Preguntes base d'atributs d'Aula
+        // Preguntes base d'atributs d'Aula implementades en classe Aula
         super.updateUnitatUniversitat();
         
         // Es pregunta per l'atribut particular de l'aula d'informatica
@@ -93,7 +92,7 @@ public class AulaInformatica extends Aula {
 
     /*
      *
-     * Nom del mètode: showAulaInformatica
+     * Nom del mètode: showUnitatUniversitat
      * 
      * Accions:
      * - Mètode per imprimir les dades de l'aula d'informàtica i el seu cost de manteniment.
@@ -104,11 +103,6 @@ public class AulaInformatica extends Aula {
 
         // Informacio basica de l'aula
         super.showUnitatUniversitat();
-        /*
-            System.out.println("\nLes dades de l'aula d'informàtica amb codi " + this.getCodi() + " són: ");
-            System.out.println("\nNúmero d'aula: " + this.getNumeroAula());
-            System.out.println("\nCost per dia de l'aula d'informàtica: " + this.getCostPerDia());
-        */
 
         // Atributs particulars de l'aula d'informatica
         System.out.println("\nL'àrea en metres quadrats de l'aula: " + this.getAreaEnMetresQuadrats());

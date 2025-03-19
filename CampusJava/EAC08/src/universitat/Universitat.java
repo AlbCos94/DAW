@@ -5,7 +5,6 @@
 
 package universitat;
 
-import java.util.Scanner;
 
 /**
  *

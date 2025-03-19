@@ -4,15 +4,13 @@
  */
 package universitat;
 
-import java.util.Scanner;
-
 /**
  *
  * @author fgarin
  */
 public class Laboratori extends Aula {
 
-    private int capacitat; // atribut propi d'Aula
+    private int capacitat; // atribut propi de Laboratori
 
     /*
      *
@@ -85,7 +83,7 @@ public class Laboratori extends Aula {
         // Preguntes core d'aula per construir el laboratori 
         super.updateUnitatUniversitat();
 
-        // atribut particular del laboratori
+        // Atributs particulars del laboratori
         System.out.println("\nCapacitat del Laboratori: " + this.getCapacitat());
         System.out.println("Entra el nou valor de la capacitat:");
         capacitat = Integer.parseInt(DADES.nextLine());
@@ -104,7 +102,6 @@ public class Laboratori extends Aula {
     public void showUnitatUniversitat() {
         
         super.showUnitatUniversitat();
-
         // Atributs particular per laboratori
         System.out.println("\nCapacitat: " + this.getCapacitat());
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");

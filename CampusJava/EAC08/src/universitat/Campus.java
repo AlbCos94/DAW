@@ -6,8 +6,6 @@
 
 package universitat;
 
-import java.util.Scanner;
-
 /**
  *
  * @author fgarin
@@ -19,11 +17,10 @@ public class Campus implements UnitatUniversitat {
     private String codi; // nou atribute codi per Campus
 
     private Aula[ ] aula = new Aula[300]; // array per guardar els tres tipus d'aules (Estandard, Informatica i Laboratori)
-    private int pAula= 0;
+    private int pAula= 0; // pointer que indica primera posició de l'array d'aules que esta buit
 
     
     /**
-     *
      * Nom del mètode: Campus
      *
      * Paràmetres: valors per tots els atributs de la classe, menys els arrays
@@ -263,17 +260,16 @@ public class Campus implements UnitatUniversitat {
      * Nom del mètode: selectAula
      *
      * Paràmetres: 
-     * - tipus de l'aula
-     *  1: aula standard
-     *  2: aula informatica
-     *  3: laboratori
-     * - codi de l'aula 
+     * - Tipus d'aula
+     *  1: Aula estandard
+     *  2: Aula informàtica
+     *  3: Laboratori
+     * - Codi de l'aula 
      *
      * Accions:
-     * - Mètode que selecciona una aula estàndard de l'array de aulesEstandard del campus actual
-     *   a partir del seu codi.
+     * - Mètode que selecciona una aula de l'array d'aules del campus actual a partir del seu codi i tipus.
      *
-     * Retorn: posició de l'aula seleccionat a l'array de aulesEstandard del campus actual.
+     * Retorn: posició de l'aula seleccionada a l'array de aules del campus actual.
      * Si l'aula estàndard no existeix retorna -1.
      */
     public int selectAula(int tipusAula, String codi) {
@@ -284,7 +280,8 @@ public class Campus implements UnitatUniversitat {
 
         for (int i = 0; i < pAula; i++) {
             if (aula[i].getCodi().equals(codi)) {
-
+                
+                // No nomes el codi d'aula ha de ser el mateix, sinó que també hem de tenir el mateix tipus d'Aula de l'objecte amb que comparem
                 switch (tipusAula) {
                     case 1:
                         if (aula[i] instanceof AulaEstandard){
@@ -308,5 +305,4 @@ public class Campus implements UnitatUniversitat {
         }
         return -1;
     }
-
 }

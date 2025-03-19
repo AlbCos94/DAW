@@ -4,7 +4,6 @@
  */
 package universitat;
 
-import java.util.Scanner;
 
 /**
  *
@@ -13,21 +12,17 @@ import java.util.Scanner;
 public class AulaEstandard extends Aula {
 
     /*
-     *
-     * Nom del mètode: AulaEstandard
-     * 
-     * Paràmetres: valors per tots els atributs de la classe.
-     *
-     * Accions:
-     * - Assignar als atributs corresponents els valors passats com a paràmetres.
-     */
-     public AulaEstandard(String codi, int numeroAula, double costPerDia) {
-        
-        // crida al constructor de Aula
+    * Nom del mètode: AulaEstandard
+    * 
+    * Paràmetres: valors per tots els atributs de la classe.
+    *
+    * Accions:
+    * - Assignar als atributs corresponents els valors passats com a paràmetres.
+    */
+    public AulaEstandard(String codi, int numeroAula, double costPerDia) {
+        // Crida constructor de l'Aula
         super(codi, numeroAula, costPerDia);
-
     }
-
 
     /*
     *
@@ -59,7 +54,7 @@ public class AulaEstandard extends Aula {
 
     /*
      *
-     * Nom del mètode: updateAulaEstandard
+     * Nom del mètode: updateUnitatUniversitat
      * 
      * Paràmetres: cap
      * 
@@ -72,9 +67,7 @@ public class AulaEstandard extends Aula {
      */
     public void updateUnitatUniversitat() {
 
-        super.updateUnitatUniversitat();
-
-        // No cal afegir cap nova funcionalitat per a aula estandard en relación amb la funcionalitat basica que ja s'ha afegit a la classe Aula
+        super.updateUnitatUniversitat(); // No cal afegir cap nova funcionalitat per a aula estandard en relación amb la funcionalitat basica que ja s'ha afegit a la classe Aula
 
     }
     
