@@ -29,7 +29,7 @@ public class Application {
             System.out.println("\n0. Sortir");
             System.out.println("\n1. Gestió d'universitats");
             System.out.println("\n2. Gestió de campus");
-
+            // Menu especifics per aules:
             System.out.println("\n3. Gestió d'aules estàndard");
             System.out.println("\n4. Gestió d'aules informàtica");
             System.out.println("\n5. Gestió de laboratoris");
