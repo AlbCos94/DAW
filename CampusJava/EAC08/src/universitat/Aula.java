@@ -11,9 +11,6 @@ package universitat;
  */
 abstract public class Aula implements UnitatUniversitat{
    
-    
-    //private final static Scanner DADES = new Scanner(System.in); //AIXO JA NO CAL IMPLEMENTAR  // THIS WILL BE IMPLEMENTED AS INTERFACE
-
     private String codi;
     private int numeroAula;
     private double costPerDia;
@@ -57,11 +54,9 @@ abstract public class Aula implements UnitatUniversitat{
         this.costPerDia = costPerDia;
     }
 
-
-    // metode updateUnitatUniversitat() - implementacio part del mètode que sempre s'emprarà
     /*
      *
-     * Nom del mètode: updateUnitatUniversitat
+     * Nom del mètode: updateUnitatUniversitat - Implementacio part del mètode que sempre s'emprarà a les classes que heretin d'Aula
      * 
      * Paràmetres: cap
      * 
@@ -86,9 +81,10 @@ abstract public class Aula implements UnitatUniversitat{
         costPerDia = Double.parseDouble(DADES.nextLine());
     }
     
+
     /*
      *
-     * Nom del mètode: showUnitatUniversitat
+     * Nom del mètode: showUnitatUniversitat - Implementació part del mètode que sempre s'emprarà
      * 
      * Paràmetres: cap
      * 
@@ -97,7 +93,6 @@ abstract public class Aula implements UnitatUniversitat{
      * 
      * Retorn: cap
      */
-    // metode showUnitatUniversitat() - implementacio part del mètode que sempre s'emprarà
     public void showUnitatUniversitat() {
         System.out.println("\nLes dades de l'aula amb codi " + this.getCodi() + " són: ");
         System.out.println("\nNúmero de l'aula: " + this.getNumeroAula());
@@ -105,20 +100,19 @@ abstract public class Aula implements UnitatUniversitat{
     }
 
     /*
-     * AQUEST METODE SERA DIFERENT PER CADA CLASSE
-     * Nom del mètode: costManteniment
+     * 
+     * Nom del mètode: costManteniment - Aquest mètode serà diferent segons la classe que l'hereti
      * 
      * Paràmetres: cap
      * 
      * Accions:
      * - Mètode que calcula el cost de manteniment del Aula actual
      *   a partir del seu cost per dia.
-     *   El cost de manteniment per dia és un 20% del cost per dia de l'aula
      * 
      * Retorn: cost de manteniment de l'aula (double).
      */
     /* */
     // metode abstracte -> haura de ser implementat per la resta de classes
-    public abstract double costManteniment();
+    public abstract double costManteniment(); // el fem abstracte ja que no te cap implementacio per la classe pare i es obligatori per qui l'hereti
     
 }

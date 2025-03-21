@@ -14,10 +14,9 @@ public class Campus implements UnitatUniversitat {
 
     private String nomCampus;
     private String ubicacio;
-    private String codi; // nou atribute codi per Campus
 
     private Aula[ ] aula = new Aula[300]; // array per guardar els tres tipus d'aules (Estandard, Informatica i Laboratori)
-    private int pAula= 0; // pointer que indica primera posició de l'array d'aules que esta buit
+    private int pAula= 0; // pointer que indica primera posició de l'array d'aules que està buit
 
     
     /**
@@ -281,7 +280,7 @@ public class Campus implements UnitatUniversitat {
         for (int i = 0; i < pAula; i++) {
             if (aula[i].getCodi().equals(codi)) {
                 
-                // No nomes el codi d'aula ha de ser el mateix, sinó que també hem de tenir el mateix tipus d'Aula de l'objecte amb que comparem
+                // No només el codi de l'aula ha de ser el mateix, sinó que també hem de tenir el mateix tipus d'Aula de l'objecte amb que comparem
                 switch (tipusAula) {
                     case 1:
                         if (aula[i] instanceof AulaEstandard){

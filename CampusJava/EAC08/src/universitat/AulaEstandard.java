@@ -54,7 +54,7 @@ public class AulaEstandard extends Aula {
 
     /*
      *
-     * Nom del mètode: updateUnitatUniversitat
+     * Nom del mètode: updateUnitatUniversitat - No cal afegir cap nova funcionalitat per AulaEstandard en relación amb la funcionalitat bàsica que ja incorpora Aula
      * 
      * Paràmetres: cap
      * 
@@ -67,7 +67,7 @@ public class AulaEstandard extends Aula {
      */
     public void updateUnitatUniversitat() {
 
-        super.updateUnitatUniversitat(); // No cal afegir cap nova funcionalitat per a aula estandard en relación amb la funcionalitat basica que ja s'ha afegit a la classe Aula
+        super.updateUnitatUniversitat(); 
 
     }
     

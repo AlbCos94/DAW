@@ -208,7 +208,7 @@ public class Application {
      * 
      * Nom del mètode: menu Aules 
      *     
-     * Heu de desenvolupar el menuAulesamb les opcions que podeu veure.
+     * Heu de desenvolupar el menuAules amb les opcions que podeu veure.
      * Nota: penseu que quan arribem aquí, l'atribut universitatActual no és null
      * 
      * Input parameters:
@@ -216,18 +216,18 @@ public class Application {
      * 
      * 
      * Opció 0. Sortir -->       Surt del menú i retorna al menú principal
-     * Opció 1. Alta -->         Crea Aula estàndard de la universitat actual afegint-la a un Campus. 
-     *                           Penseu que Universitat sap afegir Aules estàndard a un Campus seleccionat.       
-     * Opció 2. Modificar -->    Permet modificar AulesEstàndard de la universitat actual. Penseu que totes les 
+     * Opció 1. Alta -->         Crea Aula de la universitat actual afegint-la a un Campus i segons el tipus indicat. 
+     *                           Penseu que Universitat sap afegir Aules a un Campus seleccionat.       
+     * Opció 2. Modificar -->    Permet modificar Aules de la universitat actual. Penseu que totes les 
      *                           AulesEstandard d'una universitat pertanyen a un campus d'aquesta universitat i que 
-     *                           Universitat sap modificar AulaEstàndard que pertany a un dels seus Campus.
-     * Opció 3. Llista AulesEstandard --> Imprimeix les dades de totes les AulesEstandard de la universitat actual.
+     *                           Universitat sap modificar Aula que pertany a un dels seus Campus.
+     * Opció 3. Llista AulesEstandard --> Imprimeix les dades de totes les Aules d'un tipus de la universitat actual.
      *  
      * A més, heu de fer una estructura iterativa per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida
      *
      * Recomanacions:
      * - estructura de control switch-case per bifurcar les opcions
-     * - si no s'ha introduït cap opció de les de la llista, s'ha de mostrar el missatge "S'ha de seleccionar una opció correcta del menú."
+     * - si no s'ha introduït cap opció de la llista, s'ha de mostrar el missatge "S'ha de seleccionar una opció correcta del menú."
      * - definiu una variable opcio de tipus enter
      */
     public static void menuAules(int tipus) {
@@ -300,7 +300,7 @@ public class Application {
                     break;
 
                 case 3:
-
+                    // Nomes mostrem les aules del tipus segons el menu on ens trobem
                     switch (tipus) {
                         case 1:
                             for (int i = 0; i < universitatActual.getpCampus(); i++) {

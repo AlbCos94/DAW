@@ -1,5 +1,5 @@
 /*
- * Classe que defineix una aul d'informàtica d'una universitat. 
+ * Classe que defineix una aula d'informàtica d'una universitat. 
  * Es defineix pel seu codi, número d'aula, el seu cost per dia i el tamany de l'aula en metres quadrats.
  */
 package universitat;
@@ -23,18 +23,18 @@ public class AulaInformatica extends Aula {
      */
     public AulaInformatica(String codi, int numeroAula, double costPerDia, double areaEnMetresQuadrats) {
 
-        // crida al constructor de Aula pels atributs principal
+        // Crida al constructor d'Aula pels atributs principals
         super(codi, numeroAula, costPerDia);
         // Inicialitzacio de l'atribut propi de AulaInformatica
         this.areaEnMetresQuadrats = areaEnMetresQuadrats;
     }
 
 
-    // Aquest getter es particular per la clase AulaInformatica
+    // Aquest getter es particular per la classe AulaInformatica
     public double getAreaEnMetresQuadrats() {
         return this.areaEnMetresQuadrats;
     }
-    // Aquest setter es particular per la clase AulaInformatica
+    // Aquest setter es particular per la classe AulaInformatica
     public void setAreaEnMetresQuadrats(double areaEnMetresQuadrats) {
         this.areaEnMetresQuadrats = areaEnMetresQuadrats;
     }
@@ -84,7 +84,7 @@ public class AulaInformatica extends Aula {
         // Preguntes base d'atributs d'Aula implementades en classe Aula
         super.updateUnitatUniversitat();
         
-        // Es pregunta per l'atribut particular de l'aula d'informatica
+        // Es pregunta per l'atribut particular de l'aula d'informàtica
         System.out.println("\nÀrea en metres quadrats de l'aula d'informàtica: " + this.getAreaEnMetresQuadrats());
         System.out.println("Entra el nou valor de l'àrea en metres quadrats de l'aula d'informàtica:");
         areaEnMetresQuadrats = Double.parseDouble(DADES.nextLine());
@@ -101,10 +101,10 @@ public class AulaInformatica extends Aula {
      */
     public void showUnitatUniversitat() {
 
-        // Informacio basica de l'aula
+        // Informacio bàsica de l'aula - implementada a la classe pare Aula
         super.showUnitatUniversitat();
 
-        // Atributs particulars de l'aula d'informatica
+        // Atributs particulars de l'aula d'informàtica
         System.out.println("\nL'àrea en metres quadrats de l'aula: " + this.getAreaEnMetresQuadrats());
         System.out.println("\nCost de manteniment: " + this.costManteniment() + " EUR");
     }
