@@ -7,6 +7,9 @@ package universitat;
 
 import static universitat.UnitatUniversitat.DADES;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
@@ -14,9 +17,15 @@ public class Universitat implements UnitatUniversitat {
 
     private String nomUniversitat;
     private String ubicacioSeu;
+
+
+    private List<Campus> campus = new ArrayList<Campus>(5);
+
+    /* 
     private Campus[] campus = new Campus[5];
     private int pCampus = 0; //Primera posició buida de l'array de campus
-   
+   */
+
     public Universitat(String nomUniversitat, String ubicacioSeu) {
         this.nomUniversitat = nomUniversitat;
         this.ubicacioSeu = ubicacioSeu;
@@ -38,6 +47,15 @@ public class Universitat implements UnitatUniversitat {
         this.ubicacioSeu = ubicacioSeu;
     }
 
+    public void setCampus(List<Campus> campus) {
+        this.campus = new ArrayList<>(campus); 
+    }
+
+    public List<Campus> getCampus() {
+        return this.campus; 
+    }
+
+    /* 
     public Campus[] getCampus() {
         return this.campus;
     }
@@ -53,7 +71,8 @@ public class Universitat implements UnitatUniversitat {
     public void setpCampus(int pCampus) {
         this.pCampus = pCampus;
     }
-    
+    */
+
     public static Universitat addUniversitat() {
         
         String nomUniversitat, ubicacioSeu;
@@ -81,9 +100,15 @@ public class Universitat implements UnitatUniversitat {
     public double costManteniment() {
         double costTotal = 0;
 
+        for (int i = 0; i < this.campus.size(); i++) {
+            costTotal += campus.get(i).costManteniment();
+        }
+
+        /* 
         for (int i = 0; i < pCampus; i++) {
             costTotal += campus[i].costManteniment();
         }
+        */
 
         return costTotal;
     }
@@ -101,8 +126,11 @@ public class Universitat implements UnitatUniversitat {
         Campus nouCampus = Campus.addCampus();
 
         if (selectCampus(nouCampus.getNomCampus()) == -1) {
-            campus[pCampus] = nouCampus;
-            pCampus++;
+            campus.add(nouCampus);
+            /* 
+                campus[pCampus] = nouCampus;
+                pCampus++;
+            */
         } else {
             System.out.println("\nEl campus ja existeix");
         }
@@ -114,11 +142,20 @@ public class Universitat implements UnitatUniversitat {
             nom = DADES.nextLine();
         }
 
+
+        for (int i = 0; i < this.campus.size(); i++) {
+            if (campus.get(i).getNomCampus().equals(nom)) {
+                return i;
+            }
+        }
+
+        /* 
         for (int i = 0; i < pCampus; i++) {
             if (campus[i].getNomCampus().equals(nom)) {
                 return i;
             }
-        }
+        }*/
+
 
         return -1;
     }
@@ -129,7 +166,8 @@ public class Universitat implements UnitatUniversitat {
         int index = selectCampus(null);
 
         if (index != -1) {
-            campus[index].addAulaEstandard();
+            campus.get(index).addAulaEstandard();
+            //campus[index].addAulaEstandard();
         } else {
             System.out.println("\nEl campus no existeix");
         }
@@ -138,6 +176,23 @@ public class Universitat implements UnitatUniversitat {
     public void updateAulaEstandardCampus() {
         int indexCampus = selectCampus(null);
 
+
+        if (indexCampus != -1) {
+            int indexAulaEstandard = campus.get(indexCampus).selectAula(1, null);
+
+            if (indexAulaEstandard != -1) {
+
+                this.campus.get(indexCampus).getAules().get(indexAulaEstandard).updateUnitatUniversitat();
+                
+            } else {
+                System.out.println("\nL'aula estàndard no existeix");
+            }
+        } else {
+            System.out.println("\nEl campus no existeix");
+        }
+
+
+        /* 
         if (indexCampus != -1) {
             int indexAulaEstandard = campus[indexCampus].selectAula(1, null);
 
@@ -149,13 +204,15 @@ public class Universitat implements UnitatUniversitat {
         } else {
             System.out.println("\nEl campus no existeix");
         }
+        */
     }
 
     public void addAulaInformaticaCampus() {
         int index = selectCampus(null);
 
         if (index != -1) {
-            campus[index].addAulaInformatica();
+            campus.get(index).addAulaInformatica();
+            //campus[index].addAulaInformatica();
         } else {
             System.out.println("\nEl campus no existeix");
         }
@@ -163,6 +220,26 @@ public class Universitat implements UnitatUniversitat {
 
     public void updateAulaInformaticaCampus() {
         int indexCampus = selectCampus(null);
+
+
+        if (indexCampus != -1) {
+            int indexAulaInformatica = campus.get(indexCampus).selectAula(2, null);
+
+            if (indexAulaInformatica != -1) {
+
+                this.campus.get(indexCampus).getAules().get(indexAulaInformatica).updateUnitatUniversitat();
+                //Campus campus_i = ((Universitat) campus).getCampus().get(indexCampus); 
+                
+            } else {
+                System.out.println("\nL'aula d'informàtica no existeix");
+            }
+        } else {
+            System.out.println("\nEl campus no existeix");
+        }
+
+
+
+        /* 
 
         if (indexCampus != -1) {
             int indexAulaInformatica = campus[indexCampus].selectAula(2, null);
@@ -175,13 +252,18 @@ public class Universitat implements UnitatUniversitat {
         } else {
             System.out.println("\nEl campus no existeix");
         }
+
+        */
+
+
     }
 
     public void addLaboratoriCampus() {
         int index = selectCampus(null);
 
         if (index != -1) {
-            campus[index].addLaboratori();
+            campus.get(index).addLaboratori();
+            //campus[index].addLaboratori();
         } else {
             System.out.println("\nEl campus no existeix");
         }
@@ -189,6 +271,24 @@ public class Universitat implements UnitatUniversitat {
 
     public void updateLaboratoriCampus() {
         int indexCampus = selectCampus(null);
+
+
+        if (indexCampus != -1) {
+            int indexLaboratori = campus.get(indexCampus).selectAula(3, null);
+
+            if (indexLaboratori != -1) {
+
+                this.campus.get(indexCampus).getAules().get(indexLaboratori).updateUnitatUniversitat();
+                //campus[indexCampus].getAules()[indexLaboratori].updateUnitatUniversitat();
+            } else {
+                System.out.println("\nEl laboratori no existeix");
+            }
+        } else {
+            System.out.println("\nEl campus no existeix");
+        }
+
+
+        /* 
 
         if (indexCampus != -1) {
             int indexLaboratori = campus[indexCampus].selectAula(3, null);
@@ -201,6 +301,8 @@ public class Universitat implements UnitatUniversitat {
         } else {
             System.out.println("\nEl campus no existeix");
         }
+        */
+
     }
 }
 

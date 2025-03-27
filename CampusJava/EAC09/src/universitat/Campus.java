@@ -8,6 +8,9 @@ package universitat;
 
 import static universitat.UnitatUniversitat.DADES;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
@@ -16,8 +19,9 @@ public class Campus implements UnitatUniversitat {
     private String nomCampus;
     private String ubicacio;
 
-    private Aula[] aules = new Aula[300];
-    private int pAules = 0; //Primera posició buida de l'array d'aules
+    private List<Aula> aules = new ArrayList<Aula>(300); // programming to an interface (Interface-based programming) - List is the interface and ArrayList is the implementation ( it is easy to change the implementation without modifying other parts of the code)
+    //private Aula[] aules = new Aula[300];
+    //private int pAules = 0; //Primera posició buida de l'array d'aules
 
     public Campus(String nomCampus, String ubicacio) {
         this.nomCampus = nomCampus;
@@ -40,6 +44,19 @@ public class Campus implements UnitatUniversitat {
         this.ubicacio = ubicacio;
     }
 
+
+    
+    public void setAules(List<Aula> aules) {
+        this.aules = new ArrayList<>(aules); 
+    }
+
+    public List<Aula> getAules() {
+        return this.aules; 
+    }
+
+
+
+    /* 
     public Aula[] getAules() {
         return aules;
     }
@@ -55,7 +72,7 @@ public class Campus implements UnitatUniversitat {
     public void setpAules(int pAules) {
         this.pAules = pAules;
     }
-    
+    */
     
 
     public static Campus addCampus() {
@@ -84,9 +101,15 @@ public class Campus implements UnitatUniversitat {
     public double costManteniment() {
         double costTotal = 0;
 
+        for (int i = 0; i < this.aules.size(); i++) {
+            costTotal += aules.get(i).costManteniment();
+        }
+
+        /* 
         for (int i = 0; i < pAules; i++) {
             costTotal += aules[i].costManteniment();
         }
+        */
 
         return costTotal;
     }
@@ -103,8 +126,11 @@ public class Campus implements UnitatUniversitat {
         AulaEstandard nouAulaEstandard = AulaEstandard.addAulaEstandard();
 
         if (selectAula(1, nouAulaEstandard.getCodi()) == -1) {
+            aules.add(nouAulaEstandard);
+            /* 
             aules[pAules] = nouAulaEstandard;
             pAules++;
+            */
         } else {
             System.out.println("\nAula Estàndard ja existeix");
         }
@@ -114,8 +140,11 @@ public class Campus implements UnitatUniversitat {
         AulaInformatica novaAulaInformatica = AulaInformatica.addAulaInformatica();
 
         if (selectAula(2, novaAulaInformatica.getCodi()) == -1) {
+            aules.add(novaAulaInformatica);
+            /* 
             aules[pAules] = novaAulaInformatica;
             pAules++;
+            */
         } else {
             System.out.println("\nAula d'informàtica ja existeix");
         }
@@ -125,8 +154,13 @@ public class Campus implements UnitatUniversitat {
         Laboratori novaLaboratori = Laboratori.addLaboratori();
 
         if (selectAula(3, novaLaboratori.getCodi()) == -1) {
+            
+            aules.add(novaLaboratori);
+            /* 
             aules[pAules] = novaLaboratori;
             pAules++;
+            */
+
         } else {
             System.out.println("\nLaboratori ja existeix");
         }
@@ -153,17 +187,21 @@ public class Campus implements UnitatUniversitat {
         int posAula = -1; //Posició que ocupa l'aula seleccionada dins l'array d'aules del campus
 
         //Seleccionem la posició que ocupa l'aula dins l'array d'aules del campus
-        for (int i = 0; i < pAules; i++) {
-            if (aules[i] instanceof AulaEstandard && tipusAula == 1) {
-                if (((AulaEstandard) aules[i]).getCodi().equals(codi)) {
+        //for (int i = 0; i < pAules; i++) {
+        for (int i = 0; i < this.aules.size(); i++) {
+
+            Aula aula_i = this.aules.get(i);
+
+            if (aula_i instanceof AulaEstandard && tipusAula == 1) {
+                if (((AulaEstandard) aula_i).getCodi().equals(codi)) {
                     return i;
                 }
-            } else if (aules[i] instanceof AulaInformatica && tipusAula == 2) {
-                if (((AulaInformatica) aules[i]).getCodi().equals(codi)) {
+            } else if (aula_i instanceof AulaInformatica && tipusAula == 2) {
+                if (((AulaEstandard) aula_i).getCodi().equals(codi)) {
                     return i;
                 }
-            } else if (aules[i] instanceof Laboratori && tipusAula == 3) {
-                if (((Laboratori) aules[i]).getCodi().equals(codi)) {
+            } else if (aula_i instanceof Laboratori && tipusAula == 3) {
+                if (((Laboratori) aula_i).getCodi().equals(codi)) {
                     return i;
                 }
             }
