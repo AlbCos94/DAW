@@ -205,14 +205,14 @@ public class Application {
                     int indexSel = universitatActual.selectCampus(null);
 
                     if (indexSel >= 0) {
-                        universitatActual.getCampus()[indexSel].updateUnitatUniversitat();
+                        universitatActual.getCampus().get(indexSel).updateUnitatUniversitat();
                     } else {
                         System.out.println("\nNo existeix aquest Campus");
                     }
                     break;
                 case 3:
-                    for (int i = 0; i < universitatActual.getpCampus(); i++) {
-                        universitatActual.getCampus()[i].showUnitatUniversitat();
+                    for (int i = 0; i < universitatActual.getCampus().size(); i++) {
+                        universitatActual.getCampus().get(i).showUnitatUniversitat();
                     }
                     break;
                 default:
@@ -265,12 +265,12 @@ public class Application {
                     }
                     break;
                 case 3:
-                    for (int i = 0; i < universitatActual.getpCampus(); i++) {
-                        for (int j = 0; j < universitatActual.getpCampus()[i].getpAules(); j++) {
-                            if (universitatActual.getpCampus()[i].getpAules()[j] instanceof AulaEstandard && tipus == 1 ||
-                                universitatActual.getpCampus()[i].getpAules()[j] instanceof AulaInformatica && tipus == 2 ||
-                                universitatActual.getpCampus()[i].getpAules()[j] instanceof Laboratori && tipus == 3) {
-                                universitatActual.getpCampus()[i].getpAules()[j].showUnitatUniversitat();
+                    for (int i = 0; i < universitatActual.getCampus().size(); i++) {
+                        for (int j = 0; j < universitatActual.getCampus().get(i).getAules().size(); j++) {
+                            if (universitatActual.getCampus().get(i).getAules().get(j) instanceof AulaEstandard && tipus == 1 ||
+                                universitatActual.getCampus().get(i).getAules().get(j) instanceof AulaInformatica && tipus == 2 ||
+                                universitatActual.getCampus().get(i).getAules().get(j) instanceof Laboratori && tipus == 3) {
+                                    universitatActual.getCampus().get(i).getAules().get(j).showUnitatUniversitat();
                             }
                         }
                     }
