@@ -5,6 +5,7 @@ import universitat.Universitat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import persistencia.GestorPersistencia;
 import universitat.AulaEstandard;
 import universitat.AulaInformatica;
 import universitat.GestorUniversitatsException;
@@ -21,6 +22,11 @@ public class Application {
     private static int pUniversitats = 0; //Primera posició buida del vector universitats
     private static Universitat universitatActual = null;
 
+    // Attributes to handle XML files
+    private final static String FITXER = "universitat";
+    private static GestorPersistencia gp = new GestorPersistencia();
+
+
     public static void main(String[] args) {
 
         try {
@@ -28,8 +34,6 @@ public class Application {
         } catch (GestorUniversitatsException e) {
             System.out.println (e.getMessage());
         }
-        
-    
     
     }
 
@@ -130,6 +134,8 @@ public class Application {
             System.out.println("\n2. Seleccionar");
             System.out.println("\n3. Modificar");
             System.out.println("\n4. Llistar");
+            System.out.println("\n5. Desar universitat");
+            System.out.println("\n6. Carregar universitat");
             System.out.println("\n");  
             
             opcio = Integer.parseInt(DADES.nextLine());
@@ -173,6 +179,15 @@ public class Application {
                     for (int i = 0; i < pUniversitats; i++) {
                         universitats[i].showUnitatUniversitat();
                     }
+                    break;
+                case 5:
+                    // Metode per desar una universitat    
+
+                    break;
+
+                case 6:
+                    // Metode per carregar una universitat    
+
                     break;
                 default:
                     System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
