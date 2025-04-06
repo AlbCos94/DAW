@@ -2,6 +2,8 @@ package persistencia;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,9 +12,14 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
+
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+
+import universitat.AulaEstandard;
+import universitat.AulaInformatica;
 import universitat.GestorUniversitatsException;
+import universitat.Laboratori;
 import universitat.Universitat;
 
 /**
@@ -69,6 +76,72 @@ public class GestorXML implements ProveedorPersistencia {
      * Retorn: cap
      */
     public void construeixModel(Universitat universitat) throws GestorUniversitatsException {
+
+
+        // Construir un model sobre l'atribut "doc"
+        try {
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            this.doc = builder.newDocument();
+
+        
+            // Primer afegir l'element arrel "universitat" al document
+            Element arrel = this.doc.createElement("universitat");
+            arrel.setAttribute("nom", universitat.getNomUniversitat());
+            arrel.setAttribute("ubicacio", universitat.getUbicacioSeu());
+            this.doc.appendChild(arrel);
+
+            // Afegir els campus de la universitat com a fills a doc
+            for (int i = 0; i < universitat.getCampus().size(); i++) {
+                Element campus = doc.createElement("campus");
+                campus.setAttribute("nom", universitat.getCampus().get(i).getNomCampus()); // get Campus name
+                campus.setAttribute("ubicacio", universitat.getCampus().get(i).getUbicacio()); // get Campus location
+
+                // recorrem l'array d'aules del campus corresponent
+                for (int j = 0; j < universitat.getCampus().get(i).getAules().size(); j++) {
+                    if (universitat.getCampus().get(i).getAules().get(j) instanceof AulaEstandard) {
+                        AulaEstandard aulaEstandard = (AulaEstandard) universitat.getCampus().get(i).getAules().get(j); // inicialitzem indicant que es AulaEstandard
+
+                        Element aula = doc.createElement("aulaEstandard");
+                        aula.setAttribute("codi", aulaEstandard.getCodi());
+                        aula.setAttribute("numeroAula", String.valueOf(aulaEstandard.getNumeroAula()));
+                        aula.setAttribute("costPerDia", String.valueOf(aulaEstandard.getCostPerDia()));
+
+                        campus.appendChild(aula); // once the element has been created we append it to campus
+                    } else if( universitat.getCampus().get(i).getAules().get(j) instanceof AulaInformatica) {
+                        AulaInformatica aulaInformatica = (AulaInformatica) universitat.getCampus().get(i).getAules().get(j); // inicialitzem indicant que es AulaInformatica
+                        
+                        Element aula = doc.createElement("aulaInformatica");
+                        aula.setAttribute("codi", aulaInformatica.getCodi());
+                        aula.setAttribute("numeroAula", String.valueOf(aulaInformatica.getNumeroAula()));
+                        aula.setAttribute("areaEnMetresQuadrats", String.valueOf(aulaInformatica.getAreaEnMetresQuadrats()));
+                        aula.setAttribute("costPerDia", String.valueOf(aulaInformatica.getCostPerDia()));
+
+                        campus.appendChild(aula); // once the element has been created we append it to campus
+                    } else if( universitat.getCampus().get(i).getAules().get(j) instanceof Laboratori) {
+                        Laboratori laboratori = (Laboratori) universitat.getCampus().get(i).getAules().get(j); // inicialitzem indicant que es AulaInformatica
+                        
+                        Element aula = doc.createElement("laboratori");
+                        aula.setAttribute("codi", laboratori.getCodi());
+                        aula.setAttribute("numeroAula", String.valueOf(laboratori.getNumeroAula()));
+                        aula.setAttribute("capacitat", String.valueOf(laboratori.getCapacitat()));
+                        aula.setAttribute("costPerDia", String.valueOf(laboratori.getCostPerDia()));
+
+                        campus.appendChild(aula); // once the element has been created we append it to campus
+                    } else {
+
+                        throw new GestorUniversitatsException("GestorXML.model");
+                    }
+                }
+
+                arrel.appendChild(campus); // després de popular totes les aules del campus, afegim el node al node arrel 
+
+            }
+
+        } catch (Exception e){
+            throw new GestorUniversitatsException("GestorXML.model");
+        }
+
 
     }
 

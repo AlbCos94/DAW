@@ -181,6 +181,7 @@ public class Application {
                     }
                     break;
                 case 5:
+                    gp.desarUniversitat("XML",universitatActual.getNomUniversitat(), universitatActual);
                     // Metode per desar una universitat    
 
                     break;
