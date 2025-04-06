@@ -122,8 +122,13 @@ public class Campus implements UnitatUniversitat {
     }
     
    
-    public void addAulaEstandard() {
-        AulaEstandard nouAulaEstandard = AulaEstandard.addAulaEstandard();
+    public void addAulaEstandard(AulaEstandard nouAulaEstandard) {
+        
+        if (nouAulaEstandard == null){
+            nouAulaEstandard = AulaEstandard.addAulaEstandard();
+        }   
+        
+        //AulaEstandard nouAulaEstandard = AulaEstandard.addAulaEstandard();
 
         if (selectAula(1, nouAulaEstandard.getCodi()) == -1) {
             aules.add(nouAulaEstandard);
@@ -134,10 +139,19 @@ public class Campus implements UnitatUniversitat {
         } else {
             System.out.println("\nAula Estàndard ja existeix");
         }
+
+
+
+
     }
 
-    public void addAulaInformatica() {
-        AulaInformatica novaAulaInformatica = AulaInformatica.addAulaInformatica();
+    public void addAulaInformatica(AulaInformatica novaAulaInformatica) {
+
+        if (novaAulaInformatica == null){
+            novaAulaInformatica = AulaInformatica.addAulaInformatica();
+        }   
+
+        //AulaInformatica novaAulaInformatica = AulaInformatica.addAulaInformatica();
 
         if (selectAula(2, novaAulaInformatica.getCodi()) == -1) {
             aules.add(novaAulaInformatica);
@@ -150,12 +164,17 @@ public class Campus implements UnitatUniversitat {
         }
     }
 
-    public void addLaboratori() {
-        Laboratori novaLaboratori = Laboratori.addLaboratori();
+    public void addLaboratori(Laboratori nouLaboratori) {
+        
+        if (nouLaboratori==null){
+            nouLaboratori = Laboratori.addLaboratori();
+        }
+        
+        //Laboratori nouLaboratori = Laboratori.addLaboratori();
 
-        if (selectAula(3, novaLaboratori.getCodi()) == -1) {
+        if (selectAula(3, nouLaboratori.getCodi()) == -1) {
             
-            aules.add(novaLaboratori);
+            aules.add(nouLaboratori);
             /* 
             aules[pAules] = novaLaboratori;
             pAules++;
