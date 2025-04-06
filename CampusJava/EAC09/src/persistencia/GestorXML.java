@@ -16,8 +16,10 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import universitat.Aula;
 import universitat.AulaEstandard;
 import universitat.AulaInformatica;
+import universitat.Campus;
 import universitat.GestorUniversitatsException;
 import universitat.Laboratori;
 import universitat.Universitat;
@@ -189,5 +191,66 @@ public class GestorXML implements ProveedorPersistencia {
      */
     private void llegirFitxerUniversitat() throws GestorUniversitatsException {
 
+        // "doc" ja conté l'arxiu parsejat per "DocumentBuilderFactory"
+        try {
+            // Crearem l'objecte Universitat a través de toda la informació continguna al fitxer XML carregat
+            
+            // Obtencio de l'element arrel del XML per iniciar els recorreguts
+            Element arrel = this.doc.getDocumentElement();
+            
+            this.universitat = new Universitat(arrel.getAttribute("nom"), arrel.getAttribute("ubicacio")); // construim la universitat a través dels atributs de l'element arrel del XML
+
+            // Recorrem els campus:
+            NodeList listCampus = arrel.getChildNodes(); // obtenim tots els campus, aqui tambe es troben els atributs de "nom de la universitat" i de la "ubicacio de la uni"
+            
+            for (int i = 0; i < listCampus.getLength(); i++){
+                
+                Node nCampus = (Node) listCampus.item(i);
+
+                if (nCampus.getNodeType() == Node.ELEMENT_NODE){ // ens trobem dins element de un campus
+                    Element eCampus  = (Element) nCampus;
+
+                    Campus campus = new Campus(eCampus.getAttribute("nom"), eCampus.getAttribute("ubicacio")); // construim el campus amb el seu nom i la seva ubicacio
+
+                    NodeList listAules = eCampus.getChildNodes();
+
+                    for (int j = 0; j < listAules.getLength(); j++){
+
+                        Node nAula = (Node) listAules.item(j);
+
+                        if (nAula.getNodeType() == Node.ELEMENT_NODE){ // ens trobem dins element de un campus
+
+                            Element eAula  = (Element) nAula;
+
+                            if (eAula.getNodeName() == "aulaEstandard"){
+                                AulaEstandard novaAula = new AulaEstandard( eAula.getAttribute("codi"), Integer.parseInt(eAula.getAttribute("numeroAula")), Double.parseDouble( eAula.getAttribute("costPerDia")) );
+                                campus.addAulaEstandard(novaAula);
+
+                            } else if (eAula.getNodeName() == "aulaInformatica"){
+                                AulaInformatica novaAula = new AulaInformatica( eAula.getAttribute("codi"), Integer.parseInt(eAula.getAttribute("numeroAula")), Double.parseDouble( eAula.getAttribute("costPerDia")), Double.parseDouble( eAula.getAttribute("areaEnMetresQuadrats")) );
+                                campus.addAulaInformatica(novaAula);(novaAula);
+                            } else if (eAula.getNodeName() == "laboratori"){
+                                Laboratori novaAula = new Laboratori( eAula.getAttribute("codi"), Integer.parseInt(eAula.getAttribute("numeroAula")), Double.parseDouble( eAula.getAttribute("costPerDia")), Integer.parseInt( eAula.getAttribute("capacitat")) );
+                                campus.addLaboratori(novaAula);
+                            } else {
+
+                                throw new GestorUniversitatsException("GestorXML.model");
+                            }
+                        }
+                    }
+                
+                }
+                
+
+                //universitat.setCampus  AQUI SE DEBERIA AÑADIR CAMPUS??
+                
+                
+                
+            }
+
+
+        } catch (Exception e){
+            throw new GestorUniversitatsException("GestorXML.model");
+        }
     }
 }
