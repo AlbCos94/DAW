@@ -3,6 +3,7 @@ package persistencia;
 import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -201,24 +202,25 @@ public class GestorXML implements ProveedorPersistencia {
             this.universitat = new Universitat(arrel.getAttribute("nom"), arrel.getAttribute("ubicacio")); // construim la universitat a través dels atributs de l'element arrel del XML
 
             // Recorrem els campus:
-            NodeList listCampus = arrel.getChildNodes(); // obtenim tots els campus, aqui tambe es troben els atributs de "nom de la universitat" i de la "ubicacio de la uni"
+            NodeList listCampus = arrel.getChildNodes(); // obtenim tots els campus, aqui tambe es troben els atributs de "nom del campus" i  la "ubicacio del campus"
             
             for (int i = 0; i < listCampus.getLength(); i++){
                 
                 Node nCampus = (Node) listCampus.item(i);
 
                 if (nCampus.getNodeType() == Node.ELEMENT_NODE){ // ens trobem dins element de un campus
+                    
                     Element eCampus  = (Element) nCampus;
 
                     Campus campus = new Campus(eCampus.getAttribute("nom"), eCampus.getAttribute("ubicacio")); // construim el campus amb el seu nom i la seva ubicacio
 
-                    NodeList listAules = eCampus.getChildNodes();
+                    NodeList listAules = eCampus.getChildNodes(); // aqui tenim per cada campus les aules mes els seus atributs
 
                     for (int j = 0; j < listAules.getLength(); j++){
 
                         Node nAula = (Node) listAules.item(j);
 
-                        if (nAula.getNodeType() == Node.ELEMENT_NODE){ // ens trobem dins element de un campus
+                        if (nAula.getNodeType() == Node.ELEMENT_NODE){ // ens trobem dins element de una aula ( no en els atributs de aula)
 
                             Element eAula  = (Element) nAula;
 
@@ -228,23 +230,26 @@ public class GestorXML implements ProveedorPersistencia {
 
                             } else if (eAula.getNodeName() == "aulaInformatica"){
                                 AulaInformatica novaAula = new AulaInformatica( eAula.getAttribute("codi"), Integer.parseInt(eAula.getAttribute("numeroAula")), Double.parseDouble( eAula.getAttribute("costPerDia")), Double.parseDouble( eAula.getAttribute("areaEnMetresQuadrats")) );
-                                campus.addAulaInformatica(novaAula);(novaAula);
+                                campus.addAulaInformatica(novaAula);
+
                             } else if (eAula.getNodeName() == "laboratori"){
                                 Laboratori novaAula = new Laboratori( eAula.getAttribute("codi"), Integer.parseInt(eAula.getAttribute("numeroAula")), Double.parseDouble( eAula.getAttribute("costPerDia")), Integer.parseInt( eAula.getAttribute("capacitat")) );
                                 campus.addLaboratori(novaAula);
+
                             } else {
 
                                 throw new GestorUniversitatsException("GestorXML.model");
                             }
                         }
                     }
+
+
+                    List<Campus> auxListCampus = this.universitat.getCampus();
+                    auxListCampus.add(campus);
+                    this.universitat.setCampus( auxListCampus );
                 
                 }
-                
 
-                //universitat.setCampus  AQUI SE DEBERIA AÑADIR CAMPUS??
-                
-                
                 
             }
 

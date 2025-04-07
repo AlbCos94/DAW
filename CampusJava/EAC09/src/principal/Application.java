@@ -181,13 +181,25 @@ public class Application {
                     }
                     break;
                 case 5:
-                    gp.desarUniversitat("XML",universitatActual.getNomUniversitat(), universitatActual);
+                    gp.desarUniversitat("XML", universitatActual.getNomUniversitat(), universitatActual);
                     // Metode per desar una universitat    
 
                     break;
 
                 case 6:
                     // Metode per carregar una universitat    
+                    gp.carregarUniversitat("XML", Application.FITXER);
+                    Universitat newUniversitat = gp.getGestor().getUniversitat();
+
+                    indexSel = selectUniversitat(newUniversitat);
+
+                    if (indexSel == -1) {
+                        universitats[pUniversitats] = newUniversitat;
+                        pUniversitats++;
+                    } else {
+                        throw new GestorUniversitatsException("3"); // Si la universitat a afegir ja existeix llencem excepció
+                        //System.out.println("\nLa universitat ja existeix");
+                    }
 
                     break;
                 default:
