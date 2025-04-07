@@ -56,11 +56,14 @@ public class Application {
 
             try {
                 opcio = Integer.parseInt(DADES.nextLine());
-            } catch (InputMismatchException e){
+            //} catch (InputMismatchException e){
+            } catch (NumberFormatException e){
+            //} catch (Exception e){
                 throw new GestorUniversitatsException("1");
             }
             
-            
+
+
             switch (opcio) {
                 case 0:
                     break;
@@ -152,8 +155,8 @@ public class Application {
                         universitats[pUniversitats] = novaUniversitat;
                         pUniversitats++;
                     } else {
-                        throw new GestorUniversitatsException("3"); // Si la universitat a afegir ja existeix llencem excepció
-                        //System.out.println("\nLa universitat ja existeix");
+
+                        throw new GestorUniversitatsException("3"); // Si la universitat a afegir ja existeix llencem excepcióS
                     }
 
                     break;
