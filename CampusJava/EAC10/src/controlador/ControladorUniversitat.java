@@ -39,8 +39,7 @@ public class ControladorUniversitat implements ActionListener {
         // Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
         this.afegirListenersMenu();
 
-        // Afegiu els escoltadors de la vista de UniversitatForm
-        this.afegirListenersForm();
+
     }
 
     // El controlador com a listener dels controls de les finestres que gestionen les universitats
@@ -72,6 +71,8 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del formulari de la universitat.
          * 
          */
+        this.universitatForm.gettNomUniversitat().addActionListener(this);
+        this.universitatForm.gettUbicacioSeu().addActionListener(this);
         this.universitatForm.getDesar().addActionListener(this);
         this.universitatForm.getSortir().addActionListener(this);
 
@@ -136,9 +137,12 @@ public class ControladorUniversitat implements ActionListener {
 
             // Comprovem si s'ha arribat al màxim d'universitats -> menys files que el numero maxim universitats
             if ( (this.universitatLlista == null) || ( this.universitatLlista.gettUniversitats().getRowCount() < ControladorPrincipal.getMAXUNIVERSITATS() ) ){
+            //if ( ControladorPrincipal.getUniversitats().length < ControladorPrincipal.getMAXUNIVERSITATS() ){
                 menuUniversitat.setVisible(false);
                 menuUniversitat.dispose(); // release resources of the window
                 this.universitatForm = new UniversitatForm();
+                // Afegiu els escoltadors de la vista de UniversitatForm
+                this.afegirListenersForm();
 
             } else{
 
