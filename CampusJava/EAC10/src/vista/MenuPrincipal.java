@@ -57,7 +57,7 @@ public class MenuPrincipal extends JFrame {
         GridLayout gridLayout = new GridLayout(this.menuButtons.length,1);
         //frameMenuPrincipal.setLayout(gridLayout);
 
-        // Creacio dels botons
+        // Creació dels botons
         menuButtons[0] = new JButton("0. Sortir");
         menuButtons[1] = new JButton("1. Menú Universitats");
         menuButtons[2] = new JButton("2. Menú Aules");

@@ -14,6 +14,8 @@ import vista.MenuPrincipal;
  */
 public class ControladorPrincipal implements ActionListener {
 
+    // ControladorPrincipal serà un Listener que implementa "ActionListener" per la qual cosa capturarà (escoltarà) només a esdeveniments del tipus "ActionEvent"
+
     static private MenuPrincipal menuPrincipal;
     static private final int MAXUNIVERSITATS = 4;
     static private Universitat[] universitats = new Universitat[MAXUNIVERSITATS];
@@ -42,6 +44,7 @@ public class ControladorPrincipal implements ActionListener {
         menuPrincipal = new MenuPrincipal();
 
         //A cada botó del menú, afegiu aquest mateix (ControladorPrincipal) objecte com a listener.
+        // Quan s'apliqui una accio al boto en questió serà aquest controlador l'encarregat de reaccionar a l'esdeveniment
         menuPrincipal.getMenuButtons()[0].addActionListener(this);
         menuPrincipal.getMenuButtons()[1].addActionListener(this);
         menuPrincipal.getMenuButtons()[2].addActionListener(this);
@@ -50,6 +53,7 @@ public class ControladorPrincipal implements ActionListener {
 
     }
 
+    //Unic metode pel tipus de listener "ActionListener" sobreescrit per a poder reaccionar a l'esdeveniment de pitjar un boto
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -62,6 +66,8 @@ public class ControladorPrincipal implements ActionListener {
          * retorna la propietat actionCommand de l'objecte que ha produït l'acció.
          * 
          */
+
+        seleccionarOpcio(e.getActionCommand());
 
     }
 

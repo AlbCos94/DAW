@@ -48,6 +48,33 @@ public class MenuUniversitat extends JFrame {
          * 
          */
 
+        //Contenidor d’alt nivell - Titol Menú Universitats
+        this.setTitle("Menú Universitats");
+
+        // Establir un GridLayout d'una columna per al JFrame
+        GridLayout gridLayout = new GridLayout(this.menuButtons.length,1);
+
+        // Creació dels botons
+        menuButtons[0] = new JButton("0. Sortir");
+        menuButtons[1] = new JButton("1. Alta Universitat");
+        menuButtons[2] = new JButton("2. Seleccionar Universitat");
+        menuButtons[3] = new JButton("3. Llistar Universitats");
+        menuButtons[4] = new JButton("4. Carregar Universitat");
+        menuButtons[5] = new JButton("5. Desar Universitat");
+
+
+        // Afegir els botons al panell per defecte del JFrame
+        this.getContentPane().setLayout(gridLayout);;
+        //panell.setLayout(gridLayout);
+        this.getContentPane().add(menuButtons[0]);
+        this.getContentPane().add(menuButtons[1]);
+        this.getContentPane().add(menuButtons[2]);
+        this.getContentPane().add(menuButtons[3]);
+        this.getContentPane().add(menuButtons[4]);
+        this.getContentPane().add(menuButtons[5]);
+
+        // Set de les dimensions, tancar finestra amb X i fer el frame visible
+        this.showFinestra();
     }
 
     private void showFinestra() {

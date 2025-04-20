@@ -8,6 +8,7 @@ import model.Universitat;
 import persistencia.GestorPersistencia;
 import persistencia.GestorXML;
 import exceptions.GestorUniversitatsException;
+import vista.MenuPrincipal;
 import vista.MenuUniversitat;
 import vista.UniversitatForm;
 import vista.UniversitatLlista;
@@ -32,6 +33,14 @@ public class ControladorUniversitat implements ActionListener {
          * 
          */
 
+        // Inicialitzacio de l'atribut Menu Principal de Vista
+        menuUniversitat = new MenuUniversitat();
+
+        // Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
+        this.afegirListenersMenu();
+
+
+
     }
 
     // El controlador com a listener dels controls de les finestres que gestionen les universitats
@@ -45,6 +54,12 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del menú d'universitats.
          * 
          */
+        this.menuUniversitat.getMenuButtons()[0].addActionListener(this);
+        this.menuUniversitat.getMenuButtons()[1].addActionListener(this);
+        this.menuUniversitat.getMenuButtons()[2].addActionListener(this);
+        this.menuUniversitat.getMenuButtons()[3].addActionListener(this);
+        this.menuUniversitat.getMenuButtons()[4].addActionListener(this);
+        this.menuUniversitat.getMenuButtons()[5].addActionListener(this);
 
     }
 
@@ -87,6 +102,7 @@ public class ControladorUniversitat implements ActionListener {
          * mètode seleccionarOpcio.
          * 
          */
+        seleccionarOpcio(e.getActionCommand());
 
     }
 
@@ -100,6 +116,9 @@ public class ControladorUniversitat implements ActionListener {
             /*
             * TODO Tancar menu d'universitats i tornar al menú principal
             */
+            menuUniversitat.setVisible(false);
+            menuUniversitat.dispose(); // release resources of the window
+            new ControladorPrincipal(); // call again to ControladorPrincipal to show the main menu
             break;
 
         case "1. Alta Universitat":
