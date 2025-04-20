@@ -31,9 +31,22 @@ public class ControladorPrincipal implements ActionListener {
          * cada botó del menú, afegiu aquest mateix (ControladorPrincipal) objecte com a
          * listener.
          * 
-         * Aqui s'haura de mostrar el menu principal , el qual es una finestra "JFrame" amb tres botons amb esdeveniments implementants al metode seleccionarOpcio
+         * Aqui s'haura de mostrar el menu principal , el qual es una finestra "JFrame" amb tres botons amb esdeveniments implementats al metode "seleccionarOpcio"
+         * De  d'executar  un objecte de la classe "MenuPrincipal" dins de vista 
+         * 
+         * Perquè els esdeveniments s’executin en picar els botons ( Sortir, Menu universitars i Menu Aules), heu d’afegir escoltadors d’accions als botons en el constructor del controlador principal.
          * 
          */
+
+        // Inicialitzacio de l'atribut Menu Principal de Vista
+        menuPrincipal = new MenuPrincipal();
+
+        //A cada botó del menú, afegiu aquest mateix (ControladorPrincipal) objecte com a listener.
+        menuPrincipal.getMenuButtons()[0].addActionListener(this);
+        menuPrincipal.getMenuButtons()[1].addActionListener(this);
+        menuPrincipal.getMenuButtons()[2].addActionListener(this);
+
+        //menuPrincipal.addComponentListener(this);
 
     }
 

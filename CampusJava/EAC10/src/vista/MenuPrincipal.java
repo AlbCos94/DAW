@@ -1,8 +1,10 @@
 package vista;
 
+import java.awt.Container;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -26,16 +28,16 @@ public class MenuPrincipal extends JFrame {
          * 
          * - Heu de posar el títol "Menú Principal" a l'objecte JFrame
          * 
-         * - Heu d'establir un layout Grid d'una columna per al JFrame
+         * - Heu d'establir un layout Grid d'una columna per al JFrame 
          * 
          * - Heu de crear els botons del formulari. Cada botó serà un element de l'array
          * de botons amb les etiquetes indicades:
          * 
-         * "0. Sortir"
+         * "0. Sortir"    ->  En picar el botó, la finestra es tanca i el programa acaba.
          * 
-         * "1. Menú Universitats"
+         * "1. Menú Universitats"  ->  En picar el botó s’amaga el menú principal i es crea un objecte ControladorUniversitat. Heu de fer que aquest, en el seu constructor, mostri el menú d’universitats.
          * 
-         * "2. Menú Aules"
+         * "2. Menú Aules" -> En picar el botó es mostrarà el diàleg amb el text “No heu d’implementar aquest menú.”.
          * 
          * - Heu afegir els botons al panell per defecte del JFrame
          * (this.getContentPane()).
@@ -46,6 +48,37 @@ public class MenuPrincipal extends JFrame {
          * d'aquesta classe.
          * 
          */
+
+        //Contenidor d’alt nivell: finestra principal - Titol Menu Principal
+        //JFrame frameMenuPrincipal = new JFrame("Menú Principal");
+        this.setTitle("Menú Principal");
+
+        // Establir un GridLayout d'una columna per al JFrame
+        GridLayout gridLayout = new GridLayout(this.menuButtons.length,1);
+        //frameMenuPrincipal.setLayout(gridLayout);
+
+        // Creacio dels botons
+        menuButtons[0] = new JButton("0. Sortir");
+        menuButtons[1] = new JButton("1. Menú Universitats");
+        menuButtons[2] = new JButton("2. Menú Aules");
+
+        // Afegir els botons al panell per defecte del JFrame
+        this.getContentPane().setLayout(gridLayout);;
+        //panell.setLayout(gridLayout);
+        this.getContentPane().add(menuButtons[0]);
+        this.getContentPane().add(menuButtons[1]);
+        this.getContentPane().add(menuButtons[2]);
+
+        /* 
+        panell.add(menuButtons[0]);
+        panell.add(menuButtons[1]);
+        panell.add(menuButtons[2]);
+
+        */
+
+        //this.add(panell)
+        // Set de l'amplada i l'alcada, permetre que en premer X es tanqui la finestra i fem visible la finestra 
+        this.showFinestra();
 
     }
 
