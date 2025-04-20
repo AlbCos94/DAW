@@ -56,7 +56,7 @@ public class MenuUniversitat extends JFrame {
 
         // Creació dels botons
         menuButtons[0] = new JButton("0. Sortir");
-        menuButtons[1] = new JButton("1. Alta Universitat");
+        menuButtons[1] = new JButton("1. Alta Universitat"); 
         menuButtons[2] = new JButton("2. Seleccionar Universitat");
         menuButtons[3] = new JButton("3. Llistar Universitats");
         menuButtons[4] = new JButton("4. Carregar Universitat");

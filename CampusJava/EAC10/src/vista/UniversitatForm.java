@@ -49,6 +49,48 @@ public class UniversitatForm extends JFrame {
          * 
          */
 
+
+        //Contenidor d’alt nivell - Titol Formulari Universitat
+        this.setTitle("Formulari Universitat");
+
+        // Establir un GridLayout d'una columna per al JFrame
+        GridLayout gridLayout = new GridLayout(6,1);
+
+        // Controls del formulari (JLabels i JTextFields)
+        this.lNomUniversitat = new JLabel();
+        this.lNomUniversitat.setText("NomUniversitat");
+
+        this.tNomUniversitat = new JTextField();
+
+
+        this.lUbicacioSeu = new JLabel();
+        this.lUbicacioSeu.setText("Ubicació");
+
+        this.tUbicacioSeu = new JTextField();
+
+
+        // Creació dels botons
+        this.desar = new JButton("Desar");
+        this.sortir = new JButton("Sortir");
+        this.sortir.setActionCommand("SortirForm");
+
+        // Afegir tot al panell per defecte del JFrame
+        this.getContentPane().setLayout(gridLayout);
+        
+        this.getContentPane().add(this.lNomUniversitat);
+        this.getContentPane().add(this.tNomUniversitat);
+
+        this.getContentPane().add(this.lUbicacioSeu);
+        this.getContentPane().add(this.tUbicacioSeu);
+
+        this.getContentPane().add(this.desar);
+        this.getContentPane().add(this.sortir);
+
+
+        // Set de les dimensions, tancar finestra amb X i fer el frame visible
+        this.showFinestra();
+
+
     }
 
     private void showFinestra() {

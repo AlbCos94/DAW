@@ -39,8 +39,8 @@ public class ControladorUniversitat implements ActionListener {
         // Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
         this.afegirListenersMenu();
 
-
-
+        // Afegiu els escoltadors de la vista de UniversitatForm
+        this.afegirListenersForm();
     }
 
     // El controlador com a listener dels controls de les finestres que gestionen les universitats
@@ -72,6 +72,9 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del formulari de la universitat.
          * 
          */
+        this.universitatForm.getDesar().addActionListener(this);
+        this.universitatForm.getSortir().addActionListener(this);
+
 
     }
 
@@ -118,7 +121,7 @@ public class ControladorUniversitat implements ActionListener {
             */
             menuUniversitat.setVisible(false);
             menuUniversitat.dispose(); // release resources of the window
-            new ControladorPrincipal(); // call again to ControladorPrincipal to show the main menu
+            new ControladorPrincipal(); // call to ControladorPrincipal to show the main menu
             break;
 
         case "1. Alta Universitat":
@@ -129,7 +132,19 @@ public class ControladorUniversitat implements ActionListener {
              * En cas negatiu (s'ha arribat al màxim): es mostra el següent missatge mitjançant
              * JOptionPane.showMessageDialog: "Màxim nombre d'universitats assolit."
              */
+            //new ControladorPrincipal();
 
+            // Comprovem si s'ha arribat al màxim d'universitats -> menys files que el numero maxim universitats
+            if ( (this.universitatLlista == null) || ( this.universitatLlista.gettUniversitats().getRowCount() < ControladorPrincipal.getMAXUNIVERSITATS() ) ){
+                menuUniversitat.setVisible(false);
+                menuUniversitat.dispose(); // release resources of the window
+                this.universitatForm = new UniversitatForm();
+
+            } else{
+
+                // SHOW SOME KIND OF ERROR
+            }
+            
             break;	
 
         case "2. Seleccionar Universitat":
@@ -202,7 +217,8 @@ public class ControladorUniversitat implements ActionListener {
 
             break;
 
-        case "SortirForm":
+
+        case "SortirForm": // Cas de sortir de la finestra de Universitat Form
             menuUniversitat.setVisible(true);
             universitatForm.dispose();
             break;
@@ -212,7 +228,7 @@ public class ControladorUniversitat implements ActionListener {
             universitatLlista.dispose();
             break;
 
-        case "Desar":
+        case "Desar": // Cas de desar de la finestra de Universitat Form
             universitat = new Universitat(universitatForm.gettNomUniversitat().getText(),
                             universitatForm.gettUbicacioSeu().getText());
             ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
