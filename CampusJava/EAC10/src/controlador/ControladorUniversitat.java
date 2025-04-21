@@ -87,6 +87,7 @@ public class ControladorUniversitat implements ActionListener {
          * Afegiu aquest mateix objecte (ControladorUniversitat) com a listener, al
          * botó sortir de la llista d'universitats.
          */
+        this.universitatLlista.getSortir().addActionListener(this);
 
     }
 
@@ -136,8 +137,14 @@ public class ControladorUniversitat implements ActionListener {
             //new ControladorPrincipal();
 
             // Comprovem si s'ha arribat al màxim d'universitats -> menys files que el numero maxim universitats
-            if ( (this.universitatLlista == null) || ( this.universitatLlista.gettUniversitats().getRowCount() < ControladorPrincipal.getMAXUNIVERSITATS() ) ){
+
+            
+            
+            //for (int i = 0; i < ControladorPrincipal.getUniversitats().length && !trobat; i++) {
+            //if ( (this.universitatLlista == null) || ( this.universitatLlista.gettUniversitats().getRowCount() < ControladorPrincipal.getMAXUNIVERSITATS() ) ){
             //if ( ControladorPrincipal.getUniversitats().length < ControladorPrincipal.getMAXUNIVERSITATS() ){
+            if ( ControladorPrincipal.getpUniversitats() < ControladorPrincipal.getMAXUNIVERSITATS() ){
+                
                 menuUniversitat.setVisible(false);
                 menuUniversitat.dispose(); // release resources of the window
                 this.universitatForm = new UniversitatForm();
@@ -145,7 +152,7 @@ public class ControladorUniversitat implements ActionListener {
                 this.afegirListenersForm();
 
             } else{
-
+                JOptionPane.showMessageDialog(menuUniversitat, "Màxim nombre d'universitats assolit.");
                 // SHOW SOME KIND OF ERROR
             }
             
