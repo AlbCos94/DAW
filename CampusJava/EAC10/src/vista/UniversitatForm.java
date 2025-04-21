@@ -25,8 +25,6 @@ public class UniversitatForm extends JFrame {
 
     public UniversitatForm() {
         /*
-         * TODO
-         * 
          * No afegiu cap listener a cap control.
          * 
          * Amb els atributs d'aquesta classe, heu de fer el següent:
@@ -62,7 +60,6 @@ public class UniversitatForm extends JFrame {
 
         this.tNomUniversitat = new JTextField();
 
-
         this.lUbicacioSeu = new JLabel();
         this.lUbicacioSeu.setText("Ubicació");
 
@@ -86,10 +83,8 @@ public class UniversitatForm extends JFrame {
         this.getContentPane().add(this.desar);
         this.getContentPane().add(this.sortir);
 
-
         // Set de les dimensions, tancar finestra amb X i fer el frame visible
         this.showFinestra();
-
 
     }
 

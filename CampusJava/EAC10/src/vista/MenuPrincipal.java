@@ -48,12 +48,10 @@ public class MenuPrincipal extends JFrame {
          */
 
         //Contenidor d’alt nivell: finestra principal - Titol Menu Principal
-        //JFrame frameMenuPrincipal = new JFrame("Menú Principal");
         this.setTitle("Menú Principal");
 
         // Establir un GridLayout d'una columna per al JFrame
         GridLayout gridLayout = new GridLayout(this.menuButtons.length,1);
-        //frameMenuPrincipal.setLayout(gridLayout);
 
         // Creació dels botons
         menuButtons[0] = new JButton("0. Sortir");
@@ -62,14 +60,12 @@ public class MenuPrincipal extends JFrame {
 
         // Afegir els botons al panell per defecte del JFrame
         this.getContentPane().setLayout(gridLayout);;
-        //panell.setLayout(gridLayout);
+
         this.getContentPane().add(menuButtons[0]);
         this.getContentPane().add(menuButtons[1]);
         this.getContentPane().add(menuButtons[2]);
 
-
-        //this.add(panell)
-        // Set de l'amplada i l'alcada, permetre que en premer X es tanqui la finestra i fem visible la finestra 
+        // Set de l'amplada i l'alcada, permetre que en premer X es tanqui la finestra i fer visible la finestra 
         this.showFinestra();
 
     }

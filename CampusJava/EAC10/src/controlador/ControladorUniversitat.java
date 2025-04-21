@@ -26,8 +26,6 @@ public class ControladorUniversitat implements ActionListener {
     public ControladorUniversitat() {
 
         /*
-         * TODO
-         * 
          * Inicialitzeu l'atribut menuUniversitat (per mostrar el menú d'universitats). 
          * Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
          * 
@@ -39,16 +37,12 @@ public class ControladorUniversitat implements ActionListener {
         // Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
         this.afegirListenersMenu();
 
-
     }
 
     // El controlador com a listener dels controls de les finestres que gestionen les universitats
-
     private void afegirListenersMenu() {
 
         /*
-         * TODO
-         * 
          * Afegiu aquest mateix objecte (ControladorUniversitat) com a listener, a
          * cada botó del menú d'universitats.
          * 
@@ -65,8 +59,6 @@ public class ControladorUniversitat implements ActionListener {
     private void afegirListenersForm() {
 
         /*
-         * TODO
-         * 
          * Afegiu aquest mateix objecte (ControladorUniversitat) com a listener, a
          * cada botó del formulari de la universitat.
          * 
@@ -76,14 +68,11 @@ public class ControladorUniversitat implements ActionListener {
         this.universitatForm.getDesar().addActionListener(this);
         this.universitatForm.getSortir().addActionListener(this);
 
-
     }
 
     private void afegirListenersLlista() {
 
         /*
-         * TODO
-         * 
          * Afegiu aquest mateix objecte (ControladorUniversitat) com a listener, al
          * botó sortir de la llista d'universitats.
          */
@@ -95,8 +84,6 @@ public class ControladorUniversitat implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         /*
-         * TODO
-         * 
          * Seleccioneu l'acció a realitzar cridant el mètode seleccionarOpcio i
          * utilitzant la propietat actionCommand dels botons, que per defecte 
          * és igual al text dels botons. El mètode getActionCommand de l'esdeveniment 
@@ -119,7 +106,7 @@ public class ControladorUniversitat implements ActionListener {
 
         case "0. Sortir":
             /*
-            * TODO Tancar menu d'universitats i tornar al menú principal
+            * Tancar menu d'universitats i tornar al menú principal
             */
             menuUniversitat.setVisible(false);
             menuUniversitat.dispose(); // release resources of the window
@@ -128,21 +115,14 @@ public class ControladorUniversitat implements ActionListener {
 
         case "1. Alta Universitat":
             /*
-             * TODO Es comprova si no s'ha arribat al màxim d'universitats.
+             * Es comprova si no s'ha arribat al màxim d'universitats.
              * En cas afirmatiu: es mostra un formulari de la classe UniversitatForm i s'afegeixen 
              * els listeners a cada botó del formulari de la universitat.
              * En cas negatiu (s'ha arribat al màxim): es mostra el següent missatge mitjançant
              * JOptionPane.showMessageDialog: "Màxim nombre d'universitats assolit."
              */
-            //new ControladorPrincipal();
 
-            // Comprovem si s'ha arribat al màxim d'universitats -> menys files que el numero maxim universitats
-
-            
-            
-            //for (int i = 0; i < ControladorPrincipal.getUniversitats().length && !trobat; i++) {
-            //if ( (this.universitatLlista == null) || ( this.universitatLlista.gettUniversitats().getRowCount() < ControladorPrincipal.getMAXUNIVERSITATS() ) ){
-            //if ( ControladorPrincipal.getUniversitats().length < ControladorPrincipal.getMAXUNIVERSITATS() ){
+            // Comprovem si s'ha arribat al màxim d'universitats 
             if ( ControladorPrincipal.getpUniversitats() < ControladorPrincipal.getMAXUNIVERSITATS() ){
                 
                 menuUniversitat.setVisible(false);
@@ -153,7 +133,6 @@ public class ControladorUniversitat implements ActionListener {
 
             } else{
                 JOptionPane.showMessageDialog(menuUniversitat, "Màxim nombre d'universitats assolit.");
-                // SHOW SOME KIND OF ERROR
             }
             
             break;	
@@ -215,7 +194,7 @@ public class ControladorUniversitat implements ActionListener {
 
         case "5. Desar Universitat":
             /*
-             * TODO Es comprova si s'ha seleccionat la universitat: - Si no s'ha
+             * Es comprova si s'ha seleccionat la universitat: - Si no s'ha
              * seleccionat es mostra un missatges d'error (JOptionPane.showMessageDialog) -
              * Si s'ha seleccionat, es desa la universitat cridant a
              * desarUniversitat del gestor de persistència. El nom del fitxer ha de ser
@@ -238,15 +217,8 @@ public class ControladorUniversitat implements ActionListener {
                     JOptionPane.showMessageDialog(menuUniversitat, e.getMessage());
                 }
 
-
-                /* 
-                public void desarUniversitat(String tipusPersistencia, String nomFitxer, Universitat universitat) throws GestorUniversitatsException {
-                    if (tipusPersistencia.equals("XML")) {
-                        gestor = new GestorXML();
-                        gestor.desarUniversitat(nomFitxer, universitat);
-                    }
-                }*/
-
+                JOptionPane.showMessageDialog(menuUniversitat, "Universitat seleccionada desada correctament en fitxer XML");
+            
             } else {
                 JOptionPane.showMessageDialog(menuUniversitat, "No s'ha seleccionat cap universitatº");
             }

@@ -27,8 +27,6 @@ public class ControladorPrincipal implements ActionListener {
     public ControladorPrincipal() {
 
         /*
-         * TODO
-         * 
          * Inicialitzeu l'atribut menuPrincipal (això mostrarà el menú principal). A
          * cada botó del menú, afegiu aquest mateix (ControladorPrincipal) objecte com a
          * listener.
@@ -44,12 +42,10 @@ public class ControladorPrincipal implements ActionListener {
         menuPrincipal = new MenuPrincipal();
 
         //A cada botó del menú, afegiu aquest mateix (ControladorPrincipal) objecte com a listener.
-        // Quan s'apliqui una accio al boto en questió serà aquest controlador l'encarregat de reaccionar a l'esdeveniment
+        // Quan s'apliqui una accio al botó en questió serà aquest controlador l'encarregat de reaccionar a l'esdeveniment
         menuPrincipal.getMenuButtons()[0].addActionListener(this);
         menuPrincipal.getMenuButtons()[1].addActionListener(this);
         menuPrincipal.getMenuButtons()[2].addActionListener(this);
-
-        //menuPrincipal.addComponentListener(this);
 
     }
 
@@ -58,8 +54,6 @@ public class ControladorPrincipal implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         /*
-         * TODO
-         * 
          * Seleccioneu l'acció a realitzar cridant el mètode seleccionarOpcio i
          * utilitzant la propietat actionCommand dels botons, que per defecte 
          * és igual al text dels botons. El mètode getActionCommand de l'esdeveniment 

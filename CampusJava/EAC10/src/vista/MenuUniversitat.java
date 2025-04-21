@@ -18,8 +18,6 @@ public class MenuUniversitat extends JFrame {
     public MenuUniversitat() {
 
         /*
-         * TODO
-         * 
          * No afegiu cap listener a cap control.
          * 
          * Amb els atributs d'aquesta classe, heu de fer el següent:
@@ -65,7 +63,7 @@ public class MenuUniversitat extends JFrame {
 
         // Afegir els botons al panell per defecte del JFrame
         this.getContentPane().setLayout(gridLayout);;
-        //panell.setLayout(gridLayout);
+
         this.getContentPane().add(menuButtons[0]);
         this.getContentPane().add(menuButtons[1]);
         this.getContentPane().add(menuButtons[2]);
