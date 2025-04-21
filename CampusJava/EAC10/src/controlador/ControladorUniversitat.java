@@ -226,6 +226,31 @@ public class ControladorUniversitat implements ActionListener {
              * mitjançant JOptionPane.showMessageDialog.
              */
 
+            if (ControladorPrincipal.getUniversitatActual() != null){
+
+                String tipusPersistencia  = ControladorPrincipal.getMETODESPERSISTENCIA()[0];
+                String nomFitxer = "universitat";
+                
+                try {
+                    ControladorPrincipal.getGp().desarUniversitat(tipusPersistencia, nomFitxer, ControladorPrincipal.getUniversitatActual());
+
+                } catch (GestorUniversitatsException e) {
+                    JOptionPane.showMessageDialog(menuUniversitat, e.getMessage());
+                }
+
+
+                /* 
+                public void desarUniversitat(String tipusPersistencia, String nomFitxer, Universitat universitat) throws GestorUniversitatsException {
+                    if (tipusPersistencia.equals("XML")) {
+                        gestor = new GestorXML();
+                        gestor.desarUniversitat(nomFitxer, universitat);
+                    }
+                }*/
+
+            } else {
+                JOptionPane.showMessageDialog(menuUniversitat, "No s'ha seleccionat cap universitatº");
+            }
+
             break;
 
 
@@ -234,17 +259,17 @@ public class ControladorUniversitat implements ActionListener {
             universitatForm.dispose();
             break;
 
-        case "SortirLlista":
+        case "SortirLlista": // Cas de sortir de la finestra de Universitat Llista
             menuUniversitat.setVisible(true);
             universitatLlista.dispose();
             break;
 
-        case "Desar": // Cas de desar de la finestra de Universitat Form
+        case "Desar": // Cas de desar de la finestra de Universitat Form -> es crea una universitat amb les dades introduides
             universitat = new Universitat(universitatForm.gettNomUniversitat().getText(),
                             universitatForm.gettUbicacioSeu().getText());
             ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
             ControladorPrincipal.setpUniversitats();
-            ControladorPrincipal.setUniversitatActual(universitat);
+            ControladorPrincipal.setUniversitatActual(universitat); // per defecte es posa com a universitat acabada d'afegir la universitat actual
             System.out.println("Desar");
             break;
         }

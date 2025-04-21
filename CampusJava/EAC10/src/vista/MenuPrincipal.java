@@ -20,8 +20,6 @@ public class MenuPrincipal extends JFrame {
     public MenuPrincipal() {
 
         /*
-         * TODO
-         * 
          * No afegiu cap listener a cap control.
          * 
          * Amb els atributs d'aquesta classe, heu de fer el següent:
@@ -69,12 +67,6 @@ public class MenuPrincipal extends JFrame {
         this.getContentPane().add(menuButtons[1]);
         this.getContentPane().add(menuButtons[2]);
 
-        /* 
-        panell.add(menuButtons[0]);
-        panell.add(menuButtons[1]);
-        panell.add(menuButtons[2]);
-
-        */
 
         //this.add(panell)
         // Set de l'amplada i l'alcada, permetre que en premer X es tanqui la finestra i fem visible la finestra 
