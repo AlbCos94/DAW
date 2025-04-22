@@ -208,7 +208,7 @@ public class ControladorUniversitat implements ActionListener {
             if (ControladorPrincipal.getUniversitatActual() != null){
 
                 String tipusPersistencia  = ControladorPrincipal.getMETODESPERSISTENCIA()[0];
-                String nomFitxer = "universitat";
+                String nomFitxer = ControladorPrincipal.getUniversitatActual().getNomUniversitat(); // nom de la universitat a guardar
                 
                 try {
                     ControladorPrincipal.getGp().desarUniversitat(tipusPersistencia, nomFitxer, ControladorPrincipal.getUniversitatActual());
