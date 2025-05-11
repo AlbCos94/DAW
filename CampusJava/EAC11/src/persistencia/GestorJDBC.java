@@ -41,7 +41,7 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * Files: la de la universitat amb un nom que coincideixi amb el passat per paràmetre.
 	 *
 	 */
-        private static String nomUniversitatSQL = "";
+        private static String nomUniversitatSQL = "SELECT * FROM IOC2425S2.UNIVERSITAT WHERE NOMUNIVERSITAT=?";
 
 	private PreparedStatement nomUniversitatSt;
 
@@ -54,7 +54,7 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * valors dels camps són els que es passaran per paràmetre.
 	 *
 	 */
-	private static String insereixUniversitatSQL = "";
+	private static String insereixUniversitatSQL = "INSERT INTO IOC2425S2.UNIVERSITAT VALUES(?,?)"; // NOMUNIVERSITAT, UBICACIOSEU
 
 	private PreparedStatement insereixUniversitatSt;
 
@@ -68,7 +68,7 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * Columnes a actualitzar: nom i ubicació amb els valors passats per paràmetre.
 	 *
 	 */
-	private static String actualitzaUniversitatSQL = "";
+	private static String actualitzaUniversitatSQL = "UPDATE IOC2425S2.UNIVERSITAT SET NOMUNIVERSITAT=?, UBICACIOSEU=? WHERE NOMUNIVERSITAT=?";
 
 	private PreparedStatement actualitzaUniversitatSt;
 
@@ -83,8 +83,8 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * per paràmetre.
 	 *
 	 */
-	private static String eliminaCampusSQL = "";
-
+	private static String eliminaCampusSQL = "DELETE FROM IOC2425S2.CAMPUS WHERE UNIVERSITAT=?";
+        
 	private PreparedStatement eliminaCampusSt;
 
 	/*
@@ -96,7 +96,7 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * camps són els que es passaran per paràmetre.
 	 *
 	 */
-	private static String insereixCampusSQL = "";
+	private static String insereixCampusSQL = "INSERT INTO IOC2425S2.CAMPUS VALUES(?,?,?)";
 
 	private PreparedStatement insereixCampusSt;
 
@@ -112,7 +112,7 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * el passat per paràmetre.
 	 *
 	 */
-	private static String seleccionaCampusSQL = "";
+	private static String seleccionaCampusSQL = "SELECT * FROM IOC2425S2.CAMPUS WHERE UNIVERSITAT=?";
 
 	private PreparedStatement seleccionaCampusSt;
 
@@ -136,8 +136,37 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * Retorn: cap.
 	 *
 	 */
+        public void estableixConnexio() {
 
+            
+            try {
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
 
+                // Establlir connexió
+                String urlBaseDades = "jdbc:derby://localhost:1527/EAC112425S2";
+                String usuari = "ioc2425s2";
+                String contrasenya = "abc123";
+
+                this.connexio = DriverManager.getConnection(urlBaseDades, usuari, contrasenya);
+
+                // Preparar el Objectes "PrepareStatement"
+                this.nomUniversitatSt = connexio.prepareStatement(this.nomUniversitatSQL);
+                this.insereixUniversitatSt = connexio.prepareStatement(this.insereixUniversitatSQL);
+                this.actualitzaUniversitatSt = connexio.prepareStatement(this.actualitzaUniversitatSQL);
+                this.eliminaCampusSt = connexio.prepareStatement(this.eliminaCampusSQL);
+                this.insereixCampusSt = connexio.prepareStatement(this.insereixCampusSQL);
+                this.seleccionaCampusSt = connexio.prepareStatement(this.seleccionaCampusSQL);
+
+                
+            } catch(Exception e){
+                e.printStackTrace();
+                //throw e;
+                //System.out.println(e.getMessage());
+            }
+            
+        }
+        
+        
 	
 
 	public void tancaConnexio() throws SQLException {
@@ -179,7 +208,78 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * Retorn: cap.
 	 *
 	 */
-	
+        @Override
+	public void desarUniversitat(String nomFitxer, Universitat universitat)throws GestorUniversitatsException{
+            
+
+            try {
+                
+                // Set universitat
+                this.setUniversitat(universitat);
+                
+                // Establim la connexió amb la base de dades
+                this.estableixConnexio();
+                
+
+                // Check if university exists
+                this.nomUniversitatSt.setString(1, this.universitat.getNomUniversitat()); // fem el set del primer parametre amb el nom de la universitat en qüestió
+                ResultSet resUniversities = this.nomUniversitatSt.executeQuery();
+                
+                
+                // registres actualitzats
+                int rowsInsertedUni = 0;
+                int rowsDeletedCampus = 0;
+                // A l’inici de tot, l’apuntador està una posició per endavant de la primera fila,
+                if ( resUniversities.next() ){
+                    // Cas Existeix la universitat
+                    
+                    // Fem update de la universitat 
+                    this.actualitzaUniversitatSt.setString(1, this.universitat.getNomUniversitat());
+                    this.actualitzaUniversitatSt.setString(2, this.universitat.getUbicacioSeu());
+                    this.actualitzaUniversitatSt.setString(3, this.universitat.getNomUniversitat());
+                    rowsInsertedUni = this.actualitzaUniversitatSt.executeUpdate();
+                    
+                    // Eliminem tots el campus que tenen com a universitat aquella universitat que actualitzem
+                    this.eliminaCampusSt.setString(1, this.universitat.getNomUniversitat());
+                    
+                    rowsDeletedCampus = this.eliminaCampusSt.executeUpdate();
+                    
+                    
+                }else{
+                    // Cas NO existeix la universitat
+                    
+                    // Desar universitat a la taula UNIVERSITAT
+                    this.insereixUniversitatSt.setString(1, this.universitat.getNomUniversitat());
+                    this.insereixUniversitatSt.setString(2, this.universitat.getUbicacioSeu());
+                    rowsInsertedUni = this.insereixUniversitatSt.executeUpdate();
+                    
+      
+                }
+                
+                
+                // Sigui el cas que sigue -> Desar tots els Campus de la universitat a la taula Campus
+                int rowsInsertedCampus = 0;
+                for (int i = 0; i < this.universitat.getCampusList().size(); i++){
+
+                    this.insereixCampusSt.setString(1, this.universitat.getCampusList().get(i).getNomCampus());
+                    this.insereixCampusSt.setString(2, this.universitat.getCampusList().get(i).getUbicacio());
+                    this.insereixCampusSt.setString(3, this.universitat.getNomUniversitat());
+
+                    rowsInsertedCampus = this.insereixCampusSt.executeUpdate();
+
+                }
+                
+                
+                // Tanquem la connexió amb la base de dades
+                this.tancaConnexio();
+
+
+            } catch(Exception e) {
+
+                GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorJDBC.desar");
+                throw gestUniExcept;
+            }
+	}	
 
 	/*
 	 * TODO
@@ -206,6 +306,22 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 * Retorn: cap.
 	 *
 	 */
-	
+        @Override
+	public void carregarUniversitat(String nomFitxer)throws GestorUniversitatsException {
+
+            
+            
+            try {
+                
+
+
+
+
+            } catch(Exception e) {
+
+                GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorJDBC.desar");
+                throw gestUniExcept;
+            }
+	}	            
 
 }

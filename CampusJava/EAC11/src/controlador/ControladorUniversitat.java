@@ -8,7 +8,7 @@ import model.Universitat;
 import persistencia.GestorPersistencia;
 import persistencia.GestorXML;
 import exceptions.GestorUniversitatsException;
-import persistencia.GestorDB4O;
+//import persistencia.GestorDB4O; //REMOVE
 import persistencia.GestorJDBC;
 import vista.MenuUniversitat;
 import vista.UniversitatForm;
@@ -143,7 +143,8 @@ public class ControladorUniversitat implements ActionListener {
 						break;
 
 					case "DB4O":
-						universitat = ((GestorDB4O) gestor.getGestor()).getUniversitat();
+						//universitat = ((GestorDB4O) gestor.getGestor()).getUniversitat();
+                                                universitat = ((GestorJDBC) gestor.getGestor()).getUniversitat(); // CHANGE TO THE UPPER SENTENCE!
 						break;
 
 					default:
