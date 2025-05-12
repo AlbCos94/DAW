@@ -15,7 +15,7 @@ import interfaces.ProveedorPersistencia;
  */
 public class GestorDB4O implements ProveedorPersistencia {
 
-	private ObjectContainer db;
+	private ObjectContainer db; // objecte amb el que es podran fer totes les accions amb la BDOO
 	private Universitat universitat;
 
 	public Universitat getUniversitat() {
@@ -26,8 +26,6 @@ public class GestorDB4O implements ProveedorPersistencia {
 		this.universitat = Universitat;
 	}
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: cap.
 	 *
 	 * Acció:
@@ -40,15 +38,30 @@ public class GestorDB4O implements ProveedorPersistencia {
 	 * Retorn: cap.
 	 *
 	 */
-	
+        public void estableixConnexio() {
+
+            try {
+                // Establlir connexió amb actualitzacio en Cascada
+                
+                // Configuració per a cascada d'actualització per Universitat
+                EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+                config.common().objectClass(Universitat.class).cascadeOnUpdate(true);
+
+                // Obrir la base de dades amb el fitxer EAC112425S2.db4o
+                this.db = Db4oEmbedded.openFile(config, "EAC112425S2.db4o");
+                
+            } catch(Exception e){
+
+                System.out.println(e.getMessage());
+            }
+            
+        }	
 
 	public void tancaConnexio() {
 		db.close();
 	}
 
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: el nom del fitxer i la universitat a desar.
          *        
          * El primer paràmetre NO s'utilitza (és null).
@@ -66,11 +79,48 @@ public class GestorDB4O implements ProveedorPersistencia {
 	 * Retorn: cap.
 	 *
 	 */
-	
+        @Override
+	public void desarUniversitat(String nomFitxer, Universitat universitat)throws GestorUniversitatsException{
+            try {
+
+                // Set universitat
+                this.setUniversitat(universitat);      
+                
+                // Establim connexió
+                this.estableixConnexio();
+                               
+                // Comprovar si ja existeix la universitat
+                List<Universitat> uniExistents = db.query(new Predicate<Universitat>() {
+                    @Override
+                    public boolean match(Universitat u) {
+                        return u.getNomUniversitat().equalsIgnoreCase(universitat.getNomUniversitat());
+                    }
+                });
+
+                if (uniExistents.isEmpty()) {
+                    // No existeix llavors inserim
+                    db.store(universitat);
+                } else {
+                    // Ja existeix llavors actualitzem
+                    Universitat uniExistent = uniExistents.get(0);
+                    
+                    // Actualitzem la universitat antiga amb els campus de la nova i la seva nova ubicacio
+                    uniExistent.setUbicacioSeu(universitat.getUbicacioSeu());
+                    uniExistent.setCampusList(universitat.getCampusList()); 
+                    
+                    db.store(uniExistent);
+                }
+
+                db.commit();
+                this.tancaConnexio();                
+
+            } catch(Exception e) {
+                this.tancaConnexio(); 
+                throw new GestorUniversitatsException("GestorDB4O.desar");
+            }
+        }
 
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: el nom de la universitat.
 	 *
 	 * Acció:
@@ -86,5 +136,33 @@ public class GestorDB4O implements ProveedorPersistencia {
 	 * Retorn: cap
 	 *
 	 */
-	
+        @Override
+	public void carregarUniversitat(String nomFitxer)throws GestorUniversitatsException {
+            try {
+                
+                // Establim connexió
+                this.estableixConnexio();
+
+                List<Universitat> result = db.query(new Predicate<Universitat>() {
+                    @Override
+                    public boolean match(Universitat u) {
+                        return u.getNomUniversitat().equalsIgnoreCase(nomFitxer);
+                    }
+                });
+
+                if (result.isEmpty()) {
+                    throw new GestorUniversitatsException("GestorDB4O.noExisteix");
+                } else {
+                    this.setUniversitat(result.get(0));
+                }
+
+                this.tancaConnexio();
+                
+
+            }catch(Exception e) {
+                this.tancaConnexio();
+                GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorDB4O.carregar");
+                throw gestUniExcept;
+            }
+        }
 }

@@ -32,8 +32,8 @@ public class GestorPersistencia {
 			break;
 		default:
 			System.out.println("Seleccionat DB4O.");
-			//gestor = new GestorDB4O();
-                        //gestor.desarUniversitat(null, universitat);
+			gestor = new GestorDB4O();
+                        gestor.desarUniversitat(null, universitat);
 			break;
 		}
 
@@ -52,7 +52,7 @@ public class GestorPersistencia {
 			gestor = new GestorJDBC();
 			break;
 		default:
-			//gestor = new GestorDB4O();
+			gestor = new GestorDB4O();
 			break;
 
 		}

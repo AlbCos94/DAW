@@ -32,8 +32,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	 */
 
 	/*
-	 * TODO
-	 *
 	 * Obtenir una universitat.
 	 * 
 	 * Sentència select de la taula "universitat". 
@@ -46,8 +44,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement nomUniversitatSt;
 
 	/*
-	 * TODO
-	 *
 	 * Afegir una universitat.
 	 * 
 	 * Sentència per afegir una universitat en la taula "universitat". Els
@@ -59,8 +55,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement insereixUniversitatSt;
 
 	/*
-	 * TODO
-	 *
 	 * Actualitzar una universitat.
 	 * 
 	 * Sentència per actualitzar una universitat de la taula "universitat".
@@ -73,8 +67,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement actualitzaUniversitatSt;
 
 	/*
-	 * TODO
-	 *
 	 * Eliminar campus (donat el nom d'una universitat)
 	 * 
 	 * Sentència que elimina els campus de la taula "campus" relacionats
@@ -88,8 +80,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement eliminaCampusSt;
 
 	/*
-	 * TODO
-	 *
 	 * Afegir un campus.
 	 * 
 	 * Sentència que afegix un campus a la taula "campus". Els valors dels
@@ -101,8 +91,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement insereixCampusSt;
 
 	/*
-	 * TODO
-	 *
 	 * Seleccionar les campus d'una universitat.
 	 * 
 	 * Sentència que selecciona els campus de la taula "campus" d'una
@@ -117,8 +105,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	private PreparedStatement seleccionaCampusSt;
 
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: cap
 	 *
 	 * Acció:
@@ -159,15 +145,11 @@ public class GestorJDBC implements ProveedorPersistencia {
 
                 
             } catch(Exception e){
-                e.printStackTrace();
-                //throw e;
-                //System.out.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
             
         }
         
-        
-	
 
 	public void tancaConnexio() throws SQLException {
 		try {
@@ -178,8 +160,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	}
 
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: el nom del fitxer i la universitat a desar.
 	 *
          * El primer paràmetre NO s'utilitza (és null).
@@ -211,28 +191,22 @@ public class GestorJDBC implements ProveedorPersistencia {
         @Override
 	public void desarUniversitat(String nomFitxer, Universitat universitat)throws GestorUniversitatsException{
             
-
             try {
-                
                 // Set universitat
                 this.setUniversitat(universitat);
-                
                 // Establim la connexió amb la base de dades
                 this.estableixConnexio();
-                
 
                 // Check if university exists
                 this.nomUniversitatSt.setString(1, this.universitat.getNomUniversitat()); // fem el set del primer parametre amb el nom de la universitat en qüestió
-                ResultSet resUniversities = this.nomUniversitatSt.executeQuery();
-                
+                ResultSet resUniversitats = this.nomUniversitatSt.executeQuery();
                 
                 // registres actualitzats
                 int rowsInsertedUni = 0;
                 int rowsDeletedCampus = 0;
-                // A l’inici de tot, l’apuntador està una posició per endavant de la primera fila,
-                if ( resUniversities.next() ){
+               
+                if ( resUniversitats.next() ){
                     // Cas Existeix la universitat
-                    
                     // Fem update de la universitat 
                     this.actualitzaUniversitatSt.setString(1, this.universitat.getNomUniversitat());
                     this.actualitzaUniversitatSt.setString(2, this.universitat.getUbicacioSeu());
@@ -243,7 +217,7 @@ public class GestorJDBC implements ProveedorPersistencia {
                     this.eliminaCampusSt.setString(1, this.universitat.getNomUniversitat());
                     
                     rowsDeletedCampus = this.eliminaCampusSt.executeUpdate();
-                    
+                    System.out.println("Registres esborrats de Campus: " + rowsDeletedCampus);
                     
                 }else{
                     // Cas NO existeix la universitat
@@ -253,9 +227,8 @@ public class GestorJDBC implements ProveedorPersistencia {
                     this.insereixUniversitatSt.setString(2, this.universitat.getUbicacioSeu());
                     rowsInsertedUni = this.insereixUniversitatSt.executeUpdate();
                     
-      
+                    System.out.println("Registres inserits a Universitat: " + rowsInsertedUni);
                 }
-                
                 
                 // Sigui el cas que sigue -> Desar tots els Campus de la universitat a la taula Campus
                 int rowsInsertedCampus = 0;
@@ -266,13 +239,11 @@ public class GestorJDBC implements ProveedorPersistencia {
                     this.insereixCampusSt.setString(3, this.universitat.getNomUniversitat());
 
                     rowsInsertedCampus = this.insereixCampusSt.executeUpdate();
-
+                    System.out.println("Registres inserits a Campus: " + rowsInsertedCampus);
                 }
-                
                 
                 // Tanquem la connexió amb la base de dades
                 this.tancaConnexio();
-
 
             } catch(Exception e) {
 
@@ -282,8 +253,6 @@ public class GestorJDBC implements ProveedorPersistencia {
 	}	
 
 	/*
-	 * TODO
-	 * 
 	 * Paràmetres: el nom de la universitat.
 	 *
 	 * Acció:
@@ -309,17 +278,52 @@ public class GestorJDBC implements ProveedorPersistencia {
         @Override
 	public void carregarUniversitat(String nomFitxer)throws GestorUniversitatsException {
 
-            
-            
             try {
                 
+                // Set nom universitat
+                String nomUni = nomFitxer;
+                
+                // Establim la connexió amb la base de dades
+                this.estableixConnexio();
 
+                // Get universitat
+                this.nomUniversitatSt.setString(1, nomUni); // fem el set del primer parametre amb el nom de la universitat en qüestió
+                ResultSet resUniversitats = this.nomUniversitatSt.executeQuery();
 
+                
+                boolean uniFound = false;
+                // Carrega la universitat
+                while (resUniversitats.next()){
+                    uniFound = true;
+                    String nomSeu = resUniversitats.getString("UBICACIOSEU");
+                    this.universitat = new Universitat(nomUni, nomSeu);
+                }
+                
 
+                if (!uniFound){
+                    GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorJDBC.noexist");
+                    throw gestUniExcept;                    
+                }
+                
+                // Get Campus
+                this.seleccionaCampusSt.setString(1, this.universitat.getNomUniversitat());
+                ResultSet resCampus = this.seleccionaCampusSt.executeQuery();
+                
+                while (resCampus.next()){
+                    String nomCampus = resCampus.getString("NOMCAMPUS");
+                    String ubicacio = resCampus.getString("UBICACIO");
+                    Campus newCampus = new Campus(nomCampus, ubicacio);
+                    this.universitat.addCampus(newCampus);
+                }
 
+                
+                // Tanquem la connexió amb la base de dades
+                this.tancaConnexio();
+
+                
             } catch(Exception e) {
 
-                GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorJDBC.desar");
+                GestorUniversitatsException gestUniExcept = new GestorUniversitatsException("GestorJDBC.carregar");
                 throw gestUniExcept;
             }
 	}	            
